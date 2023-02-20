@@ -85,10 +85,10 @@ const ProfileAvatar = () => {
               <div>Company</div>
               <div>Institute</div>
             </Col>
-            <Col md={12} className="px-4">
-              <Button variant="primary">Open to</Button>
-              <Button variant="outline-primary">Add profile section</Button>
-              <Button variant="outline-secondary">More</Button>
+            <Col md={12} className="px-4 d-flex">
+              <Button variant="primary" id="main-buttons">Open to</Button>
+              <Button variant="outline-primary mx-3" id="main-buttons">Add profile section</Button>
+              <Button variant="outline-secondary" id="main-buttons">More</Button>
             </Col>
           </Row>
         </div>

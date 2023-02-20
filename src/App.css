@@ -38,11 +38,13 @@ body {
   border-radius: 25px;
   height: 35px;
   font-weight: 600;
+  box-shadow: none !important;
 }
 
 #follow-button:hover {
   background-color: rgb(235, 235, 235);
   border: 2px solid rgb(94, 94, 94);
+  box-shadow: none !important;
 }
 
 #plus-icon {
@@ -78,6 +80,7 @@ body {
 }
 
 #analytics-badge {
+  color: black;
   background-color: rgb(235, 235, 235);
   font-size: 14px;
 }
@@ -158,11 +161,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: none !important;
+  border: 1px solid rgb(10, 102, 194);
 }
 
 #main-buttons:hover {
   background-color: rgb(226, 240, 254);
   border: 2px solid rgb(10, 102, 194);
+  box-shadow: none !important;
 }
 
 #analytics-icons:hover {
