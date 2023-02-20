@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Button, Image, Row, Col, Modal } from "react-bootstrap";
+import { Button, Image, Row, Col, Modal } from "react-bootstrap";
 import { AiFillCamera } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { RiGalleryFill } from "react-icons/ri";
@@ -15,21 +15,21 @@ const ProfileAvatar = () => {
   const handleShowPic = () => setShowPic(true);
 
   return (
-    <Col md={8}>
-      <Container>
+    <Row className="d-flex flex-column edit-section bg-white mr-2 mb-2" id="round-corners">
+      <Col className="px-0">
+
         <div className="avatar-wrapper">
-          <div>
+          <div id="banner-container" >
             <Image
-              className="img-fluid avatar-bg"
-              src="https://images.unsplash.com/photo-1674511963160-2e6656e4d8e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80"
-              rounded
+              className="img avatar-bg"
+              src="https://www.gordonkamitomo.com/wp-content/uploads/2017/09/LinkedIn-Banner-High-River.jpg"
             />
             <Button variant="light" className="camera-btn">
               <AiFillCamera className="text-primary" />
             </Button>
             <Image
               onClick={handleShowPic}
-              className="img-fluid profile-pic"
+              className="img profile-pic"
               src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
               roundedCircle
             />
@@ -112,7 +112,7 @@ const ProfileAvatar = () => {
           </Modal>
 
           <Row className="details-box justify-content-between">
-            <Col>
+            <Col className="px-4">
               <h4>
                 Name <span className="gender-known">(He/Him)</span>
               </h4>
@@ -126,15 +126,15 @@ const ProfileAvatar = () => {
               <div>Company</div>
               <div>Institute</div>
             </Col>
-            <Col md={12}>
-              <Button variant="primary">Open to</Button>
-              <Button variant="outline-primary">Add profile section</Button>
-              <Button variant="outline-secondary">More</Button>
+            <Col md={12} className="px-4 d-flex">
+              <Button variant="primary" id="main-buttons">Open to</Button>
+              <Button variant="outline-primary mx-3" id="main-buttons">Add profile section</Button>
+              <Button variant="outline-secondary" id="main-buttons">More</Button>
             </Col>
           </Row>
         </div>
-      </Container>
-    </Col>
+      </Col>
+    </Row>
   );
 };
 
