@@ -47,3 +47,11 @@
   color: rgba(128, 128, 128, 0.678);
   font-weight: normal;
 }
+
+.footer p {
+  font-size: 12px;
+}
+
+.footer-icon {
+  font-size: 25px;
+}
