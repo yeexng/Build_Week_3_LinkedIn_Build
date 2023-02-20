@@ -1,38 +1,139 @@
-.App {
-  text-align: center;
+body {
+  background-color: rgb(243, 242, 239) !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#bottom-border {
+  border-bottom: 1px solid rgb(235, 235, 235);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#round-corners {
+  border-radius: 15px;
+  border: 1px solid rgb(224, 223, 220);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.edit-section {
+  font-size: 14px;
+}
+
+#right-side-headers {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.right-side-profile-images {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.viewed-people-names {
+  font-weight: 600;
+}
+
+#follow-button {
+  background-color: transparent;
+  color: rgb(94, 94, 94);
+  border: 1px solid rgb(94, 94, 94);
+  border-radius: 25px;
+  height: 35px;
+  font-weight: 600;
+}
+
+#follow-button:hover {
+  background-color: rgb(235, 235, 235);
+  border: 2px solid rgb(94, 94, 94);
+}
+
+#plus-icon {
+  font-size: 24px;
+}
+
+#left-side-headers {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+#progress-bar {
+  width: 100%;
+  background-color: rgb(86, 104, 122);
+  height: 10px;
+  border-radius: 5px;
+}
+
+#analytics-headers {
+  font-weight: 700;
+}
+
+#analytics-text {
+  font-weight: 400;
+}
+
+#analytics-icons {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#analytics-badge {
+  background-color: rgb(235, 235, 235);
+  font-size: 14px;
+}
+
+#divider {
+  width: 80%;
+  height: 1px;
+}
+
+#activity-user {
+  font-weight: 600;
+}
+
+#post-details {
+  color: rgb(102, 102, 102);
+  font-size: 12px;
+}
+
+#post-image {
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+#mini-headers {
+  font-weight: 600;
+}
+
+#post-reactions-image {
+  width: 16px;
+  height: 16px;
+}
+
+#main-buttons {
+  border-radius: 20px;
+  height: 30px;
+  background-color: transparent;
+  color: rgb(10, 102, 194);
+  font-weight: 600;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+#main-buttons:hover {
+  background-color: rgb(226, 240, 254);
+  border: 2px solid rgb(10, 102, 194);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#analytics-icons:hover {
+background-color: rgb(235, 235, 235);
+border-radius: 50%;
+}
+
+#left-side-mini-headers {
+  font-weight: 600;
+  font-size: 14px;
 }
