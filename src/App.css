@@ -94,14 +94,20 @@ body {
 #post-details {
   color: rgb(102, 102, 102);
   font-size: 12px;
+}
+
 .avatar-wrapper {
   position: relative;
-  height: 60vh;
+  height: 50vh;
   overflow: hidden;
 }
 
 .avatar-bg {
   position: relative;
+  height: 20vh !important;
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 .camera-btn {
@@ -125,6 +131,8 @@ body {
   top: 210px;
   right: 30px;
   z-index: 1;
+}
+
 #post-image {
   height: 70px;
   width: 70px;
@@ -160,6 +168,8 @@ body {
 #analytics-icons:hover {
 background-color: rgb(235, 235, 235);
 border-radius: 50%;
+}
+
 .drop-up-chat {
   display: inline;
   margin-left: auto;
@@ -180,3 +190,8 @@ border-radius: 50%;
   font-weight: 600;
   font-size: 14px;
 }
+
+.details-box {
+  margin-top: 8vh !important;
+}
+

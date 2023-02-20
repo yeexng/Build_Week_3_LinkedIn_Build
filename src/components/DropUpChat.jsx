@@ -10,7 +10,7 @@ const DropUpChat = () => {
   const toggleShow = () => setShowShow(!showShow);
   return (
     <>
-      <div className="chat-box-wrapper">
+      <div className="chat-box-wrapper bg-white">
         <div className="chat-box">
           <div
             className="drop-up-chat d-flex justify-content-between p-3"

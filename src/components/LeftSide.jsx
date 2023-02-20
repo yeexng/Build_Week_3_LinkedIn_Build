@@ -8,10 +8,12 @@ import Education from "./Education";
 import Volunteering from "./Volunteering";
 import Skills from "./Skills";
 import Interests from "./Interests";
+import ProfileAvatar from "./ProfileAvatar"
 
 const LeftSide = () => {
     return (
         <>
+            <ProfileAvatar></ProfileAvatar>
             <SuggestedForYou></SuggestedForYou>
             <Analytics></Analytics>
             <Resources></Resources>

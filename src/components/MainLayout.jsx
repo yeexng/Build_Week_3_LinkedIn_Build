@@ -1,6 +1,9 @@
 import { Container, Row, Col } from "react-bootstrap";
 import LeftSide from "./LeftSide";
 import RightSide from "./RightSide";
+import Footer from "./Footer";
+import DropUpChat from "./DropUpChat";
+
 
 const MainLayout = () => {
     return (
@@ -11,6 +14,14 @@ const MainLayout = () => {
                 </Col>
                 <Col lg={3}>
                     <RightSide></RightSide>
+                </Col>
+            </Row>
+            <Row>
+                <Footer></Footer>
+            </Row>
+            <Row>
+                <Col lg={4}>
+                    <DropUpChat></DropUpChat>
                 </Col>
             </Row>
         </Container>

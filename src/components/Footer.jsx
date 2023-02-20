@@ -16,13 +16,13 @@ import { IoMdSettings } from "react-icons/io";
 const Footer = () => {
   return (
     <MDBFooter
-      bgColor="light"
-      className="text-center text-lg-start text-muted mb-5"
+      bgColor="transparent"
+      className="text-center text-lg-start text-muted mb-0 mt-2 px-0"
     >
-      <MDBContainer>
-        <section className="mt-3 footer">
-          <MDBContainer className="text-center text-md-start mt-5">
-            <MDBRow className="mt-3">
+      <MDBContainer className="px-0">
+        <section className="mt-3 footer ">
+          <MDBContainer className="text-center text-md-start mt-5 px-0">
+            <MDBRow className="mt-3 px-0">
               <h6 className="text-uppercase fw-bold mb-4">
                 <MDBIcon color="secondary" />
                 LinkedIn
