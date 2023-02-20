@@ -136,6 +136,13 @@ body {
   z-index: 1;
 }
 
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 #post-image {
   height: 70px;
   width: 70px;
@@ -151,6 +158,17 @@ body {
   width: 16px;
   height: 16px;
 }
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  border-bottom: none;
+}
 
 #main-buttons {
   border-radius: 20px;
@@ -158,11 +176,44 @@ body {
   background-color: transparent;
   color: rgb(10, 102, 194);
   font-weight: 600;
-  display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: none !important;
   border: 1px solid rgb(10, 102, 194);
+}
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  margin-inline: 2em;
+  border: rgba(99, 99, 99, 0.342) solid 1px !important;
+  border-radius: 5px;
+  padding: 0 !important;
+}
+#myModal {
+  height: 100vh;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {
+    right: -300px;
+    opacity: 0;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    right: -300px;
+    opacity: 0;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
 }
 
 #main-buttons:hover {
@@ -172,8 +223,8 @@ body {
 }
 
 #analytics-icons:hover {
-background-color: rgb(235, 235, 235);
-border-radius: 50%;
+  background-color: rgb(235, 235, 235);
+  border-radius: 50%;
 }
 
 .drop-up-chat {
@@ -181,10 +232,26 @@ border-radius: 50%;
   margin-left: auto;
 }
 
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .chat-box {
   min-width: 18rem;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .chat-box-wrapper {
   position: fixed;
   bottom: 0;
@@ -201,3 +268,75 @@ border-radius: 50%;
   margin-top: 8vh !important;
 }
 
+.modal-text-header {
+  width: 100%;
+  padding: 1em;
+  text-align: center;
+  border-bottom: rgba(99, 99, 99, 0.342) solid 1px !important;
+}
+#modal-icon-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1em;
+  align-items: center;
+  padding: 1em;
+}
+.icon-smaller-wrapper {
+  padding-inline: 0.4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  font: 0.9rem;
+}
+.icon-smaller-wrapper:hover {
+  cursor: pointer;
+}
+.icon-smaller-wrapper p {
+  font-size: 0.7rem;
+  margin-bottom: 0;
+}
+.navbar ul {
+  margin-top: 5px;
+}
+.navbar ul li {
+  list-style: none;
+}
+.navbar ul li:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.modal-body-middle {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  margin-inline: 2em;
+  border: rgba(99, 99, 99, 0.342) solid 1px !important;
+  border-radius: 5px;
+  padding: 0 !important;
+}
+
+.modal-body-bottom {
+  border-top: rgba(99, 99, 99, 0.342) solid 1px !important;
+  color: black;
+  padding-left: 2.4em;
+  width: 100%;
+}
+.modal-body-bottom svg {
+  margin-left: 0.3em;
+}
+.modal-body-bottom:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.dropdown-menu .view-profile-button {
+  border-radius: 25px;
+  padding: 0;
+}
+.dropdown-menu .view-profile-button:hover {
+  background-color: rgba(104, 154, 219, 0.219) !important;
+}
+.bi-app {
+  fill: yellow;
+}
