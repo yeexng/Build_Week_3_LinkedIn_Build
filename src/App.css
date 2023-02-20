@@ -129,6 +129,26 @@ body {
   z-index: 1;
 }
 
+.model-profile-pic {
+  width: 270px;
+}
+
+.modal-wrapper {
+  background-color: #1d2226;
+}
+
+.modal-btn {
+  background-color: #1d2226;
+}
+
+.modal-btn:hover {
+  background-color: rgba(219, 219, 219, 0.493);
+}
+
+.anyone-btn {
+  border-radius: 20px;
+}
+
 .edit-btn {
   position: absolute;
   top: 210px;
@@ -258,6 +278,11 @@ body {
   bottom: 0;
   right: 0;
   z-index: 2;
+}
+
+.chat-avatar {
+  width: 40px;
+  margin-right: 15px;
 }
 
 #left-side-mini-headers {
