@@ -94,8 +94,37 @@ body {
 #post-details {
   color: rgb(102, 102, 102);
   font-size: 12px;
+.avatar-wrapper {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
 }
 
+.avatar-bg {
+  position: relative;
+}
+
+.camera-btn {
+  border-radius: 500px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.profile-pic {
+  position: absolute;
+  top: 100px;
+  left: 25px;
+  width: 150px;
+  border: 5px solid white;
+  z-index: 1;
+}
+
+.edit-btn {
+  position: absolute;
+  top: 210px;
+  right: 30px;
+  z-index: 1;
 #post-image {
   height: 70px;
   width: 70px;
@@ -131,6 +160,20 @@ body {
 #analytics-icons:hover {
 background-color: rgb(235, 235, 235);
 border-radius: 50%;
+.drop-up-chat {
+  display: inline;
+  margin-left: auto;
+}
+
+.chat-box {
+  min-width: 18rem;
+}
+
+.chat-box-wrapper {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
 }
 
 #left-side-mini-headers {
