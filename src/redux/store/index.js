@@ -10,6 +10,7 @@ import searchReducer from "../reducers/searchReducer";
 import getExperienceReducer from "../reducers/getExperienceReducer";
 import getExperienceWithExpIdReducer from "../reducers/getExperienceWithExpId";
 import deleteExperienceReducer from "../reducers/deleteExperienceReducer";
+import putUserProfileApiReducer from "../reducers/putUserProfileAPIReducer";
 
 const persistConfig = {
   storage: localStorage,
@@ -29,6 +30,7 @@ const combinedReducer = combineReducers({
   getExperience: getExperienceReducer,
   deleteExp: deleteExperienceReducer,
   experienceWithId: getExperienceWithExpIdReducer,
+  putUserDataAPI: putUserProfileApiReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, combinedReducer);

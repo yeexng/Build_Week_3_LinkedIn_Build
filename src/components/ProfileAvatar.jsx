@@ -1,16 +1,19 @@
-import { useState, useDispatch } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Image, Row, Col, Modal } from "react-bootstrap";
 import { AiFillCamera } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { RiGalleryFill } from "react-icons/ri";
 import { ImBin } from "react-icons/im";
-import { useSelector } from "react-redux";
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import { putUserProfileApi } from "../redux/actions";
 import "../styles/profileDiv.css";
 
 const ProfileAvatar = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
-
   const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
   // const [showPic, setShowPic] = useState(false);
 
   const handleClosePen = () => setShow(false);
@@ -51,16 +54,75 @@ const ProfileAvatar = () => {
 
           <Modal show={show} onHide={handleClosePen}>
             <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
+              <Modal.Title>Edit Info</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-              Woohoo, you're reading this text in a modal!
-            </Modal.Body>
+
+            <InputGroup size="sm" className="mb-3 px-5 pt-3">
+              <InputGroup.Text id="inputGroup-sizing-sm">Name</InputGroup.Text>
+              <Form.Control
+                aria-label="Small"
+                aria-describedby="inputGroup-sizing-sm"
+                id="change-name"
+                placeholder={userProfileAPIRS && userProfileAPIRS.name}
+              />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-3 px-5">
+              <InputGroup.Text id="inputGroup-sizing-sm">Surname</InputGroup.Text>
+              <Form.Control
+                aria-label="Small"
+                aria-describedby="inputGroup-sizing-sm"
+                id="change-surname"
+                placeholder={userProfileAPIRS && userProfileAPIRS.surname}
+              />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-3 px-5">
+              <InputGroup.Text id="inputGroup-sizing-sm">Email</InputGroup.Text>
+              <Form.Control
+                aria-label="Small"
+                aria-describedby="inputGroup-sizing-sm"
+                id="change-email"
+                placeholder={userProfileAPIRS && userProfileAPIRS.email}
+              />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-3 px-5">
+              <InputGroup.Text id="inputGroup-sizing-sm">Title</InputGroup.Text>
+              <Form.Control
+                aria-label="Small"
+                aria-describedby="inputGroup-sizing-sm"
+                id="change-title"
+                placeholder={userProfileAPIRS && userProfileAPIRS.title}
+              />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-3 px-5">
+              <InputGroup.Text id="inputGroup-sizing-sm">Location</InputGroup.Text>
+              <Form.Control
+                aria-label="Small"
+                aria-describedby="inputGroup-sizing-sm"
+                id="change-area"
+                placeholder={userProfileAPIRS && userProfileAPIRS.area}
+              />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-3 px-5">
+              <InputGroup.Text id="inputGroup-sizing-sm">Username</InputGroup.Text>
+              <Form.Control
+                aria-label="Small"
+                aria-describedby="inputGroup-sizing-sm"
+                id="change-username"
+                placeholder={userProfileAPIRS && userProfileAPIRS.username}
+              />
+            </InputGroup>
+
+            <InputGroup size="sm" className="mb-3 px-5">
+              <InputGroup.Text >About</InputGroup.Text>
+              <Form.Control as="textarea" aria-label="With textarea" id="change-bio" placeholder={userProfileAPIRS && userProfileAPIRS.bio} />
+            </InputGroup>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClosePen}>
                 Close
               </Button>
-              <Button variant="primary" onClick={handleClosePen}>
+              <Button variant="primary" onClick={() => {
+                dispatch(putUserProfileApi())
+              }}>
                 Save Changes
               </Button>
             </Modal.Footer>
