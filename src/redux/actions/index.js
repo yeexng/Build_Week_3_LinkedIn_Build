@@ -10,15 +10,15 @@ export const GET_EXPERIENCE = "GET_EXPERIENCE";
 export const GET_SPECIFIC_PROFILE = "GET_SPECIFIC_PROFILE";
 export const GET_EXPERIENCE_WITH_EXP_ID = "GET_EXPERIENCE_WITH_EXP_ID";
 export const DELETE_EXPERIENCE = "DELETE_EXPERIENCE";
+const options = {
+    method: "GET",
+    headers: {
+        Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
+    },
+};
 
 export const getUserProfileApi = () => {
-    const options = {
-        method: "GET",
-        headers: {
-            Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0YzEzYjExZDczZDAwMTM3YWFiMWIiLCJpYXQiOjE2NzY5ODQ2MzYsImV4cCI6MTY3ODE5NDIzNn0.ajqHRiRUfFAyQ7p5JRd3Na68gggeaCwfze2yPxkA0EE",
-        },
-    };
     return async (dispatch, getState) => {
 
         const baseEndpoint =
@@ -80,7 +80,7 @@ export const putUserProfileApi = () => {
         "bio": bioInput.value
     }
 
-    const options = {
+    const optionsPUT = {
         method: "PUT",
         headers: new Headers(
             {
@@ -96,7 +96,7 @@ export const putUserProfileApi = () => {
             `https://striveschool-api.herokuapp.com/api/profile/`
 
         try {
-            let resp = await fetch(baseEndpoint, options);
+            let resp = await fetch(baseEndpoint, optionsPUT);
             if (resp.ok) {
                 dispatch({
                     type: GET_USER_LOADING,
@@ -169,108 +169,6 @@ export const getSearchResultActionAsync = (data, search) => {
                 el.name.toLowerCase().includes(search.toLowerCase()) ||
                 el.surname.toLowerCase().includes(search.toLowerCase())
         ),
-    };
-};
-
-export const getUserProfileApi = () => {
-    const options = {
-        method: "GET",
-        headers: {
-            Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
-        },
-    };
-    return async (dispatch, getState) => {
-        const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/me`;
-        try {
-            let resp = await fetch(baseEndpoint, options);
-            if (resp.ok) {
-                dispatch({
-                    type: GET_USER_LOADING,
-                    payload: true,
-                });
-                let data = await resp.json();
-                dispatch({
-                    type: GET_USER_PROFILE_API,
-                    payload: data,
-                });
-                dispatch({
-                    type: GET_USER_LOADING,
-                    payload: false,
-                });
-            } else {
-                dispatch({
-                    type: GET_USER_LOADING,
-                    payload: false,
-                });
-                dispatch({
-                    type: GET_USER_ERROR,
-                    payload: true,
-                });
-            }
-        } catch (error) {
-            dispatch({
-                type: GET_USER_LOADING,
-                payload: false,
-            });
-            dispatch({
-                type: GET_USER_ERROR,
-                payload: true,
-            });
-        }
-    };
-};
-
-export const putUserProfileApi = () => {
-    const data = { username: "example" };
-    const options = {
-        method: "PUT",
-        headers: {
-            Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    };
-    return async (dispatch, getState) => {
-        const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/`;
-
-        try {
-            let resp = await fetch(baseEndpoint, options);
-            if (resp.ok) {
-                dispatch({
-                    type: GET_USER_LOADING,
-                    payload: true,
-                });
-                let data = await resp.json();
-                dispatch({
-                    type: PUT_USER_PROFILE_UPDATE,
-                    payload: data,
-                });
-                dispatch({
-                    type: GET_USER_LOADING,
-                    payload: false,
-                });
-            } else {
-                dispatch({
-                    type: GET_USER_LOADING,
-                    payload: false,
-                });
-                dispatch({
-                    type: GET_USER_ERROR,
-                    payload: true,
-                });
-            }
-        } catch (error) {
-            dispatch({
-                type: GET_USER_LOADING,
-                payload: false,
-            });
-            dispatch({
-                type: GET_USER_ERROR,
-                payload: true,
-            });
-        }
     };
 };
 
