@@ -9,6 +9,7 @@ export const GET_ALL_PROFILE = "GET_ALL_PROFILE";
 export const GET_EXPERIENCE = "GET_EXPERIENCE";
 export const GET_SPECIFIC_PROFILE = "GET_SPECIFIC_PROFILE";
 export const GET_EXPERIENCE_WITH_EXP_ID = "GET_EXPERIENCE_WITH_EXP_ID";
+export const DELETE_EXPERIENCE = "DELETE_EXPERIENCE";
 
 const options = {
   method: "GET",
@@ -212,6 +213,27 @@ export const getExperienceWithExpIdAction = (query, expId) => {
         console.log(data);
         dispatch({
           type: GET_EXPERIENCE_WITH_EXP_ID,
+          payload: data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deleteSpecificExperienceAction = (query, expId) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/${query}/experiences${expId}`,
+        { method: "DELETE" }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        dispatch({
+          type: DELETE_EXPERIENCE,
           payload: data,
         });
       }
