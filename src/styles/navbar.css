@@ -113,6 +113,10 @@
   .dropdown-menu p {
     font-size: 0.7rem !important;
   }
+  #second-nav .btn {
+    font-size: 0.6rem;
+    padding-inline: 1rem;
+  }
 }
 @media screen and (max-width: 760px) {
   .navbar-nav #notification-number {
@@ -124,3 +128,11 @@
   height: 5vh !important;
   width: 5vw !important;
 }
+/* #search-popup {
+  position: absolute;
+  background-color: grey;
+  height: 50vh;
+  width: 20vw;
+  top: 50px;
+  left: 150px;
+} */
