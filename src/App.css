@@ -486,7 +486,7 @@ body {
 }
 
 /* Modal Content */
-.modal-content {
+#myModal .modal-content {
   position: fixed;
   bottom: 0;
   background-color: #fefefe;

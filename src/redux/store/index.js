@@ -4,6 +4,8 @@ import { encryptTransform } from "redux-persist-transform-encrypt";
 import localStorage from "redux-persist/lib/storage";
 import getSpecificProfileReducer from "../reducers/getSpecificProfileReducer";
 import reducerToBeDeleted from "../reducers/reducerToBeDeleted";
+import allProfileReducer from "../reducers/allProfileReducer";
+import searchReducer from "../reducers/searchReducer";
 
 const persistConfig = {
   storage: localStorage,
@@ -18,6 +20,8 @@ const persistConfig = {
 const combinedReducer = combineReducers({
   willBeDeleted: reducerToBeDeleted,
   profileSearch: getSpecificProfileReducer,
+  profile: allProfileReducer,
+  search: searchReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, combinedReducer);
