@@ -9,7 +9,6 @@ import allProfileReducer from "../reducers/allProfileReducer";
 import searchReducer from "../reducers/searchReducer";
 import getExperienceReducer from "../reducers/getExperienceReducer";
 import getExperienceWithExpIdReducer from "../reducers/getExperienceWithExpId";
-import getSpecificProfileReducer from "../reducers/getSpecificProfileReducer";
 
 const persistConfig = {
   storage: localStorage,

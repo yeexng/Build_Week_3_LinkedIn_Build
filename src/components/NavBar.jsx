@@ -5,7 +5,6 @@ import {
   getAllProfileActionAsync,
   getSearchResultActionAsync,
   getExperienceAction,
-  getSpecificProfileAction,
 } from "../redux/actions";
 import "../styles/navbar.css";
 import {
