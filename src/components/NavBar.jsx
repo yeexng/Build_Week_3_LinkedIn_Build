@@ -202,7 +202,7 @@ const NavBar = () => {
               <p className="text-gone">Notifications</p>
             </Nav.Link>
 
-            <Nav.Link href="#" className="profile-nav-wrapper">
+            <div href="#" className="profile-nav-wrapper">
               <img
                 src={userProfileAPIRS && userProfileAPIRS.image}
                 alt="profile in navigation bar"
@@ -275,7 +275,7 @@ const NavBar = () => {
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#">Sign out</NavDropdown.Item>
               </NavDropdown>
-            </Nav.Link>
+            </div>
 
             <div className="d-flex right-nav">
               <div href="#" className=" modal-icon-wrapper">

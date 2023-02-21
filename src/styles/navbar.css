@@ -355,6 +355,9 @@
   text-decoration: underline;
   cursor: pointer;
 }
+.dropdown-menu {
+  width: 20vw;
+}
 .dropdown-menu .view-profile-button {
   border-radius: 25px;
   padding: 0;
@@ -454,6 +457,12 @@
   padding-bottom: 2em;
   position: relative;
   top: -14px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  margin-top: 11px;
 }
 
 .get-hired-text p {
@@ -466,7 +475,6 @@
 /* .right-nav {
     border-left: solid 1px grey;
   } */
-
 
 /* Modal Content */
 #myModal .modal-content {
