@@ -1,6 +1,7 @@
 import { Row, Col, Button } from "react-bootstrap";
 import { BiPencil } from 'react-icons/bi'
 import { useSelector } from 'react-redux'
+import '../styles/layout.css'
 
 const About = () => {
     const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock)

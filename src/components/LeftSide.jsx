@@ -9,6 +9,7 @@ import Volunteering from "./Volunteering";
 import Skills from "./Skills";
 import Interests from "./Interests";
 import ProfileAvatar from "./ProfileAvatar"
+import '../styles/layout.css'
 
 const LeftSide = () => {
     return (

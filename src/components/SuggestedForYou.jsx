@@ -1,5 +1,6 @@
 import { Row, Col } from "react-bootstrap";
 import { BsFillEyeFill } from 'react-icons/bs'
+import '../styles/layout.css'
 
 const SuggestedForYou = () => {
     return (
