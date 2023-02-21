@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { getSpecificProfileAction } from "../redux/actions";
+import { getSpecificProfileAction } from "../redux/actions";
 import {
   getAllProfileActionAsync,
   getSearchResultActionAsync,
+  getExperienceAction,
+  getSpecificProfileAction,
 } from "../redux/actions";
 import "../styles/navbar.css";
-import { Navbar, Nav, Form, FormControl, Container, NavDropdown, Button } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Form,
+  FormControl,
+  Container,
+  NavDropdown,
+  Button,
+} from "react-bootstrap";
 import { getUserProfileApi } from "../redux/actions";
 
 const NavBar = () => {
   const [searchValue, getSearchValue] = useState("");
-  const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getAllProfileActionAsync());
   }, []);
@@ -42,16 +50,17 @@ const NavBar = () => {
   window.addEventListener("scroll", headerChange);
 
   // search function
-  //   const specificProfile = useSelector((state) => state.profileSearch.content);
-  //   const [query, setQuery] = useState("");
-  //   const dispatch = useDispatch();
-  //   const handleChange = (e) => {
-  //     setQuery(e.target.value);
-  //   };
-  //   const handleSubmit = async (e) => {
-  //     e.preventDefault();
-  //     dispatch(getSpecificProfileAction(query));
-  //   };
+  const specificProfile = useSelector((state) => state.profileSearch.content);
+  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+  // const handleChange = (e) => {
+  //   setQuery(e.target.value);
+  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(getSpecificProfileAction(query));
+    dispatch(getExperienceAction(query));
+  };
 
   return (
     <div className="d-flex flex-column">
@@ -180,16 +189,24 @@ const NavBar = () => {
                       />
                     </div>
                     <div>
-                      <strong>{userProfileAPIRS && userProfileAPIRS.name} {userProfileAPIRS && userProfileAPIRS.surname}</strong>{" "}
+                      <strong>
+                        {userProfileAPIRS && userProfileAPIRS.name}{" "}
+                        {userProfileAPIRS && userProfileAPIRS.surname}
+                      </strong>{" "}
                       <p>
-                        <small>{userProfileAPIRS && userProfileAPIRS.title}</small>
+                        <small>
+                          {userProfileAPIRS && userProfileAPIRS.title}
+                        </small>
                       </p>
                     </div>
                   </div>
                   <div>
-                    <Button onClick={() => {
-                      dispatch(getUserProfileApi())
-                    }} className="w-100 bg-transparent text-primary view-profile-button">
+                    <Button
+                      onClick={() => {
+                        dispatch(getUserProfileApi());
+                      }}
+                      className="w-100 bg-transparent text-primary view-profile-button"
+                    >
                       View Profile
                     </Button>
                   </div>
@@ -259,8 +276,8 @@ const NavBar = () => {
                     focusable="false"
                     id="myBtn"
                     onClick={() =>
-                    (document.getElementById("myModal").style.display =
-                      "block")
+                      (document.getElementById("myModal").style.display =
+                        "block")
                     }
                   >
                     <path d="M8 11L3 6h10z" fillRule="evenodd"></path>
@@ -288,8 +305,8 @@ const NavBar = () => {
                   <span
                     className="close"
                     onClick={() =>
-                    (document.getElementById("myModal").style.display =
-                      "none")
+                      (document.getElementById("myModal").style.display =
+                        "none")
                     }
                   >
                     &times;
@@ -665,7 +682,10 @@ const NavBar = () => {
                   />
                 </div>
                 <div>
-                  <strong>{userProfileAPIRS && userProfileAPIRS.name} {userProfileAPIRS && userProfileAPIRS.surname}</strong>
+                  <strong>
+                    {userProfileAPIRS && userProfileAPIRS.name}{" "}
+                    {userProfileAPIRS && userProfileAPIRS.surname}
+                  </strong>
                   <p>
                     <small>{userProfileAPIRS && userProfileAPIRS.title}</small>
                   </p>

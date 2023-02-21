@@ -4,10 +4,11 @@ import { AiFillCamera } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { RiGalleryFill } from "react-icons/ri";
 import { ImBin } from "react-icons/im";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
+import "../styles/profileDiv.css";
 
 const ProfileAvatar = () => {
-  const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock)
+  const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
 
   const [show, setShow] = useState(false);
   // const [showPic, setShowPic] = useState(false);
@@ -15,16 +16,17 @@ const ProfileAvatar = () => {
   const handleClosePen = () => setShow(false);
   const handleShowPen = () => setShow(true);
 
-
   // const handleClosePic = () => setShowPic(false);
   // const handleShowPic = () => setShowPic(true);
 
   return (
-    <Row className="d-flex flex-column edit-section bg-white mr-2 mb-2" id="round-corners">
+    <Row
+      className="d-flex flex-column edit-section bg-white mr-2 mb-2"
+      id="round-corners"
+    >
       <Col className="px-0">
-
         <div className="avatar-wrapper">
-          <div id="banner-container" >
+          <div id="banner-container">
             <Image
               className="img avatar-bg"
               src="https://www.gordonkamitomo.com/wp-content/uploads/2017/09/LinkedIn-Banner-High-River.jpg"
@@ -38,7 +40,11 @@ const ProfileAvatar = () => {
               src={userProfileAPIRS && userProfileAPIRS.image}
               roundedCircle
             />
-            <Button variant="light" className="edit-btn" onClick={handleShowPen}>
+            <Button
+              variant="light"
+              className="edit-btn"
+              onClick={handleShowPen}
+            >
               <FiEdit2 />
             </Button>
           </div>
@@ -47,7 +53,9 @@ const ProfileAvatar = () => {
             <Modal.Header closeButton>
               <Modal.Title>Modal heading</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+            <Modal.Body>
+              Woohoo, you're reading this text in a modal!
+            </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClosePen}>
                 Close
@@ -57,7 +65,6 @@ const ProfileAvatar = () => {
               </Button>
             </Modal.Footer>
           </Modal>
-
 
           {/* <Modal
             show={showPic}
@@ -83,6 +90,7 @@ const ProfileAvatar = () => {
                 <p className="text-light">Anyone</p>
               </div>
             </div>
+
             <Modal.Body className="modal-wrapper">
               <Row className="justify-content-between">
                 <Col md={8}>
@@ -118,11 +126,15 @@ const ProfileAvatar = () => {
           <Row className="details-box justify-content-between">
             <Col className="px-4">
               <h4>
-                {userProfileAPIRS && userProfileAPIRS.name} {userProfileAPIRS && userProfileAPIRS.surname}
+                {userProfileAPIRS && userProfileAPIRS.name}{" "}
+                {userProfileAPIRS && userProfileAPIRS.surname}
               </h4>
               <h6>{userProfileAPIRS && userProfileAPIRS.title}</h6>
               <p>
-                {userProfileAPIRS && userProfileAPIRS.area} <a href="#">Contact Info: {userProfileAPIRS && userProfileAPIRS.email}</a>
+                {userProfileAPIRS && userProfileAPIRS.area}{" "}
+                <a href="#">
+                  Contact Info: {userProfileAPIRS && userProfileAPIRS.email}
+                </a>
               </p>
               <p>connections</p>
             </Col>
@@ -131,9 +143,15 @@ const ProfileAvatar = () => {
               <div>Institute</div>
             </Col>
             <Col md={12} className="px-4 d-flex">
-              <Button variant="primary" id="main-buttons">Open to</Button>
-              <Button variant="outline-primary mx-3" id="main-buttons">Add profile section</Button>
-              <Button variant="outline-secondary" id="main-buttons">More</Button>
+              <Button variant="primary" id="main-buttons">
+                Open to
+              </Button>
+              <Button variant="outline-primary mx-3" id="main-buttons">
+                Add profile section
+              </Button>
+              <Button variant="outline-secondary" id="main-buttons">
+                More
+              </Button>
             </Col>
           </Row>
         </div>
