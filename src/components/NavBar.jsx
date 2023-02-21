@@ -72,7 +72,7 @@ const NavBar = () => {
     <div className="d-flex flex-column">
       <Navbar className="fixed-top" id="top-nav">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="#">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -126,7 +126,7 @@ const NavBar = () => {
           </Form>
           {/* <div id="search-popup">testing</div> */}
           <Nav className="ml-auto ">
-            <Nav.Link href="#actionh">
+            <Nav.Link href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -141,7 +141,7 @@ const NavBar = () => {
               </svg>
               <p className="text-gone">Home</p>
             </Nav.Link>
-            <Nav.Link href="actionmn">
+            <Nav.Link href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -156,7 +156,7 @@ const NavBar = () => {
               </svg>{" "}
               <p className="text-gone">My Network</p>
             </Nav.Link>
-            <Nav.Link href="actionj">
+            <Nav.Link href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -171,7 +171,7 @@ const NavBar = () => {
               </svg>
               <p className="text-gone">Jobs</p>
             </Nav.Link>
-            <Nav.Link href="actionm">
+            <Nav.Link href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -186,7 +186,7 @@ const NavBar = () => {
               </svg>
               <p className="text-gone">Messaging</p>
             </Nav.Link>
-            <Nav.Link href="#actionn" id="notification-parent">
+            <Nav.Link href="#" id="notification-parent">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -202,7 +202,7 @@ const NavBar = () => {
               <p className="text-gone">Notifications</p>
             </Nav.Link>
 
-            <Nav.Link href="#action2" className="profile-nav-wrapper">
+            <Nav.Link href="#" className="profile-nav-wrapper">
               <img
                 src={userProfileAPIRS && userProfileAPIRS.image}
                 alt="profile in navigation bar"
@@ -248,37 +248,37 @@ const NavBar = () => {
                 <p className="mb-0">
                   <strong>Account</strong>
                 </p>
-                <NavDropdown.Item href="#action4">
+                <NavDropdown.Item href="#">
                   <p className="mb-0">
                     💽<strong>Try premium for free</strong>
                   </p>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
+                <NavDropdown.Item href="#">
                   <p className="mb-0">Settings and privacy</p>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
+                <NavDropdown.Item href="#">
                   <p className="mb-0">Help</p>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
+                <NavDropdown.Item href="#">
                   <p className="mb-0">Language</p>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <p className="mb-0">
                   <strong>Manage</strong>
                 </p>
-                <NavDropdown.Item href="#action4">
+                <NavDropdown.Item href="#">
                   <p className="mb-0">Posts & Activity</p>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
+                <NavDropdown.Item href="#">
                   <p className="mb-0">Job Posting Account</p>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">Sign out</NavDropdown.Item>
+                <NavDropdown.Item href="#">Sign out</NavDropdown.Item>
               </NavDropdown>
             </Nav.Link>
 
             <div className="d-flex right-nav">
-              <div href="#features" className=" modal-icon-wrapper">
+              <div href="#" className=" modal-icon-wrapper">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
