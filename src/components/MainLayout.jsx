@@ -10,7 +10,7 @@ const MainLayout = () => {
         <>
             <NavBar></NavBar>
             <Container>
-                <Row className="mt-3">
+                <Row className="mt-5 pt-5">
                     <Col lg={9}>
                         <LeftSide></LeftSide>
                     </Col>
@@ -28,7 +28,7 @@ const MainLayout = () => {
                 </Row>
             </Container>
         </>
-    )
-}
+    );
+};
 
-export default MainLayout
+export default MainLayout;
