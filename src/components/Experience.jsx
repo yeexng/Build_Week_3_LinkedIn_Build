@@ -64,7 +64,7 @@ const Experience = () => {
                             </div>
                         </Col>
                         <Modal show={showPut} onHide={handleClosePen}>
-                            <EditModal experienceData={data}></EditModal>
+                            <EditModal key={data._id} experienceData={data}></EditModal>
                             <Modal.Footer>
                                 <Button variant="secondary" onClick={handleClosePen}>
                                     Close
