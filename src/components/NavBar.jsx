@@ -1,13 +1,4 @@
 import { useEffect, useState } from "react";
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Container,
-  NavDropdown,
-  Button,
-} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 // import { getSpecificProfileAction } from "../redux/actions";
 import {
@@ -16,7 +7,6 @@ import {
 } from "../redux/actions";
 import "../styles/navbar.css";
 import { Navbar, Nav, Form, FormControl, Container, NavDropdown, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
 import { getUserProfileApi } from "../redux/actions";
 
 const NavBar = () => {

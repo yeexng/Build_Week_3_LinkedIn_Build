@@ -1,5 +1,3 @@
-export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES'
-export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES'
 export const GET_USER_PROFILE_LIST = 'GET_USER_PROFILE_LIST' //GET - fetches the user list https://striveschool-api.herokuapp.com/api/profile/
 export const GET_USER_PROFILE_API = 'GET_USER_PROFILE_API' //GET - Retrieves the API owner's profile https://striveschool-api.herokuapp.com/api/profile/me
 export const GET_USER_PROFILE_ID = 'GET_USER_PROFILE_ID' //GET - Retrieves a specifit profile with ID https://striveschool-api.herokuapp.com/api/profile/{userId}
@@ -111,15 +109,6 @@ export const putUserProfileApi = () => {
             })
         }
     }
-};
-};
-
-const options = {
-    method: "GET",
-    headers: {
-        Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YzM2ExMDgzODFmYzAwMTNmZmZhZDUiLCJpYXQiOjE2NzY4ODQ0OTgsImV4cCI6MTY3ODA5NDA5OH0.kMJEmPVmd33b3qTFM8gkzO3XaoX9fCOfReR1XfJCObE",
-    },
 };
 
 // export const getSpecificProfileAction = (query) => {
