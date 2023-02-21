@@ -1,15 +1,12 @@
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Container,
-  NavDropdown,
-  Button,
-} from "react-bootstrap";
 import "../styles/navbar.css";
+import { Navbar, Nav, Form, FormControl, Container, NavDropdown, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserProfileApi } from "../redux/actions";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock)
+
   let modal = document.getElementById("myModal");
   window.onclick = function (event) {
     if (event.target === modal) {
@@ -18,7 +15,6 @@ const NavBar = () => {
   };
   const headerChange = function () {
     if (window.pageYOffset > 500) {
-      console.log("it went there");
       document.querySelector(".second-nav").classList.add("scrolled-bg");
       document.querySelector(".second-nav").classList.remove("back-bg");
     } else if (window.pageYOffset < 500) {
@@ -134,7 +130,7 @@ const NavBar = () => {
 
             <Nav.Link href="#action2" className="profile-nav-wrapper">
               <img
-                src="https://media.licdn.com/dms/image/D4D35AQFilr9Ny9Omtw/profile-framedphoto-shrink_100_100/0/1676278321328?e=1677488400&v=beta&t=TNNocJ-IsccLkheGYxknHhPRy_f90nrQPVto9lHM8bc"
+                src={userProfileAPIRS && userProfileAPIRS.image}
                 alt="profile in navigation bar"
                 className="profile-photo text-gone"
               />
@@ -145,20 +141,22 @@ const NavBar = () => {
                     <div>
                       {" "}
                       <img
-                        src="https://media.licdn.com/dms/image/D4D35AQFilr9Ny9Omtw/profile-framedphoto-shrink_100_100/0/1676278321328?e=1677488400&v=beta&t=TNNocJ-IsccLkheGYxknHhPRy_f90nrQPVto9lHM8bc"
+                        src={userProfileAPIRS && userProfileAPIRS.image}
                         alt="profile in navigation bar"
                         className="profile-photo-dropdown"
                       />
                     </div>
                     <div>
-                      <strong>Piotr Rodzen</strong>{" "}
+                      <strong>{userProfileAPIRS && userProfileAPIRS.name} {userProfileAPIRS && userProfileAPIRS.surname}</strong>{" "}
                       <p>
-                        <small>Full stack</small>
+                        <small>{userProfileAPIRS && userProfileAPIRS.title}</small>
                       </p>
                     </div>
                   </div>
                   <div>
-                    <Button className="w-100 bg-transparent text-primary view-profile-button">
+                    <Button onClick={() => {
+                      dispatch(getUserProfileApi())
+                    }} className="w-100 bg-transparent text-primary view-profile-button">
                       View Profile
                     </Button>
                   </div>
@@ -228,8 +226,8 @@ const NavBar = () => {
                     focusable="false"
                     id="myBtn"
                     onClick={() =>
-                      (document.getElementById("myModal").style.display =
-                        "block")
+                    (document.getElementById("myModal").style.display =
+                      "block")
                     }
                   >
                     <path d="M8 11L3 6h10z" fillRule="evenodd"></path>
@@ -257,8 +255,8 @@ const NavBar = () => {
                   <span
                     className="close"
                     onClick={() =>
-                      (document.getElementById("myModal").style.display =
-                        "none")
+                    (document.getElementById("myModal").style.display =
+                      "none")
                     }
                   >
                     &times;
@@ -628,15 +626,15 @@ const NavBar = () => {
               <div className="d-flex pl-1  pt-3">
                 <div>
                   <img
-                    src="https://media.licdn.com/dms/image/D4D35AQFilr9Ny9Omtw/profile-framedphoto-shrink_100_100/0/1676278321328?e=1677488400&v=beta&t=TNNocJ-IsccLkheGYxknHhPRy_f90nrQPVto9lHM8bc"
+                    src={userProfileAPIRS && userProfileAPIRS.image}
                     alt="profile in navigation bar"
                     className="profile-photo-dropdown"
                   />
                 </div>
                 <div>
-                  <strong>Piotr Rodzen</strong>
+                  <strong>{userProfileAPIRS && userProfileAPIRS.name} {userProfileAPIRS && userProfileAPIRS.surname}</strong>
                   <p>
-                    <small>Full stack</small>
+                    <small>{userProfileAPIRS && userProfileAPIRS.title}</small>
                   </p>
                 </div>
               </div>

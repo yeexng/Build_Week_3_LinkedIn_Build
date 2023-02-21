@@ -1,20 +1,114 @@
 export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES'
 export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES'
-export const GET_SONGS = 'GET_SONGS'
-export const GET_SONGS_LOADING = 'GET_SONGS_LOADING'
-export const GET_SONGS_ERROR = 'GET_SONGS_ERROR'
-export const REPLACE_PLAYER = 'REPLACE_PLAYER'
+export const GET_USER_PROFILE_LIST = 'GET_USER_PROFILE_LIST' //GET - fetches the user list https://striveschool-api.herokuapp.com/api/profile/
+export const GET_USER_PROFILE_API = 'GET_USER_PROFILE_API' //GET - Retrieves the API owner's profile https://striveschool-api.herokuapp.com/api/profile/me
+export const GET_USER_PROFILE_ID = 'GET_USER_PROFILE_ID' //GET - Retrieves a specifit profile with ID https://striveschool-api.herokuapp.com/api/profile/{userId}
+export const PUT_USER_PROFILE_UPDATE = 'PUT_USER_PROFILE_UPDATE' //PUT - Update the current user's profile https://striveschool-api.herokuapp.com/api/profile/
+export const GET_USER_LOADING = 'GET_USER_LOADING' //For loaders & spinners
+export const GET_USER_ERROR = 'GET_USER_ERROR' //For error messages
 
-export const addToFavoritesAction = (data) => {
-    return {
-        type: ADD_TO_FAVORITES,
-        payload: data,
+export const getUserProfileApi = () => {
+    const options = {
+        method: "GET",
+        headers: {
+            Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
+        },
+    };
+    return async (dispatch, getState) => {
+
+        const baseEndpoint =
+            `https://striveschool-api.herokuapp.com/api/profile/me`
+        try {
+            let resp = await fetch(baseEndpoint, options);
+            if (resp.ok) {
+                dispatch({
+                    type: GET_USER_LOADING,
+                    payload: true,
+                })
+                let data = await resp.json();
+                dispatch({
+                    type: GET_USER_PROFILE_API,
+                    payload: data,
+                })
+                dispatch({
+                    type: GET_USER_LOADING,
+                    payload: false,
+                })
+            } else {
+                dispatch({
+                    type: GET_USER_LOADING,
+                    payload: false,
+                })
+                dispatch({
+                    type: GET_USER_ERROR,
+                    payload: true,
+                })
+            }
+        } catch (error) {
+            dispatch({
+                type: GET_USER_LOADING,
+                payload: false,
+            })
+            dispatch({
+                type: GET_USER_ERROR,
+                payload: true,
+            })
+        }
     }
 }
 
-export const removeFromFavoritesAction = (i) => {
-    return {
-        type: REMOVE_FROM_FAVORITES,
-        payload: i,
+export const putUserProfileApi = () => {
+    const data = { username: 'example' };
+    const options = {
+        method: "PUT",
+        headers: {
+            Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+    };
+    return async (dispatch, getState) => {
+
+        const baseEndpoint =
+            `https://striveschool-api.herokuapp.com/api/profile/`
+
+        try {
+            let resp = await fetch(baseEndpoint, options);
+            if (resp.ok) {
+                dispatch({
+                    type: GET_USER_LOADING,
+                    payload: true,
+                })
+                let data = await resp.json();
+                dispatch({
+                    type: PUT_USER_PROFILE_UPDATE,
+                    payload: data,
+                })
+                dispatch({
+                    type: GET_USER_LOADING,
+                    payload: false,
+                })
+            } else {
+                dispatch({
+                    type: GET_USER_LOADING,
+                    payload: false,
+                })
+                dispatch({
+                    type: GET_USER_ERROR,
+                    payload: true,
+                })
+            }
+        } catch (error) {
+            dispatch({
+                type: GET_USER_LOADING,
+                payload: false,
+            })
+            dispatch({
+                type: GET_USER_ERROR,
+                payload: true,
+            })
+        }
     }
 }

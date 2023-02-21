@@ -1,18 +1,23 @@
-import { useState } from "react";
+import { useState, useDispatch } from "react";
 import { Button, Image, Row, Col, Modal } from "react-bootstrap";
 import { AiFillCamera } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { RiGalleryFill } from "react-icons/ri";
 import { ImBin } from "react-icons/im";
+import { useSelector } from 'react-redux'
 
 const ProfileAvatar = () => {
-  const [show, setShow] = useState(false);
-  const [showPic, setShowPic] = useState(false);
+  const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock)
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const handleClosePic = () => setShowPic(false);
-  const handleShowPic = () => setShowPic(true);
+  const [show, setShow] = useState(false);
+  // const [showPic, setShowPic] = useState(false);
+
+  const handleClosePen = () => setShow(false);
+  const handleShowPen = () => setShow(true);
+
+
+  // const handleClosePic = () => setShowPic(false);
+  // const handleShowPic = () => setShowPic(true);
 
   return (
     <Row className="d-flex flex-column edit-section bg-white mr-2 mb-2" id="round-corners">
@@ -28,34 +33,33 @@ const ProfileAvatar = () => {
               <AiFillCamera className="text-primary" />
             </Button>
             <Image
-              onClick={handleShowPic}
+              // onClick={handleShowPic}
               className="img profile-pic"
-              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+              src={userProfileAPIRS && userProfileAPIRS.image}
               roundedCircle
             />
-            <Button variant="light" className="edit-btn" onClick={handleShow}>
+            <Button variant="light" className="edit-btn" onClick={handleShowPen}>
               <FiEdit2 />
             </Button>
           </div>
 
-          <Modal show={show} onHide={handleClose} animation={false}>
+          <Modal show={show} onHide={handleClosePen}>
             <Modal.Header closeButton>
-              <Modal.Title>Profile Pic</Modal.Title>
+              <Modal.Title>Modal heading</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-              Woohoo, you're reading this text in a modal!
-            </Modal.Body>
+            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
+              <Button variant="secondary" onClick={handleClosePen}>
                 Close
               </Button>
-              <Button variant="primary" onClick={handleClose}>
+              <Button variant="primary" onClick={handleClosePen}>
                 Save Changes
               </Button>
             </Modal.Footer>
           </Modal>
 
-          <Modal
+
+          {/* <Modal
             show={showPic}
             onHide={handleClosePic}
             animation={false}
@@ -109,16 +113,16 @@ const ProfileAvatar = () => {
                 </Col>
               </Row>
             </Modal.Body>
-          </Modal>
+          </Modal> */}
 
           <Row className="details-box justify-content-between">
             <Col className="px-4">
               <h4>
-                Name <span className="gender-known">(He/Him)</span>
+                {userProfileAPIRS && userProfileAPIRS.name} {userProfileAPIRS && userProfileAPIRS.surname}
               </h4>
-              <h6>title</h6>
+              <h6>{userProfileAPIRS && userProfileAPIRS.title}</h6>
               <p>
-                location <a href="#">Contact Info</a>
+                {userProfileAPIRS && userProfileAPIRS.area} <a href="#">Contact Info: {userProfileAPIRS && userProfileAPIRS.email}</a>
               </p>
               <p>connections</p>
             </Col>
