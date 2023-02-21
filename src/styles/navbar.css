@@ -356,7 +356,7 @@
   cursor: pointer;
 }
 .dropdown-menu {
-  width: 20vw;
+  width: 23vw !important;
 }
 .dropdown-menu .view-profile-button {
   border-radius: 25px;
