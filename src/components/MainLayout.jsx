@@ -5,7 +5,6 @@ import Footer from "./Footer";
 import DropUpChat from "./DropUpChat";
 import NavBar from './NavBar'
 
-
 const MainLayout = () => {
     return (
         <>
