@@ -4,6 +4,7 @@ import { AiFillCamera } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { RiGalleryFill } from "react-icons/ri";
 import { ImBin } from "react-icons/im";
+import "../styles/profileDiv.css";
 
 const ProfileAvatar = () => {
   const [show, setShow] = useState(false);
@@ -15,11 +16,13 @@ const ProfileAvatar = () => {
   const handleShowPic = () => setShowPic(true);
 
   return (
-    <Row className="d-flex flex-column edit-section bg-white mr-2 mb-2" id="round-corners">
+    <Row
+      className="d-flex flex-column edit-section bg-white mr-2 mb-2"
+      id="round-corners"
+    >
       <Col className="px-0">
-
         <div className="avatar-wrapper">
-          <div id="banner-container" >
+          <div id="banner-container">
             <Image
               className="img avatar-bg"
               src="https://www.gordonkamitomo.com/wp-content/uploads/2017/09/LinkedIn-Banner-High-River.jpg"
@@ -79,6 +82,7 @@ const ProfileAvatar = () => {
                 <p className="text-light">Anyone</p>
               </div>
             </div>
+
             <Modal.Body className="modal-wrapper">
               <Row className="justify-content-between">
                 <Col md={8}>
@@ -127,9 +131,15 @@ const ProfileAvatar = () => {
               <div>Institute</div>
             </Col>
             <Col md={12} className="px-4 d-flex">
-              <Button variant="primary" id="main-buttons">Open to</Button>
-              <Button variant="outline-primary mx-3" id="main-buttons">Add profile section</Button>
-              <Button variant="outline-secondary" id="main-buttons">More</Button>
+              <Button variant="primary" id="main-buttons">
+                Open to
+              </Button>
+              <Button variant="outline-primary mx-3" id="main-buttons">
+                Add profile section
+              </Button>
+              <Button variant="outline-secondary" id="main-buttons">
+                More
+              </Button>
             </Col>
           </Row>
         </div>

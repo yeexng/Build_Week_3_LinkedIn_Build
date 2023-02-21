@@ -11,6 +11,7 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import { RiArrowUpSLine } from "react-icons/ri";
 import { BiSearch } from "react-icons/bi";
 import { Image } from "react-bootstrap";
+import "../styles/dropUpChat.css";
 
 const DropUpChat = () => {
   const [showShow, setShowShow] = useState(false);

@@ -2,8 +2,9 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import { encryptTransform } from "redux-persist-transform-encrypt";
 import localStorage from "redux-persist/lib/storage";
+import getExperienceReducer from "../reducers/getExperienceReducer";
+import getExperienceWithExpIdReducer from "../reducers/getExperienceWithExpId";
 import getSpecificProfileReducer from "../reducers/getSpecificProfileReducer";
-import reducerToBeDeleted from "../reducers/reducerToBeDeleted";
 
 const persistConfig = {
   storage: localStorage,
@@ -16,8 +17,9 @@ const persistConfig = {
 };
 
 const combinedReducer = combineReducers({
-  willBeDeleted: reducerToBeDeleted,
   profileSearch: getSpecificProfileReducer,
+  getExperience: getExperienceReducer,
+  experienceWithId: getExperienceWithExpIdReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, combinedReducer);

@@ -9,7 +9,10 @@ import {
   Button,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getSpecificProfileAction } from "../redux/actions";
+import {
+  getExperienceAction,
+  getSpecificProfileAction,
+} from "../redux/actions";
 import "../styles/navbar.css";
 
 const NavBar = () => {
@@ -41,6 +44,7 @@ const NavBar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(getSpecificProfileAction(query));
+    dispatch(getExperienceAction(query));
   };
 
   return (

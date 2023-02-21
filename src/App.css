@@ -99,61 +99,8 @@ body {
   font-size: 12px;
 }
 
-.avatar-wrapper {
-  position: relative;
-  height: 50vh;
-  overflow: hidden;
-}
-
-.avatar-bg {
-  position: relative;
-  height: 20vh !important;
-  width: 100%;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
-
-.camera-btn {
-  border-radius: 500px;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.profile-pic {
-  position: absolute;
-  top: 9.5vh;
-  left: 25px;
-  width: 150px;
-  border: 5px solid white;
-  z-index: 1;
-}
-
 .model-profile-pic {
   width: 270px;
-}
-
-.modal-wrapper {
-  background-color: #1d2226;
-}
-
-.modal-btn {
-  background-color: #1d2226;
-}
-
-.modal-btn:hover {
-  background-color: rgba(219, 219, 219, 0.493);
-}
-
-.anyone-btn {
-  border-radius: 20px;
-}
-
-.edit-btn {
-  position: absolute;
-  top: 210px;
-  right: 30px;
-  z-index: 1;
 }
 
 /* The Close Button */
@@ -248,11 +195,6 @@ body {
   border-radius: 50%;
 }
 
-.drop-up-chat {
-  display: inline;
-  margin-left: auto;
-}
-
 @-webkit-keyframes fadeIn {
   from {
     opacity: 0;
@@ -260,9 +202,6 @@ body {
   to {
     opacity: 1;
   }
-}
-.chat-box {
-  min-width: 18rem;
 }
 
 @keyframes fadeIn {
@@ -272,17 +211,6 @@ body {
   to {
     opacity: 1;
   }
-}
-.chat-box-wrapper {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 2;
-}
-
-.chat-avatar {
-  width: 40px;
-  margin-right: 15px;
 }
 
 #left-side-mini-headers {
