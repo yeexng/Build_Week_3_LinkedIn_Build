@@ -21,6 +21,9 @@ import { getUserProfileApi } from "../redux/actions";
 
 const NavBar = () => {
   const [searchValue, getSearchValue] = useState("");
+  const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getAllProfileActionAsync());
   }, []);
@@ -52,7 +55,6 @@ const NavBar = () => {
   // search function
   const specificProfile = useSelector((state) => state.profileSearch.content);
   const [query, setQuery] = useState("");
-  const dispatch = useDispatch();
   // const handleChange = (e) => {
   //   setQuery(e.target.value);
   // };
