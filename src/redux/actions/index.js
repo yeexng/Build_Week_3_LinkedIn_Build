@@ -111,6 +111,61 @@ export const putUserProfileApi = () => {
     }
 };
 
+export const getSearchResultActionAsync = (data, search) => {
+    return {
+        type: GET_SEARCH_RESULT,
+        payload: data.filter(
+            (el) =>
+                el.name.toLowerCase().includes(search.toLowerCase()) ||
+                el.surname.toLowerCase().includes(search.toLowerCase())
+        ),
+    };
+    //   return async (dispatch, getState) => {
+    //     try {
+    //       const response = await fetch(
+    //         "https://striveschool-api.herokuapp.com/api/profile/"
+    //       );
+    //       if (response.ok) {
+    //         const data = await response.json();
+    //         dispatch({
+    //           type: GET_SEARCH_RESULT,
+    //           payload: data,
+    //         });
+    //       } else {
+    //         alert("Error fetching results");
+    //       }
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   };
+};
+export const getAllProfileActionAsync = () => {
+    return async (dispatch, getState) => {
+        try {
+            const response = await fetch(
+                "https://striveschool-api.herokuapp.com/api/profile/",
+                {
+                    headers: {
+                        Authorization:
+                            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YzMmQwZjgzODFmYzAwMTNmZmZhY2MiLCJpYXQiOjE2NzY4ODExNjgsImV4cCI6MTY3ODA5MDc2OH0._AkCrUr8_TcTB3UE7gFXvQyGL3dn4mbXdSjjU42xmYw",
+                    },
+                }
+            );
+            if (response.ok) {
+                const data = await response.json();
+                dispatch({
+                    type: GET_ALL_PROFILE,
+                    payload: data,
+                });
+            } else {
+                alert("Error fetching results");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
+
 // export const getSpecificProfileAction = (query) => {
 //   return async (dispatch, getState) => {
 //     try {
