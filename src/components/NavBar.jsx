@@ -236,6 +236,7 @@ const NavBar = () => {
                     <Button
                       onClick={() => {
                         dispatch(getUserProfileApi());
+                        dispatch(getExperienceAction(userProfileAPIRS._id))
                       }}
                       className="w-100 bg-transparent text-primary view-profile-button"
                     >

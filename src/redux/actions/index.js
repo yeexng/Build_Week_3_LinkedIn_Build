@@ -10,6 +10,8 @@ export const GET_EXPERIENCE = "GET_EXPERIENCE";
 export const GET_SPECIFIC_PROFILE = "GET_SPECIFIC_PROFILE";
 export const GET_EXPERIENCE_WITH_EXP_ID = "GET_EXPERIENCE_WITH_EXP_ID";
 export const DELETE_EXPERIENCE = "DELETE_EXPERIENCE";
+export const POST_USER_EXPERIENCE = "POST_USER_EXPERIENCE"
+
 const options = {
     method: "GET",
     headers: {
@@ -85,7 +87,7 @@ export const putUserProfileApi = () => {
         headers: new Headers(
             {
                 "Content-Type": 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0YzEzYjExZDczZDAwMTM3YWFiMWIiLCJpYXQiOjE2NzY5ODQ2MzYsImV4cCI6MTY3ODE5NDIzNn0.ajqHRiRUfFAyQ7p5JRd3Na68gggeaCwfze2yPxkA0EE',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw',
             }),
         body: JSON.stringify(editedData),
     };
@@ -142,7 +144,7 @@ export const getAllProfileActionAsync = () => {
                 {
                     headers: {
                         Authorization:
-                            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YzMmQwZjgzODFmYzAwMTNmZmZhY2MiLCJpYXQiOjE2NzY4ODExNjgsImV4cCI6MTY3ODA5MDc2OH0._AkCrUr8_TcTB3UE7gFXvQyGL3dn4mbXdSjjU42xmYw",
+                            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
                     },
                 }
             );
@@ -235,12 +237,48 @@ export const getExperienceWithExpIdAction = (query, expId) => {
     };
 };
 
+export const postUserExperience = (query) => {
+    const roleInput = document.getElementById("experience-role")
+    const companyInput = document.getElementById("experience-company")
+    const startdateInput = document.getElementById("experience-startdate")
+    const enddateInput = document.getElementById("experience-enddate")
+    const descriptionInput = document.getElementById("experience-description")
+    const areaInput = document.getElementById("experience-area")
+    const editedData = {
+        "role": roleInput.value,
+        "company": companyInput.value,
+        "startDate": startdateInput.value,
+        "endDate": enddateInput.value,
+        "description": descriptionInput.value,
+        "area": areaInput.value,
+    }
+    return async (dispatch, getState) => {
+        try {
+            let res = fetch(`https://striveschool-api.herokuapp.com/api/profile/${query}/experiences`, {
+                method: "POST",
+                body: JSON.stringify(editedData),
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization:
+                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
+                },
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+};
+
 export const deleteSpecificExperienceAction = (query, expId) => {
     return async (dispatch, getState) => {
         try {
             const response = await fetch(
-                `https://striveschool-api.herokuapp.com/api/profile/${query}/experiences${expId}`,
-                { method: "DELETE" }
+                `https://striveschool-api.herokuapp.com/api/profile/${query}/experiences/${expId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw"
+                }
+            }
             );
             if (response.ok) {
                 const data = await response.json();
@@ -254,4 +292,36 @@ export const deleteSpecificExperienceAction = (query, expId) => {
             console.log(error);
         }
     };
+};
+
+export const putUserExperience = (query, expId) => {
+    const roleInput = document.getElementById("put-experience-role")
+    const companyInput = document.getElementById("put-experience-company")
+    const startdateInput = document.getElementById("put-experience-startdate")
+    const enddateInput = document.getElementById("put-experience-enddate")
+    const descriptionInput = document.getElementById("put-experience-description")
+    const areaInput = document.getElementById("put-experience-area")
+    const editedData = {
+        "role": roleInput.value,
+        "company": companyInput.value,
+        "startDate": startdateInput.value,
+        "endDate": enddateInput.value,
+        "description": descriptionInput.value,
+        "area": areaInput.value,
+    }
+    return async (dispatch, getState) => {
+        try {
+            let res = fetch(`https://striveschool-api.herokuapp.com/api/profile/${query}/experiences/${expId}`, {
+                method: "PUT",
+                body: JSON.stringify(editedData),
+                headers: new Headers({
+                    "Content-Type": "application/json",
+                    Authorization:
+                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
+                }),
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 };
