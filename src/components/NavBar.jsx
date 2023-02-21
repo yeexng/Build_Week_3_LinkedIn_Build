@@ -17,21 +17,26 @@ import {
   Button,
 } from "react-bootstrap";
 import { getUserProfileApi } from "../redux/actions";
+import { useNavigate } from "react-router";
 
 const NavBar = () => {
   const [searchValue, getSearchValue] = useState("");
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllProfileActionAsync());
   }, []);
 
   let allProfiles = useSelector((state) => state.profile.content);
+  let searchArray = useSelector((state) => state.search.content[0]);
+
   const handleChange = (e) => {
     e.preventDefault();
     console.log(allProfiles[0]);
     dispatch(getSearchResultActionAsync(allProfiles[0], searchValue));
+    document.querySelector("#search-popup").style.display = "block";
   };
 
   let modal = document.getElementById("myModal");
@@ -91,6 +96,32 @@ const NavBar = () => {
               value={searchValue}
               onChange={(e) => getSearchValue(e.target.value)}
             />
+            <div id="search-popup">
+              <i
+                className="bi bi-x-lg"
+                onClick={() =>
+                  (document.querySelector("#search-popup").style.display =
+                    "none")
+                }
+              ></i>
+              {searchArray.map((oneResult) => (
+                // <Link to={"/:oneResult.id"}>
+                <li
+                  key={oneResult._id}
+                  onClick={() => navigate("/" + oneResult._id)}
+                >
+                  {" "}
+                  <i className="bi bi-search"></i>
+                  <img
+                    src={oneResult.image}
+                    className="profile-photo-search"
+                    alt="profile"
+                  ></img>
+                  {oneResult.name} {oneResult.surname}
+                </li>
+                // </Link>
+              ))}
+            </div>
             {/* <Button variant="outline-primary">Search</Button> */}
           </Form>
           {/* <div id="search-popup">testing</div> */}
