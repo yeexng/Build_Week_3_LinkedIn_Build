@@ -13,7 +13,7 @@ export const getUserProfileApi = () => {
         method: "GET",
         headers: {
             Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0YzEzYjExZDczZDAwMTM3YWFiMWIiLCJpYXQiOjE2NzY5ODQ2MzYsImV4cCI6MTY3ODE5NDIzNn0.ajqHRiRUfFAyQ7p5JRd3Na68gggeaCwfze2yPxkA0EE",
         },
     };
     return async (dispatch, getState) => {
@@ -60,16 +60,33 @@ export const getUserProfileApi = () => {
 }
 
 export const putUserProfileApi = () => {
-    const data = { username: 'example' };
+    const nameInput = document.getElementById("change-name")
+    const surnameInput = document.getElementById("change-surname")
+    const emailInput = document.getElementById("change-email")
+    const titleInput = document.getElementById("change-title")
+    const areaInput = document.getElementById("change-area")
+    const usernameInput = document.getElementById("change-username")
+    const bioInput = document.getElementById("change-bio")
+    const editedData = {
+        "name": nameInput.value,
+        "surname": surnameInput.value,
+        "email": emailInput.value,
+        "title": titleInput.value,
+        "area": areaInput.value,
+        "username": usernameInput.value,
+        "bio": bioInput.value
+    }
+
     const options = {
         method: "PUT",
-        headers: {
-            Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
+        headers: new Headers(
+            {
+                "Content-Type": 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0YzEzYjExZDczZDAwMTM3YWFiMWIiLCJpYXQiOjE2NzY5ODQ2MzYsImV4cCI6MTY3ODE5NDIzNn0.ajqHRiRUfFAyQ7p5JRd3Na68gggeaCwfze2yPxkA0EE',
+            }),
+        body: JSON.stringify(editedData),
     };
+
     return async (dispatch, getState) => {
 
         const baseEndpoint =

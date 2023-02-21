@@ -7,6 +7,7 @@ import getUserProfileAPIReducer from "../reducers/getUserProfileAPIReducer";
 import getSpecificProfileReducer from "../reducers/getSpecificProfileReducer";
 import allProfileReducer from "../reducers/allProfileReducer";
 import searchReducer from "../reducers/searchReducer";
+import putUserProfileApiReducer from "../reducers/putUserProfileAPIReducer";
 
 const persistConfig = {
   storage: localStorage,
@@ -23,6 +24,7 @@ const combinedReducer = combineReducers({
   profile: allProfileReducer,
   search: searchReducer,
   userDataAPI: getUserProfileAPIReducer,
+  putUserDataAPI: putUserProfileApiReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, combinedReducer);
