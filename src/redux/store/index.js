@@ -5,7 +5,6 @@ import localStorage from 'redux-persist/lib/storage'
 
 import getUserProfileAPIReducer from "../reducers/getUserProfileAPIReducer";
 import getSpecificProfileReducer from "../reducers/getSpecificProfileReducer";
-import reducerToBeDeleted from "../reducers/reducerToBeDeleted";
 import allProfileReducer from "../reducers/allProfileReducer";
 import searchReducer from "../reducers/searchReducer";
 
@@ -20,7 +19,6 @@ const persistConfig = {
 };
 
 const combinedReducer = combineReducers({
-  willBeDeleted: reducerToBeDeleted,
   profileSearch: getSpecificProfileReducer,
   profile: allProfileReducer,
   search: searchReducer,

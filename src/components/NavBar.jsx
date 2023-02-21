@@ -11,6 +11,7 @@ import { getUserProfileApi } from "../redux/actions";
 
 const NavBar = () => {
   const [searchValue, getSearchValue] = useState("");
+  const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock)
   const dispatch = useDispatch();
 
   useEffect(() => {

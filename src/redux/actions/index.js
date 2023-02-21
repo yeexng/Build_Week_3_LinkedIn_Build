@@ -4,6 +4,9 @@ export const GET_USER_PROFILE_ID = 'GET_USER_PROFILE_ID' //GET - Retrieves a spe
 export const PUT_USER_PROFILE_UPDATE = 'PUT_USER_PROFILE_UPDATE' //PUT - Update the current user's profile https://striveschool-api.herokuapp.com/api/profile/
 export const GET_USER_LOADING = 'GET_USER_LOADING' //For loaders & spinners
 export const GET_USER_ERROR = 'GET_USER_ERROR' //For error messages
+export const GET_SEARCH_RESULT = "GET_SEARCH_RESULT";
+export const GET_ALL_PROFILE = "GET_ALL_PROFILE";
+export const GET_SPECIFIC_PROFILE = "GET_SPECIFIC_PROFILE"
 
 export const getUserProfileApi = () => {
     const options = {
