@@ -9,10 +9,10 @@ const initialState = {
 const getUserProfileAPIReducer = (state = initialState, action) => {
     switch (action.type) {
         case PUT_USER_PROFILE_UPDATE:
+
             return {
                 stock: action.payload,
             }
-
         case GET_USER_LOADING:
             return {
                 ...state,

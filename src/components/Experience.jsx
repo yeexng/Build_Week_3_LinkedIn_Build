@@ -11,8 +11,8 @@ import {
   postUserExperience,
   deleteSpecificExperienceAction,
 } from "../redux/actions";
-import EditModal from "./EditModal";
 import { useNavigate } from "react-router-dom";
+import { getUserProfileApi } from "../redux/actions";
 
 const Experience = () => {
   const dispatch = useDispatch();
@@ -31,11 +31,18 @@ const Experience = () => {
   );
   console.log(userExperiencesAPIRS);
 
+  const userExperienceDelete = useSelector((state) => state.deleteExp.content)
+  console.log()
+
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
 
   const postUserExperienceRS = useSelector(
     (state) => state.postUserExperience.content
   );
+
+  useEffect(() => {
+    dispatch(getUserProfileApi())
+  }, []);
 
   return (
     <Row
@@ -59,71 +66,59 @@ const Experience = () => {
       <Row className="d-flex mb-2">
         {userExperiencesAPIRS &&
           userExperiencesAPIRS.map((data) => (
-            <>
-              <Row className="mb-3">
-                <Col key={data._id} lg={1} className="">
-                  <img
-                    id="post-image"
-                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhotpoptoday.com%2Fwp-content%2Fuploads%2F2019%2F08%2F5-1.jpg&f=1&nofb=1&ipt=0b33c318b30bb96d0ffdaae77e28758fec1c6d9ec0350a8f8bf8e9790204d63e&ipo=images"
-                    alt=""
-                  />
-                </Col>
-                <Col lg={11} className="pl-4 d-flex justify-content-between">
-                  <div className="d-flex flex-column">
-                    <p id="mini-headers" className="mb-0">
-                      Role: {data.role}
-                    </p>
-                    <p id="post-details" className="mb-0">
-                      Company: {data.company}
-                    </p>
-                    <p id="post-details" className="mb-0">
-                      Start Date: {data.startDate}
-                    </p>
-                    <p id="post-details" className="mb-0">
-                      End Date: {data.endDate}
-                    </p>
-                    <p id="post-details" className="mb-0">
-                      Description: {data.description}
-                    </p>
-                    <p id="post-details" className="mb-0">
-                      Location: {data.area}
-                    </p>
-                    <p>{data._id}</p>
-                  </div>
-                  <div className="d-flex">
-                    <p
-                      className="mb-0"
-                      onClick={() =>
-                        navigate(`/${data.user}/experiences/${data._id}`)
-                      }
-                    >
-                      <BiPencil id="analytics-icons"></BiPencil>
-                    </p>
-                    <p
-                      className="mb-0"
-                      onClick={() => {
-                        dispatch(
-                          deleteSpecificExperienceAction(
-                            userProfileAPIRS._id,
-                            data._id
-                          )
-                        );
-                      }}
-                    >
-                      <RxCross2 id="analytics-icons"></RxCross2>
-                    </p>
-                  </div>
-                </Col>
-                <Modal show={showPut} onHide={handleClosePen}>
-                  <EditModal key={data._id} experienceData={data}></EditModal>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClosePen}>
-                      Close
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
-              </Row>
-            </>
+            <Row key={data._id} className="mb-3">
+              <Col lg={1} className="">
+                <img
+                  id="post-image"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhotpoptoday.com%2Fwp-content%2Fuploads%2F2019%2F08%2F5-1.jpg&f=1&nofb=1&ipt=0b33c318b30bb96d0ffdaae77e28758fec1c6d9ec0350a8f8bf8e9790204d63e&ipo=images"
+                  alt=""
+                />
+              </Col>
+              <Col lg={11} className="pl-4 d-flex justify-content-between">
+                <div className="d-flex flex-column">
+                  <p id="mini-headers" className="mb-0">
+                    Role: {data.role}
+                  </p>
+                  <p id="post-details" className="mb-0">
+                    Company: {data.company}
+                  </p>
+                  <p id="post-details" className="mb-0">
+                    Start Date: {data.startDate}
+                  </p>
+                  <p id="post-details" className="mb-0">
+                    End Date: {data.endDate}
+                  </p>
+                  <p id="post-details" className="mb-0">
+                    Description: {data.description}
+                  </p>
+                  <p id="post-details" className="mb-0">
+                    Location: {data.area}
+                  </p>
+                  <p>{data._id}</p>
+                </div>
+                <div className="d-flex">
+                  <p
+                    className="mb-0"
+                    onClick={() =>
+                      navigate(`/${data.user}/experiences/${data._id}`)
+                    }
+                  >
+                    <BiPencil id="analytics-icons"></BiPencil>
+                  </p>
+                  <p
+                    className="mb-0"
+                    onClick={() => {
+                      dispatch(
+                        deleteSpecificExperienceAction(
+                          userProfileAPIRS._id,
+                          data._id))
+                    }}
+                  >
+                    <RxCross2 id="analytics-icons"></RxCross2>
+                  </p>
+                </div>
+              </Col>
+            </Row>
           ))}
       </Row>
       <Col className="d-flex"></Col>
@@ -187,7 +182,8 @@ const Experience = () => {
           <Button
             variant="primary"
             onClick={() => {
-              dispatch(postUserExperience(userExperiencesAPIRS._id));
+              dispatch(getUserProfileApi())
+              dispatch(postUserExperience(userExperiencesAPIRS._id))
             }}
           >
             Create Experience

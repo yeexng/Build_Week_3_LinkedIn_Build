@@ -14,6 +14,7 @@ import putUserProfileApiReducer from "../reducers/putUserProfileAPIReducer";
 import postUserExperienceReducer from "../reducers/postUserExperienceReducer";
 import getPostsReducer from "../reducers/getPostsReducer";
 import getPostsWithIdReducer from "../reducers/getPostsWithIdReducer";
+import putUserExperienceReducer from "../reducers/putUserExperienceReducer";
 
 const persistConfig = {
   storage: localStorage,
@@ -37,6 +38,7 @@ const combinedReducer = combineReducers({
   postUserExperience: postUserExperienceReducer,
   getPosts: getPostsReducer,
   getPostsWithId: getPostsWithIdReducer,
+  putUserExperience: putUserExperienceReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, combinedReducer);

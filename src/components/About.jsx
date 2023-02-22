@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 
 const About = () => {
     const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock)
-    console.log(userProfileAPIRS)
 
     return (
         <Row className="d-flex flex-column edit-section bg-white mr-2 mt-2" id="round-corners">

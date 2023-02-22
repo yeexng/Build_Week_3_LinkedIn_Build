@@ -9,12 +9,22 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { putUserProfileApi } from "../redux/actions";
 import "../styles/profileDiv.css";
+import { getUserProfileApi } from "../redux/actions";
 
 const ProfileAvatar = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
   const dispatch = useDispatch();
 
   const [show, setShow] = useState(false);
+  console.log(userProfileAPIRS)
+
+  const dispatch = useDispatch();
+  // const [showPic, setShowPic] = useState(false);
+
+  useEffect(() => {
+    dispatch(getUserProfileApi())
+  }, []);
+
   const handleClosePen = () => setShow(false);
   const handleShowPen = () => setShow(true);
 
@@ -66,6 +76,7 @@ const ProfileAvatar = () => {
                 id="change-name"
                 placeholder={userProfileAPIRS && userProfileAPIRS.name}
               />
+
             </InputGroup>
             <InputGroup size="sm" className="mb-3 px-5">
               <InputGroup.Text id="inputGroup-sizing-sm">
