@@ -267,11 +267,7 @@ export const postUserExperience = (query) => {
         } catch (error) {
             console.log(error);
         }
-      );
-    } catch (error) {
-    console.log(error);
-}
-  };
+    };
 };
 
 
