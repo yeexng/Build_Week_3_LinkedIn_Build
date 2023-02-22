@@ -65,6 +65,7 @@ const ProfileAvatar = () => {
                 id="change-name"
                 placeholder={userProfileAPIRS && userProfileAPIRS.name}
               />
+
             </InputGroup>
             <InputGroup size="sm" className="mb-3 px-5">
               <InputGroup.Text id="inputGroup-sizing-sm">Surname</InputGroup.Text>

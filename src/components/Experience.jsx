@@ -11,7 +11,6 @@ import {
   postUserExperience,
   deleteSpecificExperienceAction,
 } from "../redux/actions";
-import EditModal from "./EditModal";
 import { useNavigate } from "react-router-dom";
 
 const Experience = () => {
@@ -114,14 +113,6 @@ const Experience = () => {
                     </p>
                   </div>
                 </Col>
-                <Modal show={showPut} onHide={handleClosePen}>
-                  <EditModal key={data._id} experienceData={data}></EditModal>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClosePen}>
-                      Close
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
               </Row>
             </>
           ))}
