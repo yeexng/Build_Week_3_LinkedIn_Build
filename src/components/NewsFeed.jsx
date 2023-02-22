@@ -12,10 +12,10 @@ const NewsFeed = () => {
       <NavBar></NavBar>
       <Container>
         <Row className="mt-5 pt-5">
-          <Col lg={2}>
+          <Col lg={3}>
             <NewsFeedLeftSide></NewsFeedLeftSide>
           </Col>
-          <Col lg={7}>
+          <Col lg={6}>
             <NewsFeedMiddle></NewsFeedMiddle>
           </Col>
           <Col lg={3}>

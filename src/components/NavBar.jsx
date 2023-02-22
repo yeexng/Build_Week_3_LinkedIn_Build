@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSpecificProfileAction } from "../redux/actions";
+import { getSpecificProfileAction, getUserbyId } from "../redux/actions";
 import {
   getAllProfileActionAsync,
   getSearchResultActionAsync,
@@ -17,13 +17,12 @@ import {
   Button,
 } from "react-bootstrap";
 import { getUserProfileApi } from "../redux/actions";
-import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [searchValue, getSearchValue] = useState("");
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllProfileActionAsync());
@@ -57,35 +56,38 @@ const NavBar = () => {
   window.addEventListener("scroll", headerChange);
 
   // search function
-  const specificProfile = useSelector((state) => state.profileSearch.content);
-  const [query, setQuery] = useState("");
+  //   const specificProfile = useSelector((state) => state.profileSearch.content);
+  //   const [query, setQuery] = useState("");
   // const handleChange = (e) => {
   //   setQuery(e.target.value);
   // };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    dispatch(getSpecificProfileAction(query));
-    dispatch(getExperienceAction(query));
-  };
+  //   const handleSubmit = async (e) => {
+  //     e.preventDefault();
+  //     dispatch(getSpecificProfileAction(query));
+  //     dispatch(getExperienceAction(query));
+  //   };
 
   return (
     <div className="d-flex flex-column">
       <Navbar className="fixed-top" id="top-nav">
         <Container>
-          <Navbar.Brand href="#">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              data-supported-dps="24x24"
-              fill="currentColor"
-              className="mercado-match"
-              width="24"
-              height="24"
-              focusable="false"
-            >
-              <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
-            </svg>
-          </Navbar.Brand>
+          <Link to={"/"}>
+            <Navbar.Brand>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                data-supported-dps="24x24"
+                fill="currentColor"
+                className="mercado-match"
+                width="24"
+                height="24"
+                focusable="false"
+              >
+                <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
+              </svg>
+            </Navbar.Brand>
+          </Link>
+
           <Form inline id="search-form-wrapper" onSubmit={handleChange}>
             <i className="bi bi-search"></i>
             <FormControl
@@ -100,46 +102,49 @@ const NavBar = () => {
               <i
                 className="bi bi-x-lg"
                 onClick={() =>
-                (document.querySelector("#search-popup").style.display =
-                  "none")
+                  (document.querySelector("#search-popup").style.display =
+                    "none")
                 }
               ></i>
-              {searchArray && searchArray.map((oneResult) => (
-                // <Link to={"/:oneResult.id"}>
-                <li
-                  key={oneResult._id}
-                  onClick={() => navigate("/" + oneResult._id)}
-                >
-                  {" "}
-                  <i className="bi bi-search"></i>
-                  <img
-                    src={oneResult.image}
-                    className="profile-photo-search"
-                    alt="profile"
-                  ></img>
-                  {oneResult.name} {oneResult.surname}
-                </li>
-                // </Link>
-              ))}
+              {searchArray &&
+                searchArray.map((oneResult) => (
+                  // <Link to={"/:oneResult.id"}>
+                  <li
+                    key={oneResult._id}
+                    onClick={() => dispatch(getUserbyId(oneResult._id))}
+                  >
+                    {" "}
+                    <i className="bi bi-search"></i>
+                    <img
+                      src={oneResult.image}
+                      className="profile-photo-search"
+                      alt="profile"
+                    ></img>
+                    {oneResult.name} {oneResult.surname}
+                  </li>
+                  // </Link>
+                ))}
             </div>
             {/* <Button variant="outline-primary">Search</Button> */}
           </Form>
           {/* <div id="search-popup">testing</div> */}
           <Nav className="ml-auto ">
             <Nav.Link href="#">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                data-supported-dps="24x24"
-                fill="currentColor"
-                className="mercado-match"
-                width="24"
-                height="24"
-                focusable="false"
-              >
-                <path d="M23 9v2h-2v7a3 3 0 01-3 3h-4v-6h-4v6H6a3 3 0 01-3-3v-7H1V9l11-7z"></path>
-              </svg>
-              <p className="text-gone">Home</p>
+              <Link to={"/"}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  data-supported-dps="24x24"
+                  fill="currentColor"
+                  className="mercado-match"
+                  width="24"
+                  height="24"
+                  focusable="false"
+                >
+                  <path d="M23 9v2h-2v7a3 3 0 01-3 3h-4v-6h-4v6H6a3 3 0 01-3-3v-7H1V9l11-7z"></path>
+                </svg>
+                <p className="text-gone">Home</p>
+              </Link>
             </Nav.Link>
             <Nav.Link href="#">
               <svg
@@ -236,7 +241,7 @@ const NavBar = () => {
                     <Button
                       onClick={() => {
                         dispatch(getUserProfileApi());
-                        dispatch(getExperienceAction(userProfileAPIRS._id))
+                        dispatch(getExperienceAction(userProfileAPIRS._id));
                       }}
                       className="w-100 bg-transparent text-primary view-profile-button"
                     >
@@ -309,8 +314,8 @@ const NavBar = () => {
                     focusable="false"
                     id="myBtn"
                     onClick={() =>
-                    (document.getElementById("myModal").style.display =
-                      "block")
+                      (document.getElementById("myModal").style.display =
+                        "block")
                     }
                   >
                     <path d="M8 11L3 6h10z" fillRule="evenodd"></path>
@@ -338,8 +343,8 @@ const NavBar = () => {
                   <span
                     className="close"
                     onClick={() =>
-                    (document.getElementById("myModal").style.display =
-                      "none")
+                      (document.getElementById("myModal").style.display =
+                        "none")
                     }
                   >
                     &times;

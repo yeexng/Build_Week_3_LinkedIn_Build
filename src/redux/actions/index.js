@@ -10,318 +10,367 @@ export const GET_EXPERIENCE = "GET_EXPERIENCE";
 export const GET_SPECIFIC_PROFILE = "GET_SPECIFIC_PROFILE";
 export const GET_EXPERIENCE_WITH_EXP_ID = "GET_EXPERIENCE_WITH_EXP_ID";
 export const DELETE_EXPERIENCE = "DELETE_EXPERIENCE";
-export const POST_USER_EXPERIENCE = "POST_USER_EXPERIENCE"
+export const POST_USER_EXPERIENCE = "POST_USER_EXPERIENCE";
 
 const options = {
-    method: "GET",
-    headers: {
-        Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
-    },
+  method: "GET",
+  headers: {
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
+  },
 };
 
 export const getUserProfileApi = () => {
-    return async (dispatch, getState) => {
-
-        const baseEndpoint =
-            `https://striveschool-api.herokuapp.com/api/profile/me`
-        try {
-            let resp = await fetch(baseEndpoint, options);
-            if (resp.ok) {
-                dispatch({
-                    type: GET_USER_LOADING,
-                    payload: true,
-                })
-                let data = await resp.json();
-                dispatch({
-                    type: GET_USER_PROFILE_API,
-                    payload: data,
-                })
-                dispatch({
-                    type: GET_USER_LOADING,
-                    payload: false,
-                })
-            } else {
-                dispatch({
-                    type: GET_USER_LOADING,
-                    payload: false,
-                })
-                dispatch({
-                    type: GET_USER_ERROR,
-                    payload: true,
-                })
-            }
-        } catch (error) {
-            dispatch({
-                type: GET_USER_LOADING,
-                payload: false,
-            })
-            dispatch({
-                type: GET_USER_ERROR,
-                payload: true,
-            })
-        }
+  return async (dispatch, getState) => {
+    const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/me`;
+    try {
+      let resp = await fetch(baseEndpoint, options);
+      if (resp.ok) {
+        dispatch({
+          type: GET_USER_LOADING,
+          payload: true,
+        });
+        let data = await resp.json();
+        dispatch({
+          type: GET_USER_PROFILE_API,
+          payload: data,
+        });
+        dispatch({
+          type: GET_USER_LOADING,
+          payload: false,
+        });
+      } else {
+        dispatch({
+          type: GET_USER_LOADING,
+          payload: false,
+        });
+        dispatch({
+          type: GET_USER_ERROR,
+          payload: true,
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: GET_USER_LOADING,
+        payload: false,
+      });
+      dispatch({
+        type: GET_USER_ERROR,
+        payload: true,
+      });
     }
-}
+  };
+};
 
 export const putUserProfileApi = () => {
-    const nameInput = document.getElementById("change-name")
-    const surnameInput = document.getElementById("change-surname")
-    const emailInput = document.getElementById("change-email")
-    const titleInput = document.getElementById("change-title")
-    const areaInput = document.getElementById("change-area")
-    const usernameInput = document.getElementById("change-username")
-    const bioInput = document.getElementById("change-bio")
-    const editedData = {
-        "name": nameInput.value,
-        "surname": surnameInput.value,
-        "email": emailInput.value,
-        "title": titleInput.value,
-        "area": areaInput.value,
-        "username": usernameInput.value,
-        "bio": bioInput.value
+  const nameInput = document.getElementById("change-name");
+  const surnameInput = document.getElementById("change-surname");
+  const emailInput = document.getElementById("change-email");
+  const titleInput = document.getElementById("change-title");
+  const areaInput = document.getElementById("change-area");
+  const usernameInput = document.getElementById("change-username");
+  const bioInput = document.getElementById("change-bio");
+  const editedData = {
+    name: nameInput.value,
+    surname: surnameInput.value,
+    email: emailInput.value,
+    title: titleInput.value,
+    area: areaInput.value,
+    username: usernameInput.value,
+    bio: bioInput.value,
+  };
+
+  const optionsPUT = {
+    method: "PUT",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
+    }),
+    body: JSON.stringify(editedData),
+  };
+
+  return async (dispatch, getState) => {
+    const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/`;
+
+    try {
+      let resp = await fetch(baseEndpoint, optionsPUT);
+      if (resp.ok) {
+        dispatch({
+          type: GET_USER_LOADING,
+          payload: true,
+        });
+        let data = await resp.json();
+        dispatch({
+          type: PUT_USER_PROFILE_UPDATE,
+          payload: data,
+        });
+        dispatch({
+          type: GET_USER_LOADING,
+          payload: false,
+        });
+      } else {
+        dispatch({
+          type: GET_USER_LOADING,
+          payload: false,
+        });
+        dispatch({
+          type: GET_USER_ERROR,
+          payload: true,
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: GET_USER_LOADING,
+        payload: false,
+      });
+      dispatch({
+        type: GET_USER_ERROR,
+        payload: true,
+      });
     }
-
-    const optionsPUT = {
-        method: "PUT",
-        headers: new Headers(
-            {
-                "Content-Type": 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw',
-            }),
-        body: JSON.stringify(editedData),
-    };
-
-    return async (dispatch, getState) => {
-
-        const baseEndpoint =
-            `https://striveschool-api.herokuapp.com/api/profile/`
-
-        try {
-            let resp = await fetch(baseEndpoint, optionsPUT);
-            if (resp.ok) {
-                dispatch({
-                    type: GET_USER_LOADING,
-                    payload: true,
-                })
-                let data = await resp.json();
-                dispatch({
-                    type: PUT_USER_PROFILE_UPDATE,
-                    payload: data,
-                })
-                dispatch({
-                    type: GET_USER_LOADING,
-                    payload: false,
-                })
-            } else {
-                dispatch({
-                    type: GET_USER_LOADING,
-                    payload: false,
-                })
-                dispatch({
-                    type: GET_USER_ERROR,
-                    payload: true,
-                })
-            }
-        } catch (error) {
-            dispatch({
-                type: GET_USER_LOADING,
-                payload: false,
-            })
-            dispatch({
-                type: GET_USER_ERROR,
-                payload: true,
-            })
-        }
-    }
+  };
 };
 
 export const getAllProfileActionAsync = () => {
-    return async (dispatch, getState) => {
-        try {
-            const response = await fetch(
-                "https://striveschool-api.herokuapp.com/api/profile/",
-                {
-                    headers: {
-                        Authorization:
-                            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
-                    },
-                }
-            );
-            if (response.ok) {
-                const data = await response.json();
-                dispatch({
-                    type: GET_ALL_PROFILE,
-                    payload: data,
-                });
-            } else {
-                alert("Error fetching results");
-            }
-        } catch (error) {
-            console.log(error);
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/profile/",
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
+          },
         }
-    };
+      );
+      if (response.ok) {
+        const data = await response.json();
+        dispatch({
+          type: GET_ALL_PROFILE,
+          payload: data,
+        });
+      } else {
+        alert("Error fetching results");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const getSearchResultActionAsync = (data, search) => {
-    return {
-        type: GET_SEARCH_RESULT,
-        payload: data.filter(
-            (el) =>
-                el.name.toLowerCase().includes(search.toLowerCase()) ||
-                el.surname.toLowerCase().includes(search.toLowerCase())
-        ),
-    };
+  return {
+    type: GET_SEARCH_RESULT,
+    payload: data.filter(
+      (el) =>
+        el.name.toLowerCase().includes(search.toLowerCase()) ||
+        el.surname.toLowerCase().includes(search.toLowerCase())
+    ),
+  };
 };
 
 export const getSpecificProfileAction = (query) => {
-    return async (dispatch, getState) => {
-        try {
-            const response = await fetch(
-                "https://striveschool-api.herokuapp.com/api/profile/" + query,
-                options
-            );
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data);
-                dispatch({
-                    type: GET_SPECIFIC_PROFILE,
-                    payload: data,
-                });
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/profile/" + query,
+        options
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        dispatch({
+          type: GET_SPECIFIC_PROFILE,
+          payload: data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const getExperienceAction = (query) => {
-    return async (dispatch, getState) => {
-        try {
-            const response = await fetch(
-                `https://striveschool-api.herokuapp.com/api/profile/${query}/experiences`,
-                options
-            );
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data);
-                dispatch({
-                    type: GET_EXPERIENCE,
-                    payload: data,
-                });
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/${query}/experiences`,
+        options
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        dispatch({
+          type: GET_EXPERIENCE,
+          payload: data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const getExperienceWithExpIdAction = (query, expId) => {
-    return async (dispatch, getState) => {
-        try {
-            const response = await fetch(
-                `https://striveschool-api.herokuapp.com/api/profile/${query}/experiences${expId}`,
-                options
-            );
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data);
-                dispatch({
-                    type: GET_EXPERIENCE_WITH_EXP_ID,
-                    payload: data,
-                });
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/${query}/experiences${expId}`,
+        options
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        dispatch({
+          type: GET_EXPERIENCE_WITH_EXP_ID,
+          payload: data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const postUserExperience = (query) => {
-    const roleInput = document.getElementById("experience-role")
-    const companyInput = document.getElementById("experience-company")
-    const startdateInput = document.getElementById("experience-startdate")
-    const enddateInput = document.getElementById("experience-enddate")
-    const descriptionInput = document.getElementById("experience-description")
-    const areaInput = document.getElementById("experience-area")
-    const editedData = {
-        "role": roleInput.value,
-        "company": companyInput.value,
-        "startDate": startdateInput.value,
-        "endDate": enddateInput.value,
-        "description": descriptionInput.value,
-        "area": areaInput.value,
-    }
-    return async (dispatch, getState) => {
-        try {
-            let res = fetch(`https://striveschool-api.herokuapp.com/api/profile/${query}/experiences`, {
-                method: "POST",
-                body: JSON.stringify(editedData),
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization:
-                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
-                },
-            });
-        } catch (error) {
-            console.log(error);
+  const roleInput = document.getElementById("experience-role");
+  const companyInput = document.getElementById("experience-company");
+  const startdateInput = document.getElementById("experience-startdate");
+  const enddateInput = document.getElementById("experience-enddate");
+  const descriptionInput = document.getElementById("experience-description");
+  const areaInput = document.getElementById("experience-area");
+  const editedData = {
+    role: roleInput.value,
+    company: companyInput.value,
+    startDate: startdateInput.value,
+    endDate: enddateInput.value,
+    description: descriptionInput.value,
+    area: areaInput.value,
+  };
+  return async (dispatch, getState) => {
+    try {
+      let res = fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/${query}/experiences`,
+        {
+          method: "POST",
+          body: JSON.stringify(editedData),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
+          },
         }
+      );
+    } catch (error) {
+      console.log(error);
     }
+  };
 };
 
 export const deleteSpecificExperienceAction = (query, expId) => {
-    return async (dispatch, getState) => {
-        try {
-            const response = await fetch(
-                `https://striveschool-api.herokuapp.com/api/profile/${query}/experiences/${expId}`, {
-                method: "DELETE",
-                headers: {
-                    Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw"
-                }
-            }
-            );
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data);
-                dispatch({
-                    type: DELETE_EXPERIENCE,
-                    payload: data,
-                });
-            }
-        } catch (error) {
-            console.log(error);
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/${query}/experiences/${expId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
+          },
         }
-    };
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        dispatch({
+          type: DELETE_EXPERIENCE,
+          payload: data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const putUserExperience = (query, expId) => {
-    const roleInput = document.getElementById("put-experience-role")
-    const companyInput = document.getElementById("put-experience-company")
-    const startdateInput = document.getElementById("put-experience-startdate")
-    const enddateInput = document.getElementById("put-experience-enddate")
-    const descriptionInput = document.getElementById("put-experience-description")
-    const areaInput = document.getElementById("put-experience-area")
-    const editedData = {
-        "role": roleInput.value,
-        "company": companyInput.value,
-        "startDate": startdateInput.value,
-        "endDate": enddateInput.value,
-        "description": descriptionInput.value,
-        "area": areaInput.value,
-    }
-    return async (dispatch, getState) => {
-        try {
-            let res = fetch(`https://striveschool-api.herokuapp.com/api/profile/${query}/experiences/${expId}`, {
-                method: "PUT",
-                body: JSON.stringify(editedData),
-                headers: new Headers({
-                    "Content-Type": "application/json",
-                    Authorization:
-                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
-                }),
-            });
-        } catch (error) {
-            console.log(error);
+  const roleInput = document.getElementById("put-experience-role");
+  const companyInput = document.getElementById("put-experience-company");
+  const startdateInput = document.getElementById("put-experience-startdate");
+  const enddateInput = document.getElementById("put-experience-enddate");
+  const descriptionInput = document.getElementById(
+    "put-experience-description"
+  );
+  const areaInput = document.getElementById("put-experience-area");
+  const editedData = {
+    role: roleInput.value,
+    company: companyInput.value,
+    startDate: startdateInput.value,
+    endDate: enddateInput.value,
+    description: descriptionInput.value,
+    area: areaInput.value,
+  };
+  return async (dispatch, getState) => {
+    try {
+      let res = fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/${query}/experiences/${expId}`,
+        {
+          method: "PUT",
+          body: JSON.stringify(editedData),
+          headers: new Headers({
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
+          }),
         }
+      );
+    } catch (error) {
+      console.log(error);
     }
+  };
+};
+
+export const getUserbyId = (query) => {
+  return async (dispatch, getState) => {
+    const baseEndpoint =
+      `https://striveschool-api.herokuapp.com/api/profile/` + query;
+    try {
+      let resp = await fetch(baseEndpoint, options);
+      if (resp.ok) {
+        dispatch({
+          type: GET_USER_LOADING,
+          payload: true,
+        });
+        let data = await resp.json();
+        dispatch({
+          type: GET_USER_PROFILE_API,
+          payload: data,
+        });
+        dispatch({
+          type: GET_USER_LOADING,
+          payload: false,
+        });
+      } else {
+        dispatch({
+          type: GET_USER_LOADING,
+          payload: false,
+        });
+        dispatch({
+          type: GET_USER_ERROR,
+          payload: true,
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: GET_USER_LOADING,
+        payload: false,
+      });
+      dispatch({
+        type: GET_USER_ERROR,
+        payload: true,
+      });
+    }
+  };
 };
