@@ -11,6 +11,8 @@ export const GET_SPECIFIC_PROFILE = "GET_SPECIFIC_PROFILE";
 export const GET_EXPERIENCE_WITH_EXP_ID = "GET_EXPERIENCE_WITH_EXP_ID";
 export const DELETE_EXPERIENCE = "DELETE_EXPERIENCE";
 export const POST_USER_EXPERIENCE = "POST_USER_EXPERIENCE";
+export const GET_POSTS = "GET_POSTS";
+export const GET_POSTS_WITH_ID = "GET_POSTS_WITH_ID";
 
 const options = {
   method: "GET",
@@ -371,6 +373,50 @@ export const getUserbyId = (query) => {
         type: GET_USER_ERROR,
         payload: true,
       });
+    }
+  };
+};
+
+//POSTS
+
+export const getPostAction = () => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/posts`,
+        options
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        dispatch({
+          type: GET_POSTS,
+          payload: data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getPostWithIdAction = (query) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/posts/${query}`,
+        options
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        dispatch({
+          type: GET_POSTS_WITH_ID,
+          payload: data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 };
