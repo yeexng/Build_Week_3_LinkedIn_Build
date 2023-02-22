@@ -7,6 +7,8 @@ import {
   getPostWithIdAction,
   sendPostAsyncAction,
 } from "../redux/actions";
+import format from "date-fns/format";
+import { parseISO } from "date-fns";
 
 const NewsFeedMiddle = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
@@ -200,7 +202,10 @@ const NewsFeedMiddle = () => {
                     <p>
                       <em>{singlePost.user.title}</em>
                     </p>
-                    <p>Date Posted: {singlePost.createdAt}</p>
+                    <p>
+                      Date Posted:{" "}
+                      {format(parseISO(singlePost.createdAt), "PPP ' 'HH':'m")}
+                    </p>
                   </div>
                 </div>
                 <div className="mx-3 my-5">{singlePost.text}</div>

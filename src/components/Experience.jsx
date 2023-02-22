@@ -31,8 +31,8 @@ const Experience = () => {
   );
   console.log(userExperiencesAPIRS);
 
-  const userExperienceDelete = useSelector((state) => state.deleteExp.content)
-  console.log()
+  const userExperienceDelete = useSelector((state) => state.deleteExp.content);
+  console.log();
 
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
 
@@ -41,7 +41,7 @@ const Experience = () => {
   );
 
   useEffect(() => {
-    dispatch(getUserProfileApi())
+    dispatch(getUserProfileApi());
   }, []);
 
   return (
@@ -111,7 +111,9 @@ const Experience = () => {
                       dispatch(
                         deleteSpecificExperienceAction(
                           userProfileAPIRS._id,
-                          data._id))
+                          data._id
+                        )
+                      );
                     }}
                   >
                     <RxCross2 id="analytics-icons"></RxCross2>
@@ -182,8 +184,8 @@ const Experience = () => {
           <Button
             variant="primary"
             onClick={() => {
-              dispatch(getUserProfileApi())
-              dispatch(postUserExperience(userExperiencesAPIRS._id))
+              dispatch(postUserExperience(userExperiencesAPIRS._id));
+              dispatch(getUserProfileApi());
             }}
           >
             Create Experience
