@@ -24,7 +24,7 @@ const ProfileAvatar = () => {
 
   return (
     <Row
-      className="d-flex flex-column edit-section bg-white mr-2 mb-2"
+      className="d-flex flex-column edit-section bg-white mr-2 mb-2 pb-4"
       id="round-corners"
     >
       <Col className="px-0">
