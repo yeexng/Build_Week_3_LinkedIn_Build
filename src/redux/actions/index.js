@@ -137,6 +137,7 @@ export const putUserProfileApi = () => {
     }
 };
 
+
 export const getAllProfileActionAsync = () => {
     return async (dispatch, getState) => {
         try {
@@ -266,7 +267,11 @@ export const postUserExperience = (query) => {
         } catch (error) {
             console.log(error);
         }
-    }
+      );
+    } catch (error) {
+    console.log(error);
+}
+  };
 };
 
 
