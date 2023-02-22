@@ -23,6 +23,10 @@ const Experience = () => {
 
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
 
+  const combinedFunctions = () => {
+    dispatch(getExperienceAction(userProfileAPIRS._id))
+  }
+
   useEffect(() => {
     dispatch(getExperienceAction(userProfileAPIRS._id))
   }, [])
@@ -91,8 +95,7 @@ const Experience = () => {
                   <p
                     className="mb-0"
                     onClick={() => {
-                      dispatch(deleteSpecificExperienceAction(userProfileAPIRS._id, data._id));
-                      dispatch(getExperienceAction(userProfileAPIRS._id))
+
                     }}
                   >
                     <RxCross2 id="analytics-icons"></RxCross2>
@@ -164,7 +167,7 @@ const Experience = () => {
             variant="primary"
             onClick={() => {
               dispatch(postUserExperience(userExperiencesAPIRS._id));
-              dispatch(getUserProfileApi())
+              combinedFunctions()
             }}
           >
             Create Experience
