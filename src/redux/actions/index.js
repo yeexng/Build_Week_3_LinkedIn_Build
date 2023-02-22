@@ -110,6 +110,7 @@ export const putUserProfileApi = () => {
                     type: PUT_USER_PROFILE_UPDATE,
                     payload: data,
                 })
+                dispatch(getUserProfileApi())
                 dispatch({
                     type: GET_USER_LOADING,
                     payload: false,
@@ -262,6 +263,7 @@ export const postUserExperience = (query) => {
                     Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`
                 },
             });
+            dispatch(getUserProfileApi())
         } catch (error) {
             console.log(error);
         }
@@ -286,6 +288,7 @@ export const deleteSpecificExperienceAction = (query, expId) => {
                     type: DELETE_EXPERIENCE,
                     payload: data,
                 });
+                dispatch(getUserProfileApi())
             }
         } catch (error) {
             console.log(error);
@@ -323,6 +326,7 @@ export const putUserExperience = (query, expId) => {
                     type: PUT_USER_EXPERIENCE_UPDATE,
                     payload: editedData,
                 })
+
             };
 
         } catch (error) {

@@ -9,12 +9,19 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { putUserProfileApi } from "../redux/actions";
 import "../styles/profileDiv.css";
+import { getUserProfileApi } from "../redux/actions";
 
 const ProfileAvatar = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
   const [show, setShow] = useState(false);
+  console.log(userProfileAPIRS)
+
   const dispatch = useDispatch();
   // const [showPic, setShowPic] = useState(false);
+
+  useEffect(() => {
+    dispatch(getUserProfileApi())
+  }, []);
 
   const handleClosePen = () => setShow(false);
   const handleShowPen = () => setShow(true);
@@ -128,63 +135,6 @@ const ProfileAvatar = () => {
               </Button>
             </Modal.Footer>
           </Modal>
-
-          {/* <Modal
-            show={showPic}
-            onHide={handleClosePic}
-            animation={false}
-            className="modal-profile"
-          >
-            <Modal.Header closeButton className="modal-wrapper">
-              <Modal.Title>Profile photo</Modal.Title>
-            </Modal.Header>
-            <div className="d-flex justify-content-center modal-wrapper">
-              <Image
-                className="img-fluid model-profile-pic"
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                roundedCircle
-              />
-            </div>
-            <div className="modal-wrapper">
-              <div
-                className="btn btn-outline-light"
-                style={{ borderRadius: 30 }}
-              >
-                <p className="text-light">Anyone</p>
-              </div>
-            </div>
-
-            <Modal.Body className="modal-wrapper">
-              <Row className="justify-content-between">
-                <Col md={8}>
-                  <div className="btn modal-btn">
-                    <FiEdit2 className="text-light" />
-                    <br></br>
-                    <p className="text-light">Edit</p>
-                  </div>
-                  <div className="btn modal-btn">
-                    <AiFillCamera className="text-light" />
-                    <br></br>
-                    <p className="text-light">Add photo</p>
-                  </div>
-                  <div className="btn modal-btn">
-                    <RiGalleryFill className="text-light" />
-                    <br></br>
-                    <p className="text-light">Frames</p>
-                  </div>
-                </Col>
-                <Col md={3}>
-                  <div>
-                    <div className="btn modal-btn">
-                      <ImBin className="text-light" />
-                      <br></br>
-                      <p className="text-light">Delete</p>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-            </Modal.Body>
-          </Modal> */}
 
           <Row className="details-box justify-content-between">
             <Col className="px-4">

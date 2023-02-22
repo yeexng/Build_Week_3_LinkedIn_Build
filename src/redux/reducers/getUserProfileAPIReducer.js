@@ -13,7 +13,6 @@ const getUserProfileAPIReducer = (state = initialState, action) => {
                 ...state,
                 stock: action.payload,
             }
-
         case GET_USER_LOADING:
             return {
                 ...state,
