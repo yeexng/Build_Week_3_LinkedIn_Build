@@ -24,6 +24,10 @@ const NewsFeedMiddle = () => {
     text: "", // the only property you need to send
     username: "",
   });
+  const [postToUpdate, setPostToUpdate] = = useState({
+    text: "", // the only property you need to send
+    username: "",
+  });
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -243,7 +247,7 @@ const NewsFeedMiddle = () => {
         </Modal.Header>
 
         <InputGroup className="mb-3 px-4">
-          <InputGroup.Text id="basic-addon1">Role</InputGroup.Text>
+          <InputGroup.Text id="basic-addon1">Post Content</InputGroup.Text>
           <Form.Control
             aria-label=""
             aria-describedby="basic-addon1"
