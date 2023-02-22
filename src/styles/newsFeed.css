@@ -38,3 +38,50 @@ span {
   border: 1px solid rgb(224, 223, 220);
   overflow: hidden;
 }
+
+#news-feed-mid-section .profile-middle {
+  width: 4em;
+  height: 4em;
+  border: solid white 3px;
+  border-radius: 50%;
+}
+
+#news-feed-mid-section button {
+  background-color: transparent !important;
+  box-shadow: none;
+}
+#news-feed-mid-section button:hover {
+  background-color: rgba(142, 134, 134, 0.204) !important;
+}
+#news-feed-mid-section button span {
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: initial;
+  font-weight: bold;
+}
+
+.svg-photo {
+  color: #0a66c2;
+}
+.svg-video {
+  color: #5f9b41;
+}
+.svg-event {
+  color: #d29d4f;
+}
+.svg-article {
+  color: #e16745;
+}
+.post-button {
+  border: solid grey 1px;
+  border-radius: 20px;
+}
+
+#news-feed-mid-section-lower img {
+  width: 4em;
+  height: 4em;
+  border: solid white 3px;
+  border-radius: 50%;
+}
+#news-feed-mid-section-lower p {
+  margin-bottom: 0;
+}
