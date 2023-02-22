@@ -413,7 +413,7 @@ export const getPostAction = () => {
   return async (dispatch, getState) => {
     try {
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/posts/`,
+        `https://striveschool-api.herokuapp.com/api/posts`,
         options
       );
       if (response.ok) {
@@ -434,7 +434,7 @@ export const getPostWithIdAction = (query) => {
   return async (dispatch, getState) => {
     try {
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/posts/${query}`,
+        `https://striveschool-api.herokuapp.com/api/posts/${query}`,
         options
       );
       if (response.ok) {
