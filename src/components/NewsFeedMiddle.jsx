@@ -1,6 +1,7 @@
-import { useSelector } from "react-redux";
-import { Button, Card, FormControl, InputGroup, Modal } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Card, Form, Modal } from "react-bootstrap";
 import { useState } from "react";
+import { sendPostAsyncAction } from "../redux/actions";
 
 const NewsFeedMiddle = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
@@ -8,6 +9,11 @@ const NewsFeedMiddle = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [post, setPost] = useState({
+    text: "", // the only property you need to send
+    username: "",
+  });
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -30,7 +36,7 @@ const NewsFeedMiddle = () => {
                 viewBox="0 0 24 24"
                 data-supported-dps="24x24"
                 fill="currentColor"
-                class="svg-photo"
+                className="svg-photo"
                 width="24"
                 height="24"
                 focusable="false"
@@ -45,7 +51,7 @@ const NewsFeedMiddle = () => {
                 viewBox="0 0 24 24"
                 data-supported-dps="24x24"
                 fill="currentColor"
-                class="svg-video"
+                className="svg-video"
                 width="24"
                 height="24"
                 focusable="false"
@@ -60,7 +66,7 @@ const NewsFeedMiddle = () => {
                 viewBox="0 0 24 24"
                 data-supported-dps="24x24"
                 fill="currentColor"
-                class="svg-event"
+                className="svg-event"
                 width="24"
                 height="24"
                 focusable="false"
@@ -75,7 +81,7 @@ const NewsFeedMiddle = () => {
                 viewBox="0 0 24 24"
                 data-supported-dps="24x24"
                 fill="currentColor"
-                class="svg-article"
+                className="svg-article"
                 width="24"
                 height="24"
                 focusable="false"
@@ -113,15 +119,28 @@ const NewsFeedMiddle = () => {
                 </p>
               </div>
             </div>
-            <div class="form-outline">
-              <textarea
-                class="form-control"
-                id="textAreaExample1"
-                rows="4"
-              ></textarea>
-              <label class="form-label" for="textAreaExample">
-                Message
-              </label>
+            <div className="form-outline">
+              <Form>
+                <Form.Group className="form-outline">
+                  <Form.Control
+                    id="textAreaExample"
+                    as="textarea"
+                    rows={10}
+                    value={post.text}
+                    onChange={(e) => {
+                      setPost({
+                        ...post,
+                        text: e.target.value,
+                        username:
+                          userProfileAPIRS.name + userProfileAPIRS.surname,
+                      });
+                    }}
+                  />
+                  <label className="form-label" htmlFor="textAreaExample">
+                    <p className="mb-5 pb-5">Post content!</p>
+                  </label>
+                </Form.Group>
+              </Form>
             </div>
           </div>
         </Modal.Body>
@@ -129,7 +148,10 @@ const NewsFeedMiddle = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button
+            variant="primary"
+            onClick={() => dispatch(sendPostAsyncAction(post))}
+          >
             Save Changes
           </Button>
         </Modal.Footer>
