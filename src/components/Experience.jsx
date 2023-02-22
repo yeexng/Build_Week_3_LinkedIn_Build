@@ -18,6 +18,8 @@ const Experience = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [changed, setChanged] = useState(false)
+
   const [showPost, setShowPost] = useState(false);
   const handleClosePlus = () => setShowPost(false);
   const handleShowPlus = () => setShowPost(true);
@@ -28,13 +30,10 @@ const Experience = () => {
 
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
 
-  const combinedFunctions = () => {
-    dispatch(getExperienceAction(userProfileAPIRS._id))
-  }
-
   useEffect(() => {
     dispatch(getExperienceAction(userProfileAPIRS._id));
-  }, []);
+    setChanged(false)
+  }, [changed]);
 
   return (
     <Row
@@ -104,10 +103,8 @@ const Experience = () => {
                         deleteSpecificExperienceAction(
                           userProfileAPIRS._id,
                           data._id
-                        )
-                      );
-                      dispatch(getExperienceAction(userProfileAPIRS._id));
-
+                        ));
+                      setChanged(true)
                     }}
                   >
                     <RxCross2 id="analytics-icons"></RxCross2>
@@ -179,7 +176,7 @@ const Experience = () => {
             variant="primary"
             onClick={() => {
               dispatch(postUserExperience(userExperiencesAPIRS._id));
-              dispatch(getUserProfileApi());
+              setChanged(true)
             }}
           >
             Create Experience
