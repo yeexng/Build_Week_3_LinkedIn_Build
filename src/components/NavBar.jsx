@@ -136,7 +136,7 @@ const NavBar = () => {
           {/* <div id="search-popup">testing</div> */}
           <Nav className="ml-auto ">
             <Nav.Link href="#">
-              <Link to={"/"}>
+              <Link to={"/feed"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
