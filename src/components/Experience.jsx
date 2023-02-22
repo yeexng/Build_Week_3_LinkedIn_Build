@@ -28,6 +28,10 @@ const Experience = () => {
 
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
 
+  const combinedFunctions = () => {
+    dispatch(getExperienceAction(userProfileAPIRS._id))
+  }
+
   useEffect(() => {
     dispatch(getExperienceAction(userProfileAPIRS._id));
   }, []);
@@ -103,6 +107,7 @@ const Experience = () => {
                         )
                       );
                       dispatch(getExperienceAction(userProfileAPIRS._id));
+
                     }}
                   >
                     <RxCross2 id="analytics-icons"></RxCross2>
