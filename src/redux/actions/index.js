@@ -410,7 +410,6 @@ export const sendPostAsyncAction = (editedData) => {
 //POSTS
 
 export const getPostAction = () => {
-<<<<<<< HEAD
     return async (dispatch, getState) => {
         try {
             const response = await fetch(
@@ -450,47 +449,6 @@ export const getPostWithIdAction = (query) => {
             console.log(error);
         }
     };
-=======
-  return async (dispatch, getState) => {
-    try {
-      const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/posts`,
-        options
-      );
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        dispatch({
-          type: GET_POSTS,
-          payload: data,
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
-export const getPostWithIdAction = (query) => {
-  return async (dispatch, getState) => {
-    try {
-      const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/posts/${query}`,
-        options
-      );
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        dispatch({
-          type: GET_POSTS_WITH_ID,
-          payload: data,
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
->>>>>>> Sam
 };
 
 export const putPostAction = (postId) => {

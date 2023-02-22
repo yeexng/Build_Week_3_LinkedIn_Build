@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card, Form, Modal, InputGroup } from "react-bootstrap";
+import { Button, Card, Form, Modal } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import {
   deletePostAction,
@@ -11,10 +11,6 @@ import {
 const NewsFeedMiddle = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
   const [show, setShow] = useState(false);
-
-  const [showPost, setShowPost] = useState(false);
-  const handleClosePlus = () => setShowPost(false);
-  const handleShowPlus = () => setShowPost(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -209,58 +205,20 @@ const NewsFeedMiddle = () => {
                 </div>
                 <div className="mx-3 my-5">{singlePost.text}</div>
               </div>
-              <div className="parent-button-delete-post d-flex justify-content-end">
-                <div className="text-center">
-                  <Button
-                    className="button-delete-post "
-                    onClick={handleShowPlus}
-                  >
-                    <i class="bi bi-pencil-fill"></i>
-                  </Button>
-                </div>
-                <div className="text-center">
-                  <Button
-                    className="button-delete-post "
-                    onClick={() => {
-                      dispatch(deletePostAction(singlePost._id));
-                    }}
-                  >
-                    <i className="bi bi-trash3-fill"></i>
-                  </Button>
-                </div>
+              <div className="parent-button-delete-post d-flex justify-content-between">
+                <div></div>
+                <Button
+                  className="button-delete-post "
+                  onClick={() => {
+                    dispatch(deletePostAction(singlePost._id));
+                  }}
+                >
+                  <i className="bi bi-trash3-fill"></i>
+                </Button>
               </div>
             </Card>
           );
         })}
-      <Modal show={showPost} onHide={handleClosePlus}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add an Experience</Modal.Title>
-        </Modal.Header>
-
-        <InputGroup className="mb-3 px-4">
-          <InputGroup.Text id="basic-addon1">Role</InputGroup.Text>
-          <Form.Control
-            aria-label=""
-            aria-describedby="basic-addon1"
-            id="experience-role"
-          />
-        </InputGroup>
-
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClosePlus}>
-            Close
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              dispatch();
-              dispatch();
-            }}
-          >
-            Create Experience
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 };
