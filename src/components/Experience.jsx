@@ -7,10 +7,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import {
-  postUserExperience,
-  deleteSpecificExperienceAction,
-} from "../redux/actions";
+import { postUserExperience, deleteSpecificExperienceAction, } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import { getUserProfileApi } from "../redux/actions";
 
@@ -22,27 +19,13 @@ const Experience = () => {
   const handleClosePlus = () => setShowPost(false);
   const handleShowPlus = () => setShowPost(true);
 
-  const [showPut, setShowPut] = useState(false);
-  const handleClosePen = () => setShowPut(false);
-  const handleShowPen = () => setShowPut(true);
-
   const userExperiencesAPIRS = useSelector(
     (state) => state.getExperience.content
   );
-  console.log(userExperiencesAPIRS);
-
-  const userExperienceDelete = useSelector((state) => state.deleteExp.content)
-  console.log()
 
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
 
-  const postUserExperienceRS = useSelector(
-    (state) => state.postUserExperience.content
-  );
-
-  useEffect(() => {
-    dispatch(getUserProfileApi())
-  }, []);
+  const postUserExperienceRS = useSelector((state) => state.postUserExperience.content);
 
   return (
     <Row

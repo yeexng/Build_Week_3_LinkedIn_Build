@@ -290,6 +290,8 @@ export const deleteSpecificExperienceAction = (query, expId) => {
                     payload: data,
                 });
                 dispatch(getUserProfileApi())
+                dispatch(getExperienceWithExpIdAction(query, expId))
+                dispatch(getExperienceAction(query))
             }
         } catch (error) {
             console.log(error);
