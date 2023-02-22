@@ -123,7 +123,7 @@ const NavBar = () => {
                   // </Link>
                 ))}
               <i
-                className="bi bi-x-lg"
+                className="bi bi-x-lg close"
                 onClick={() =>
                   (document.querySelector("#search-popup").style.display =
                     "none")
