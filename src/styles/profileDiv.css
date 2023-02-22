@@ -28,6 +28,7 @@
 }
 .modal-wrapper {
   background-color: #1d2226;
+  overflow: hidden;
 }
 
 .modal-btn {
