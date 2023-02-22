@@ -136,7 +136,6 @@ export const putUserProfileApi = () => {
         }
     }
 };
-};
 
 export const getAllProfileActionAsync = () => {
     return async (dispatch, getState) => {
@@ -267,12 +266,9 @@ export const postUserExperience = (query) => {
         } catch (error) {
             console.log(error);
         }
-      );
-    } catch (error) {
-    console.log(error);
-}
-  };
+    }
 };
+
 
 export const deleteSpecificExperienceAction = (query, expId) => {
     return async (dispatch, getState) => {
@@ -330,13 +326,9 @@ export const putUserExperience = (query, expId) => {
                     type: PUT_USER_EXPERIENCE_UPDATE,
                     payload: editedData,
                 })
-
             };
-
         } catch (error) {
             console.log(error);
         }
     }
-};
-  };
 };

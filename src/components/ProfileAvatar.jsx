@@ -13,7 +13,6 @@ import { getUserProfileApi } from "../redux/actions";
 
 const ProfileAvatar = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
-  const dispatch = useDispatch();
 
   const [show, setShow] = useState(false);
   console.log(userProfileAPIRS)
