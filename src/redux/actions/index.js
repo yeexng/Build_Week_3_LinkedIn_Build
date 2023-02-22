@@ -262,7 +262,8 @@ export const postUserExperience = (query) => {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`
                 },
-            });
+            })
+            dispatch(getExperienceAction(query));
             dispatch(getUserProfileApi())
         } catch (error) {
             console.log(error);
@@ -289,8 +290,6 @@ export const deleteSpecificExperienceAction = (query, expId) => {
                     type: DELETE_EXPERIENCE,
                     payload: data,
                 });
-                dispatch(getUserProfileApi())
-                dispatch(getExperienceWithExpIdAction(query, expId))
                 dispatch(getExperienceAction(query))
             }
         } catch (error) {
