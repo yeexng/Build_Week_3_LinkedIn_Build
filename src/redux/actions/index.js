@@ -396,8 +396,7 @@ export const sendPostAsyncAction = (editedData) => {
         body: JSON.stringify(editedData),
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
+          Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
         },
       });
       if (res.ok) {
