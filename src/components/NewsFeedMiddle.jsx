@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Form, Modal } from "react-bootstrap";
-import { useState } from "react";
-import { sendPostAsyncAction } from "../redux/actions";
+import { useEffect, useState } from "react";
+import {
+  deletePostAction,
+  getPostAction,
+  getPostWithIdAction,
+  sendPostAsyncAction,
+} from "../redux/actions";
 
 const NewsFeedMiddle = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
@@ -15,6 +20,13 @@ const NewsFeedMiddle = () => {
   });
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getPostAction());
+  }, []);
+
+  //   const postWithId = useSelector((state) => state.getPostsWithId.content);
+  const allPosts = useSelector((state) => state.getPosts.content);
+
   return (
     <>
       <Card id="news-feed-mid-section">
@@ -25,7 +37,12 @@ const NewsFeedMiddle = () => {
               alt="profile"
               className="profile-middle m-2"
             ></img>
-            <Button className="w-100 m-3 post-button" onClick={handleShow}>
+            <Button
+              className="w-100 m-3 post-button"
+              onClick={() => {
+                handleShow();
+              }}
+            >
               <span>Start a post</span>
             </Button>
           </div>
@@ -122,6 +139,7 @@ const NewsFeedMiddle = () => {
             <div className="form-outline">
               <Form>
                 <Form.Group className="form-outline">
+                  <br></br>
                   <Form.Control
                     id="textAreaExample"
                     as="textarea"
@@ -150,41 +168,57 @@ const NewsFeedMiddle = () => {
           </Button>
           <Button
             variant="primary"
-            onClick={() => dispatch(sendPostAsyncAction(post))}
+            onClick={() => {
+              dispatch(sendPostAsyncAction(post));
+              dispatch(getPostAction());
+              alert("Your post have been saved!");
+            }}
           >
             Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
-      <Card id="news-feed-mid-section-lower" className="my-3">
-        <div className="d-flex flex-column mx-2 my-2">
-          <div className="d-flex">
-            <img
-              src={userProfileAPIRS && userProfileAPIRS.image}
-              alt="profile"
-              className="profile-middle m-2"
-            ></img>
-            <div>
-              <p>
-                <strong>
-                  {userProfileAPIRS && userProfileAPIRS.name}{" "}
-                  {userProfileAPIRS && userProfileAPIRS.surname}
-                </strong>
-              </p>
-              <p>
-                <em>{userProfileAPIRS && userProfileAPIRS.title}</em>
-              </p>
-              <p>DATE:</p>
-            </div>
-          </div>
-          <div className="mx-3 my-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
-            corrupti incidunt nihil ipsam voluptate atque? Accusamus iusto optio
-            voluptatibus consequuntur dicta fuga recusandae, labore praesentium
-            et impedit, saepe repellat officiis?
-          </div>
-        </div>
-      </Card>
+      {allPosts &&
+        allPosts.slice(Math.max(allPosts.length - 5, 0)).map((singlePost) => {
+          return (
+            <Card
+              id="news-feed-mid-section-lower"
+              className="my-3"
+              key={singlePost._id}
+            >
+              <div className="d-flex flex-column mx-2 my-2">
+                <div className="d-flex">
+                  <img
+                    src={singlePost && singlePost.user.image}
+                    alt="profile"
+                    className="profile-middle m-2"
+                  ></img>
+                  <div>
+                    <p>
+                      <strong>{singlePost.username}</strong>
+                    </p>
+                    <p>
+                      <em>{singlePost.user.title}</em>
+                    </p>
+                    <p>Date Posted: {singlePost.createdAt}</p>
+                  </div>
+                </div>
+                <div className="mx-3 my-5">{singlePost.text}</div>
+              </div>
+              <div className="parent-button-delete-post d-flex justify-content-between">
+                <div></div>
+                <Button
+                  className="button-delete-post "
+                  onClick={() => {
+                    dispatch(deletePostAction(singlePost._id));
+                  }}
+                >
+                  <i className="bi bi-trash3-fill"></i>
+                </Button>
+              </div>
+            </Card>
+          );
+        })}
     </>
   );
 };

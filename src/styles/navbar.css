@@ -805,3 +805,15 @@
   cursor: pointer;
   background-color: rgba(168, 165, 165, 0.655);
 }
+
+.button-delete-post {
+  background-color: transparent;
+  width: 50%;
+  text-align: center;
+}
+.button-delete-post:hover {
+  background-color: rgba(255, 254, 254, 0.655);
+}
+.button-delete-post i {
+  color: red;
+}

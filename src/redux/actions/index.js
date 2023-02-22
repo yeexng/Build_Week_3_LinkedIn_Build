@@ -494,3 +494,25 @@ export const putPostAction = (postId) => {
     }
   };
 };
+
+export const deletePostAction = (query) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/${query}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+          },
+        }
+      );
+      if (response.ok) {
+        alert("Alert deleted!");
+        dispatch(getPostAction());
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
