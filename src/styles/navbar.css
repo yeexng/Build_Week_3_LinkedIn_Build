@@ -355,9 +355,7 @@
   text-decoration: underline;
   cursor: pointer;
 }
-.dropdown-menu {
-  width: 23vw !important;
-}
+
 .dropdown-menu .view-profile-button {
   border-radius: 25px;
   padding: 0;
@@ -449,7 +447,7 @@
   padding: 0;
 }
 .dropdown-menu {
-  width: 15vw;
+  width: 15vw !important;
   padding-inline: 1em !important;
 }
 
@@ -753,6 +751,12 @@
   #second-nav .btn {
     font-size: 0.6rem;
     padding-inline: 1rem;
+  }
+  .dropdown-menu {
+    width: 20vw !important;
+  }
+  .dropdown-menu strong {
+    font-size: 0.7rem !important;
   }
 }
 @media screen and (max-width: 760px) {
