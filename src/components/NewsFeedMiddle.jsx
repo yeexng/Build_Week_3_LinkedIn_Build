@@ -24,10 +24,10 @@ const NewsFeedMiddle = () => {
     text: "", // the only property you need to send
     username: "",
   });
-  const [postToUpdate, setPostToUpdate] = = useState({
-    text: "", // the only property you need to send
-    username: "",
-  });
+  //   const [postToUpdate, setPostToUpdate] = = useState({
+  //     text: "", // the only property you need to send
+  //     username: "",
+  //   });
   const dispatch = useDispatch();
 
   useEffect(() => {
