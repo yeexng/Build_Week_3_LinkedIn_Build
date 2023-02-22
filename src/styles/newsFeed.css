@@ -85,3 +85,14 @@ span {
 #news-feed-mid-section-lower p {
   margin-bottom: 0;
 }
+
+#modal-post-news img {
+  width: 4em;
+  height: 4em;
+  border: solid white 3px;
+  border-radius: 50%;
+}
+
+#modal-post-news .modal-body {
+  height: 50vh !important;
+}

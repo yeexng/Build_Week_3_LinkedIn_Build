@@ -1,8 +1,13 @@
 import { useSelector } from "react-redux";
-import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Button, Card, FormControl, InputGroup, Modal } from "react-bootstrap";
+import { useState } from "react";
 
 const NewsFeedMiddle = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
@@ -14,7 +19,7 @@ const NewsFeedMiddle = () => {
               alt="profile"
               className="profile-middle m-2"
             ></img>
-            <Button className="w-100 m-3 post-button">
+            <Button className="w-100 m-3 post-button" onClick={handleShow}>
               <span>Start a post</span>
             </Button>
           </div>
@@ -82,6 +87,53 @@ const NewsFeedMiddle = () => {
           </div>
         </div>
       </Card>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        animation={false}
+        id="modal-post-news"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Create a Post</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="d-flex flex-column mx-2 my-2">
+            <div className="d-flex">
+              <img
+                src={userProfileAPIRS && userProfileAPIRS.image}
+                alt="profile"
+                className="profile-middle m-2"
+              ></img>
+              <div>
+                <p>
+                  <strong>
+                    {userProfileAPIRS && userProfileAPIRS.name}{" "}
+                    {userProfileAPIRS && userProfileAPIRS.surname}
+                  </strong>
+                </p>
+              </div>
+            </div>
+            <div class="form-outline">
+              <textarea
+                class="form-control"
+                id="textAreaExample1"
+                rows="4"
+              ></textarea>
+              <label class="form-label" for="textAreaExample">
+                Message
+              </label>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <Card id="news-feed-mid-section-lower" className="mt-3">
         <div className="d-flex flex-column mx-2 my-2">
           <div className="d-flex">
