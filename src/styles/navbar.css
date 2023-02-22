@@ -778,6 +778,16 @@
   top: 150px;
   left: 0px;
 }
+#search-popup .bi-x-lg {
+  position: relative;
+  top: 0;
+  left: 27em;
+  border-radius: 50%;
+  height: 1em;
+  width: 1em;
+  border: solid 1px grey;
+  cursor: pointer;
+}
 
 .profile-photo-search {
   width: 10%;
