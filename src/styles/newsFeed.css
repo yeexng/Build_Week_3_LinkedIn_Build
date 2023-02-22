@@ -93,6 +93,18 @@ span {
   border-radius: 50%;
 }
 
-/* #modal-post-news .modal-body {
-  height: 50vh !important;
-} */
+.parent-button-delete-post {
+  text-align: right;
+}
+.button-delete-post {
+  background-color: transparent;
+  width: 20%;
+  text-align: center;
+  box-shadow: none;
+}
+.button-delete-post:hover {
+  background-color: rgba(255, 254, 254, 0.655);
+}
+.button-delete-post i {
+  color: red;
+}
