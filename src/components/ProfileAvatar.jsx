@@ -5,22 +5,22 @@ import { AiFillCamera } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { RiGalleryFill } from "react-icons/ri";
 import { ImBin } from "react-icons/im";
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 import { putUserProfileApi } from "../redux/actions";
 import "../styles/profileDiv.css";
 
 const ProfileAvatar = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
-  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
-  // const [showPic, setShowPic] = useState(false);
 
+  const [show, setShow] = useState(false);
   const handleClosePen = () => setShow(false);
   const handleShowPen = () => setShow(true);
 
-  // const handleClosePic = () => setShowPic(false);
-  // const handleShowPic = () => setShowPic(true);
+  const [showPic, setShowPic] = useState(false);
+  const handleClosePic = () => setShowPic(false);
+  const handleShowPic = () => setShowPic(true);
 
   return (
     <Row
@@ -31,6 +31,7 @@ const ProfileAvatar = () => {
         <div className="avatar-wrapper">
           <div id="banner-container">
             <Image
+              onClick={handleShowPic}
               className="img avatar-bg"
               src="https://www.gordonkamitomo.com/wp-content/uploads/2017/09/LinkedIn-Banner-High-River.jpg"
             />
@@ -38,7 +39,7 @@ const ProfileAvatar = () => {
               <AiFillCamera className="text-primary" />
             </Button>
             <Image
-              // onClick={handleShowPic}
+              onClick={handleShowPic}
               className="img profile-pic"
               src={userProfileAPIRS && userProfileAPIRS.image}
               roundedCircle
@@ -67,7 +68,9 @@ const ProfileAvatar = () => {
               />
             </InputGroup>
             <InputGroup size="sm" className="mb-3 px-5">
-              <InputGroup.Text id="inputGroup-sizing-sm">Surname</InputGroup.Text>
+              <InputGroup.Text id="inputGroup-sizing-sm">
+                Surname
+              </InputGroup.Text>
               <Form.Control
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
@@ -94,7 +97,9 @@ const ProfileAvatar = () => {
               />
             </InputGroup>
             <InputGroup size="sm" className="mb-3 px-5">
-              <InputGroup.Text id="inputGroup-sizing-sm">Location</InputGroup.Text>
+              <InputGroup.Text id="inputGroup-sizing-sm">
+                Location
+              </InputGroup.Text>
               <Form.Control
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
@@ -103,7 +108,9 @@ const ProfileAvatar = () => {
               />
             </InputGroup>
             <InputGroup size="sm" className="mb-3 px-5">
-              <InputGroup.Text id="inputGroup-sizing-sm">Username</InputGroup.Text>
+              <InputGroup.Text id="inputGroup-sizing-sm">
+                Username
+              </InputGroup.Text>
               <Form.Control
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
@@ -113,22 +120,32 @@ const ProfileAvatar = () => {
             </InputGroup>
 
             <InputGroup size="sm" className="mb-3 px-5">
-              <InputGroup.Text >About</InputGroup.Text>
-              <Form.Control as="textarea" aria-label="With textarea" id="change-bio" placeholder={userProfileAPIRS && userProfileAPIRS.bio} />
+              <InputGroup.Text>About</InputGroup.Text>
+              <Form.Control
+                as="textarea"
+                aria-label="With textarea"
+                id="change-bio"
+                placeholder={userProfileAPIRS && userProfileAPIRS.bio}
+              />
             </InputGroup>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClosePen}>
                 Close
               </Button>
-              <Button variant="primary" onClick={() => {
-                dispatch(putUserProfileApi())
-              }}>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  dispatch(putUserProfileApi());
+                }}
+              >
                 Save Changes
               </Button>
             </Modal.Footer>
           </Modal>
 
-          {/* <Modal
+          {/* Pic Modal */}
+
+          <Modal
             show={showPic}
             onHide={handleClosePic}
             animation={false}
@@ -153,24 +170,26 @@ const ProfileAvatar = () => {
               </div>
             </div>
 
-            <Modal.Body className="modal-wrapper">
+            <Modal.Body className="modal-wrapper m-0">
               <Row className="justify-content-between">
                 <Col md={8}>
-                  <div className="btn modal-btn">
-                    <FiEdit2 className="text-light" />
-                    <br></br>
-                    <p className="text-light">Edit</p>
-                  </div>
-                  <div className="btn modal-btn">
-                    <AiFillCamera className="text-light" />
-                    <br></br>
-                    <p className="text-light">Add photo</p>
-                  </div>
-                  <div className="btn modal-btn">
-                    <RiGalleryFill className="text-light" />
-                    <br></br>
-                    <p className="text-light">Frames</p>
-                  </div>
+                  <Row>
+                    <Col className="btn modal-btn">
+                      <FiEdit2 className="text-light" />
+                      <br></br>
+                      <p className="text-light">Edit</p>
+                    </Col>
+                    <Col className="btn modal-btn">
+                      <AiFillCamera className="text-light" />
+                      <br></br>
+                      <p className="text-light">Add photo</p>
+                    </Col>
+                    <Col className="btn modal-btn">
+                      <RiGalleryFill className="text-light" />
+                      <br></br>
+                      <p className="text-light">Frames</p>
+                    </Col>
+                  </Row>
                 </Col>
                 <Col md={3}>
                   <div>
@@ -183,7 +202,7 @@ const ProfileAvatar = () => {
                 </Col>
               </Row>
             </Modal.Body>
-          </Modal> */}
+          </Modal>
 
           <Row className="details-box justify-content-between">
             <Col className="px-4">
