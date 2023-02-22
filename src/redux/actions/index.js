@@ -332,3 +332,110 @@ export const putUserExperience = (query, expId) => {
         }
     }
 };
+
+export const getUserbyId = (query) => {
+    return async (dispatch, getState) => {
+        const baseEndpoint =
+            `https://striveschool-api.herokuapp.com/api/profile/` + query;
+        try {
+            let resp = await fetch(baseEndpoint, options);
+            if (resp.ok) {
+                dispatch({
+                    type: GET_USER_LOADING,
+                    payload: true,
+                });
+                let data = await resp.json();
+                dispatch({
+                    type: GET_USER_PROFILE_API,
+                    payload: data,
+                });
+                dispatch({
+                    type: GET_USER_LOADING,
+                    payload: false,
+                });
+            } else {
+                dispatch({
+                    type: GET_USER_LOADING,
+                    payload: false,
+                });
+                dispatch({
+                    type: GET_USER_ERROR,
+                    payload: true,
+                });
+            }
+        } catch (error) {
+            dispatch({
+                type: GET_USER_LOADING,
+                payload: false,
+            });
+            dispatch({
+                type: GET_USER_ERROR,
+                payload: true,
+            });
+        }
+    };
+};
+
+export const sendPostAsyncAction = (editedData) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = fetch(`https://striveschool-api.herokuapp.com/api/posts/`, {
+                method: "POST",
+                body: JSON.stringify(editedData),
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization:
+                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y0OTAxNzExZDczZDAwMTM3YWFhZTQiLCJpYXQiOjE2NzY5NzIwNTUsImV4cCI6MTY3ODE4MTY1NX0.1aXNualFVdmtwB69PKh30KDhyA2nhUtW2MLjYMIt0qw",
+                },
+            });
+            if (res.ok) {
+                console.log("sending");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
+//POSTS
+
+export const getPostAction = () => {
+    return async (dispatch, getState) => {
+        try {
+            const response = await fetch(
+                `https://striveschool-api.herokuapp.com/api/profile/posts`,
+                options
+            );
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data);
+                dispatch({
+                    type: GET_POSTS,
+                    payload: data,
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
+
+export const getPostWithIdAction = (query) => {
+    return async (dispatch, getState) => {
+        try {
+            const response = await fetch(
+                `https://striveschool-api.herokuapp.com/api/profile/posts/${query}`,
+                options
+            );
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data);
+                dispatch({
+                    type: GET_POSTS_WITH_ID,
+                    payload: data,
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
