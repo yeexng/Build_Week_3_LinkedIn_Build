@@ -61,7 +61,7 @@ const NewsFeedLeftSide = () => {
           </div>
         </ListGroup>
       </Card>
-      <Card id="news-feed-bottom-left-card" className="mt-3 round-corners">
+      <Card id="news-feed-bottom-left-card" className="my-3 round-corners">
         <ListGroup className="list-group-flush">
           <div className="lower-part">
             <ListGroupItem className="text-primary">

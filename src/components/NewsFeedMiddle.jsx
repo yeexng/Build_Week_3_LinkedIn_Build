@@ -156,7 +156,7 @@ const NewsFeedMiddle = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-      <Card id="news-feed-mid-section-lower" className="mt-3">
+      <Card id="news-feed-mid-section-lower" className="my-3">
         <div className="d-flex flex-column mx-2 my-2">
           <div className="d-flex">
             <img
