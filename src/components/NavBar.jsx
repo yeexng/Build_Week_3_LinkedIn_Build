@@ -104,7 +104,12 @@ const NavBar = () => {
                   // <Link to={"/:oneResult.id"}>
                   <li
                     key={oneResult._id}
-                    onClick={() => dispatch(getUserbyId(oneResult._id))}
+                    onClick={() =>
+                      dispatch(getUserbyId(oneResult._id))(
+                        (document.querySelector("#search-popup").style.display =
+                          "none")
+                      )
+                    }
                   >
                     {" "}
                     <i className="bi bi-search"></i>
