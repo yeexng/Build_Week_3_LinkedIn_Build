@@ -1,0 +1,40 @@
+#news-feed-left-section {
+  position: relative !important;
+}
+.top-card-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#news-feed-left-section .profile-left {
+  text-align: center;
+  position: relative;
+  top: -1em;
+  width: 4em;
+  height: 4em;
+  border: solid white 3px;
+  border-radius: 50%;
+}
+
+.card-body {
+  padding-top: 0;
+}
+#news-feed-left-section .lower-part p,
+strong,
+span {
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.card-title {
+  font-size: 1em !important;
+}
+
+#news-feed-bottom-left-card p:hover {
+  cursor: pointer;
+}
+
+.round-corners {
+  border-radius: 15px !important;
+  border: 1px solid rgb(224, 223, 220);
+  overflow: hidden;
+}

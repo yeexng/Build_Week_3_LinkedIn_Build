@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSpecificProfileAction } from "../redux/actions";
+import { getSpecificProfileAction, getUserbyId } from "../redux/actions";
 import {
   getAllProfileActionAsync,
   getSearchResultActionAsync,
@@ -17,13 +17,11 @@ import {
   Button,
 } from "react-bootstrap";
 import { getUserProfileApi } from "../redux/actions";
-import { useNavigate } from "react-router";
 
 const NavBar = () => {
   const [searchValue, getSearchValue] = useState("");
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllProfileActionAsync());
@@ -57,16 +55,16 @@ const NavBar = () => {
   window.addEventListener("scroll", headerChange);
 
   // search function
-  const specificProfile = useSelector((state) => state.profileSearch.content);
-  const [query, setQuery] = useState("");
+  //   const specificProfile = useSelector((state) => state.profileSearch.content);
+  //   const [query, setQuery] = useState("");
   // const handleChange = (e) => {
   //   setQuery(e.target.value);
   // };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    dispatch(getSpecificProfileAction(query));
-    dispatch(getExperienceAction(query));
-  };
+  //   const handleSubmit = async (e) => {
+  //     e.preventDefault();
+  //     dispatch(getSpecificProfileAction(query));
+  //     dispatch(getExperienceAction(query));
+  //   };
 
   return (
     <div className="d-flex flex-column">
@@ -100,27 +98,28 @@ const NavBar = () => {
               <i
                 className="bi bi-x-lg"
                 onClick={() =>
-                (document.querySelector("#search-popup").style.display =
-                  "none")
+                  (document.querySelector("#search-popup").style.display =
+                    "none")
                 }
               ></i>
-              {searchArray && searchArray.map((oneResult) => (
-                // <Link to={"/:oneResult.id"}>
-                <li
-                  key={oneResult._id}
-                  onClick={() => navigate("/" + oneResult._id)}
-                >
-                  {" "}
-                  <i className="bi bi-search"></i>
-                  <img
-                    src={oneResult.image}
-                    className="profile-photo-search"
-                    alt="profile"
-                  ></img>
-                  {oneResult.name} {oneResult.surname}
-                </li>
-                // </Link>
-              ))}
+              {searchArray &&
+                searchArray.map((oneResult) => (
+                  // <Link to={"/:oneResult.id"}>
+                  <li
+                    key={oneResult._id}
+                    onClick={() => dispatch(getUserbyId(oneResult._id))}
+                  >
+                    {" "}
+                    <i className="bi bi-search"></i>
+                    <img
+                      src={oneResult.image}
+                      className="profile-photo-search"
+                      alt="profile"
+                    ></img>
+                    {oneResult.name} {oneResult.surname}
+                  </li>
+                  // </Link>
+                ))}
             </div>
             {/* <Button variant="outline-primary">Search</Button> */}
           </Form>
@@ -236,7 +235,7 @@ const NavBar = () => {
                     <Button
                       onClick={() => {
                         dispatch(getUserProfileApi());
-                        dispatch(getExperienceAction(userProfileAPIRS._id))
+                        dispatch(getExperienceAction(userProfileAPIRS._id));
                       }}
                       className="w-100 bg-transparent text-primary view-profile-button"
                     >
@@ -309,8 +308,8 @@ const NavBar = () => {
                     focusable="false"
                     id="myBtn"
                     onClick={() =>
-                    (document.getElementById("myModal").style.display =
-                      "block")
+                      (document.getElementById("myModal").style.display =
+                        "block")
                     }
                   >
                     <path d="M8 11L3 6h10z" fillRule="evenodd"></path>
@@ -338,8 +337,8 @@ const NavBar = () => {
                   <span
                     className="close"
                     onClick={() =>
-                    (document.getElementById("myModal").style.display =
-                      "none")
+                      (document.getElementById("myModal").style.display =
+                        "none")
                     }
                   >
                     &times;
