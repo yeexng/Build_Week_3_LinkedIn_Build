@@ -778,15 +778,18 @@
   top: 150px;
   left: 0px;
 }
-#search-popup .bi-x-lg {
+.bi-x-lg {
   position: relative;
+  position: absolute;
   top: 0;
-  left: 27em;
-  border-radius: 50%;
+  right: 5px;
+
   height: 1em;
   width: 1em;
-  border: solid 1px grey;
+
   cursor: pointer;
+  color: black;
+  z-index: 1;
 }
 
 .profile-photo-search {

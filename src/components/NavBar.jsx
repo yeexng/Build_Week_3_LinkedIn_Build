@@ -99,13 +99,6 @@ const NavBar = () => {
               onChange={(e) => getSearchValue(e.target.value)}
             />
             <div id="search-popup">
-              <i
-                className="bi bi-x-lg"
-                onClick={() =>
-                  (document.querySelector("#search-popup").style.display =
-                    "none")
-                }
-              ></i>
               {searchArray &&
                 searchArray.map((oneResult) => (
                   // <Link to={"/:oneResult.id"}>
@@ -124,7 +117,15 @@ const NavBar = () => {
                   </li>
                   // </Link>
                 ))}
+              <i
+                className="bi bi-x-lg"
+                onClick={() =>
+                  (document.querySelector("#search-popup").style.display =
+                    "none")
+                }
+              ></i>
             </div>
+
             {/* <Button variant="outline-primary">Search</Button> */}
           </Form>
           {/* <div id="search-popup">testing</div> */}
