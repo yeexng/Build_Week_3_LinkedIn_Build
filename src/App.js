@@ -4,6 +4,7 @@ import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import MainLayout from "./components/MainLayout";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ExperiencePage from "./components/ExperiencePage";
+import NewsFeed from "./components/NewsFeed";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route element={<MainLayout />} path="/" />
           <Route element={<ExperiencePage />} path="/:user/experiences/:id" />
+          <Route element={<NewsFeed />} path="/feed" />
         </Routes>
       </div>
     </BrowserRouter>
