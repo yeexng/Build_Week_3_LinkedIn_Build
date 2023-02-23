@@ -93,9 +93,10 @@ span {
   border-radius: 50%;
 }
 
-.parent-button-delete-post {
+/* .parent-button-delete-post {
   text-align: right;
-}
+} */
+
 .button-delete-post {
   background-color: transparent;
   width: 20%;
@@ -107,4 +108,16 @@ span {
 }
 .button-delete-post i {
   color: red;
+}
+.button-edit-post {
+  background-color: transparent;
+  width: 20%;
+  text-align: center;
+  box-shadow: none;
+}
+.button-edit-post:hover {
+  background-color: rgba(255, 254, 254, 0.655);
+}
+.button-edit-post i {
+  color: grey;
 }
