@@ -1,18 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Button,
-  Card,
-  Form,
-  Modal,
-  InputGroup,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Button, Card, Form, Modal, Row, Col } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import {
   deletePostAction,
   getPostAction,
-  getPostWithIdAction,
   sendPostAsyncAction,
 } from "../redux/actions";
 import format from "date-fns/format";
@@ -22,10 +13,6 @@ import { useNavigate } from "react-router-dom";
 const NewsFeedMiddle = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
   const [show, setShow] = useState(false);
-
-  const [showPost, setShowPost] = useState(false);
-  const handleClosePlus = () => setShowPost(false);
-  const handleShowPlus = () => setShowPost(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -42,6 +29,7 @@ const NewsFeedMiddle = () => {
 
   useEffect(() => {
     dispatch(getPostAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //   const postWithId = useSelector((state) => state.getPostsWithId.content);
@@ -192,6 +180,7 @@ const NewsFeedMiddle = () => {
               dispatch(sendPostAsyncAction(post));
               dispatch(getPostAction());
               alert("Your post have been saved!");
+              handleClose();
             }}
           >
             Save Changes
@@ -261,35 +250,6 @@ const NewsFeedMiddle = () => {
               </Row>
             );
           })}
-      <Modal show={showPost} onHide={handleClosePlus}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add an Experience</Modal.Title>
-        </Modal.Header>
-
-        <InputGroup className="mb-3 px-4">
-          <InputGroup.Text id="basic-addon1">Post Content</InputGroup.Text>
-          <Form.Control
-            aria-label=""
-            aria-describedby="basic-addon1"
-            id="experience-role"
-          />
-        </InputGroup>
-
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClosePlus}>
-            Close
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              dispatch();
-              dispatch();
-            }}
-          >
-            Create Experience
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 };
