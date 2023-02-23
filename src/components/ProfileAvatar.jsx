@@ -145,6 +145,7 @@ const ProfileAvatar = () => {
                 variant="primary"
                 onClick={() => {
                   dispatch(putUserProfileApi());
+                  handleClosePen();
                 }}
               >
                 Save Changes
