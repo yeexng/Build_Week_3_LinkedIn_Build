@@ -512,30 +512,6 @@ export const deletePostAction = (query) => {
 
 // Photo
 
-export const postProfilePicAction = (userId) => {
-  const profileImage = {};
-  return async (dispatch, getState) => {
-    try {
-      let res = fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${userId}/picture`,
-        {
-          method: "POST",
-          body: JSON.stringify(profileImage),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-          },
-        }
-      );
-      if (res.ok) {
-        console.log("sending");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
 export const postExpImageAction = (userId, expId) => {
   const expImage = {};
   return async (dispatch, getState) => {

@@ -48,3 +48,19 @@
   right: 30px;
   z-index: 1;
 }
+
+#profile-picture {
+  width: 175px;
+  height: 175px;
+  object-fit: cover;
+}
+
+#profile-pic-update-buttons {
+  background-color: transparent;
+  box-shadow: none;
+  transition: background-color 200ms;
+}
+
+#profile-pic-update-buttons:hover {
+  background-color: rgb(78, 76, 76);
+}
