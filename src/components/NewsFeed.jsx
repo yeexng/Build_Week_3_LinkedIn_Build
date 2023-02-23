@@ -1,7 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import DropUpChat from "./DropUpChat";
 import Footer from "./Footer";
-import NavBar from "./NavBar";
+import NavBarForNewsFeed from "./NavBarForNewsFeed";
 import NewsFeedLeftSide from "./NewsFeedLeftSide";
 import NewsFeedMiddle from "./NewsFeedMiddle";
 import RightSide from "./RightSide";
@@ -9,7 +9,7 @@ import RightSide from "./RightSide";
 const NewsFeed = () => {
   return (
     <>
-      <NavBar></NavBar>
+      <NavBarForNewsFeed></NavBarForNewsFeed>
       <Container>
         <Row className="mt-5 pt-5">
           <Col lg={3}>
