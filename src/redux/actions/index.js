@@ -16,6 +16,9 @@ export const GET_POSTS = "GET_POSTS";
 export const GET_POSTS_WITH_ID = "GET_POSTS_WITH_ID";
 export const PUT_USER_EXPERIENCE_UPDATE = "PUT_USER_EXPERIENCE_UPDATE";
 export const PUT_POSTS = "PUT_POSTS";
+export const POST_PROFILE_PIC = "POST_PROFILE_PIC";
+export const POST_IMAGE_TO_EXP = "POST_IMAGE_TO_EXP";
+export const POST_IMAGE_TO_POST = "POST_IMAGE_TO_POST";
 
 const options = {
   method: "GET",
@@ -388,6 +391,7 @@ export const getUserbyId = (query) => {
   };
 };
 
+//POSTS
 export const sendPostAsyncAction = (editedData) => {
   return async (dispatch, getState) => {
     try {
@@ -407,7 +411,6 @@ export const sendPostAsyncAction = (editedData) => {
     }
   };
 };
-//POSTS
 
 export const getPostAction = () => {
   return async (dispatch, getState) => {
@@ -498,6 +501,80 @@ export const deletePostAction = (query) => {
       if (response.ok) {
         alert("Alert deleted!");
         dispatch(getPostAction());
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+// Photo
+
+export const postProfilePicAction = (userId) => {
+  const profileImage = {};
+  return async (dispatch, getState) => {
+    try {
+      let res = fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/${userId}/picture`,
+        {
+          method: "POST",
+          body: JSON.stringify(profileImage),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+          },
+        }
+      );
+      if (res.ok) {
+        console.log("sending");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const postExpImageAction = (userId, expId) => {
+  const expImage = {};
+  return async (dispatch, getState) => {
+    try {
+      let res = fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}/picture`,
+        {
+          method: "POST",
+          body: JSON.stringify(expImage),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+          },
+        }
+      );
+      if (res.ok) {
+        console.log("sending");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const addPostImageAction = (postId) => {
+  const postImage = {};
+  return async (dispatch, getState) => {
+    try {
+      let res = fetch(
+        ` https://striveschool-api.herokuapp.com/api/posts/${postId}`,
+        {
+          method: "POST",
+          body: JSON.stringify(postImage),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+          },
+        }
+      );
+      if (res.ok) {
+        console.log("sending");
       }
     } catch (error) {
       console.log(error);
