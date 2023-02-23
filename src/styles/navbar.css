@@ -824,3 +824,8 @@
     margin-top: 90px;
   }
 }
+
+.profile-nav-wrapper:hover .Me-text {
+  color: black !important;
+  cursor: pointer !important;
+}

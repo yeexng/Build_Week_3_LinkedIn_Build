@@ -15,6 +15,8 @@ import {
   Container,
   NavDropdown,
   Button,
+  Row,
+  Col,
 } from "react-bootstrap";
 import { getUserProfileApi } from "../redux/actions";
 import { Link } from "react-router-dom";
@@ -220,74 +222,80 @@ const NavBar = () => {
                 alt="profile in navigation bar"
                 className="profile-photo text-gone"
               />
-
-              <NavDropdown title="Me" id="dropdown-menu" className="mb-3">
-                <div className="d-flex flex-column  justify-content-center ">
-                  <div className="d-flex pl-1">
-                    <div>
-                      {" "}
-                      <img
-                        src={userProfileAPIRS && userProfileAPIRS.image}
-                        alt="profile in navigation bar"
-                        className="profile-photo-dropdown"
-                      />
+              <Row className="justify-content-center">
+                <Col md={2} className="pl-0 text-muted Me-text">
+                  Me
+                </Col>
+                <Col md={2} className="p-1 mr-2">
+                  <NavDropdown title="" id="dropdown-menu" className="mb-3">
+                    <div className="d-flex flex-column  justify-content-center ">
+                      <div className="d-flex pl-1">
+                        <div>
+                          {" "}
+                          <img
+                            src={userProfileAPIRS && userProfileAPIRS.image}
+                            alt="profile in navigation bar"
+                            className="profile-photo-dropdown"
+                          />
+                        </div>
+                        <div>
+                          <strong>
+                            {userProfileAPIRS && userProfileAPIRS.name}{" "}
+                            {userProfileAPIRS && userProfileAPIRS.surname}
+                          </strong>{" "}
+                          <p>
+                            <small>
+                              {userProfileAPIRS && userProfileAPIRS.title}
+                            </small>
+                          </p>
+                        </div>
+                      </div>
+                      <div>
+                        <Button
+                          onClick={() => {
+                            dispatch(getUserProfileApi());
+                            dispatch(getExperienceAction(userProfileAPIRS._id));
+                          }}
+                          className="w-100 bg-transparent text-primary view-profile-button"
+                        >
+                          View Profile
+                        </Button>
+                      </div>
                     </div>
-                    <div>
-                      <strong>
-                        {userProfileAPIRS && userProfileAPIRS.name}{" "}
-                        {userProfileAPIRS && userProfileAPIRS.surname}
-                      </strong>{" "}
-                      <p>
-                        <small>
-                          {userProfileAPIRS && userProfileAPIRS.title}
-                        </small>
+
+                    <NavDropdown.Divider />
+                    <p className="mb-0">
+                      <strong>Account</strong>
+                    </p>
+                    <NavDropdown.Item href="#">
+                      <p className="mb-0">
+                        💽<strong>Try premium for free</strong>
                       </p>
-                    </div>
-                  </div>
-                  <div>
-                    <Button
-                      onClick={() => {
-                        dispatch(getUserProfileApi());
-                        dispatch(getExperienceAction(userProfileAPIRS._id));
-                      }}
-                      className="w-100 bg-transparent text-primary view-profile-button"
-                    >
-                      View Profile
-                    </Button>
-                  </div>
-                </div>
-
-                <NavDropdown.Divider />
-                <p className="mb-0">
-                  <strong>Account</strong>
-                </p>
-                <NavDropdown.Item href="#">
-                  <p className="mb-0">
-                    💽<strong>Try premium for free</strong>
-                  </p>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#">
-                  <p className="mb-0">Settings and privacy</p>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#">
-                  <p className="mb-0">Help</p>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#">
-                  <p className="mb-0">Language</p>
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <p className="mb-0">
-                  <strong>Manage</strong>
-                </p>
-                <NavDropdown.Item href="#">
-                  <p className="mb-0">Posts & Activity</p>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#">
-                  <p className="mb-0">Job Posting Account</p>
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#">Sign out</NavDropdown.Item>
-              </NavDropdown>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#">
+                      <p className="mb-0">Settings and privacy</p>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#">
+                      <p className="mb-0">Help</p>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#">
+                      <p className="mb-0">Language</p>
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <p className="mb-0">
+                      <strong>Manage</strong>
+                    </p>
+                    <NavDropdown.Item href="#">
+                      <p className="mb-0">Posts & Activity</p>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#">
+                      <p className="mb-0">Job Posting Account</p>
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#">Sign out</NavDropdown.Item>
+                  </NavDropdown>
+                </Col>
+              </Row>
             </div>
 
             <div className="d-flex right-nav">
