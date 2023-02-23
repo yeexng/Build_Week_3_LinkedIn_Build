@@ -248,13 +248,9 @@ const NewsFeedMiddle = () => {
           .reverse()
           .map((singlePost, i) => {
             return (
-              <Row className="flex-column-reverse">
+              <Row className="flex-column-reverse" key={singlePost.id}>
                 <Col>
-                  <Card
-                    id="news-feed-mid-section-lower"
-                    className="my-3"
-                    key={singlePost._id}
-                  >
+                  <Card id="news-feed-mid-section-lower" className="my-3">
                     <div className="d-flex flex-column mx-2 my-2">
                       <div className="d-flex">
                         <img

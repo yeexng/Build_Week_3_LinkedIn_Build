@@ -131,23 +131,21 @@ const NavBarForNewsFeed = () => {
             </div>
           </Form>
           <Nav className="ml-auto ">
-            <Nav.Link href="#" className="text-center">
-              <Link to={"/feed"}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  data-supported-dps="24x24"
-                  fill="currentColor"
-                  className="mercado-match"
-                  width="24"
-                  height="24"
-                  focusable="false"
-                >
-                  <path d="M23 9v2h-2v7a3 3 0 01-3 3h-4v-6h-4v6H6a3 3 0 01-3-3v-7H1V9l11-7z"></path>
-                </svg>
-                <p className="text-gone">Home</p>
-              </Link>
-            </Nav.Link>
+            <Link to={"/feed"} className="text-center nav-link">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                data-supported-dps="24x24"
+                fill="currentColor"
+                className="mercado-match"
+                width="24"
+                height="24"
+                focusable="false"
+              >
+                <path d="M23 9v2h-2v7a3 3 0 01-3 3h-4v-6h-4v6H6a3 3 0 01-3-3v-7H1V9l11-7z"></path>
+              </svg>
+              <p className="text-gone">Home</p>
+            </Link>
             <Nav.Link href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
