@@ -37,6 +37,7 @@ const NavBar = () => {
   const handleChange = (e) => {
     e.preventDefault();
     console.log(allProfiles[0]);
+    // handleShowModal();
     dispatch(getSearchResultActionAsync(allProfiles[0], searchValue));
     document.querySelector("#search-popup").style.display = "block";
   };
@@ -91,7 +92,12 @@ const NavBar = () => {
             </Navbar.Brand>
           </Link>
 
-          <Form inline id="search-form-wrapper" onSubmit={handleChange}>
+          <Form
+            inline
+            id="search-form-wrapper"
+            onSubmit={handleChange}
+            className="position-relative"
+          >
             <i className="bi bi-search"></i>
             <FormControl
               type="text"
@@ -101,11 +107,12 @@ const NavBar = () => {
               value={searchValue}
               onChange={(e) => getSearchValue(e.target.value)}
             />
-            <div id="search-popup">
+            <div id="search-popup" className="position-absolute w-100">
               {searchArray &&
                 searchArray.map((oneResult) => (
                   // <Link to={"/:oneResult.id"}>
                   <li
+                    className="py-2"
                     key={oneResult._id}
                     onClick={() =>
                       dispatch(getUserbyId(oneResult._id))(
@@ -133,10 +140,7 @@ const NavBar = () => {
                 }
               ></i>
             </div>
-
-            {/* <Button variant="outline-primary">Search</Button> */}
           </Form>
-          {/* <div id="search-popup">testing</div> */}
           <Nav className="ml-auto ">
             <Nav.Link href="#" className="text-center">
               <Link to={"/feed"}>
