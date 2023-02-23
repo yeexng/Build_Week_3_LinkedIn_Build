@@ -100,7 +100,7 @@ const NavBar = () => {
           <Form
             inline
             id="search-form-wrapper"
-            onSubmit={handleChange}
+            onChange={handleChange}
             className="position-relative"
             onKeyDown={handleKeyDown}
           >
