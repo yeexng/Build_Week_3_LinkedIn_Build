@@ -4,15 +4,24 @@ import { useEffect, useState } from "react";
 import {
   deletePostAction,
   getPostAction,
+  getPostWithIdAction,
+  likeAction,
   sendPostAsyncAction,
+  unlikeAction,
 } from "../redux/actions";
 import format from "date-fns/format";
 import { parseISO } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineLike } from "react-icons/ai";
+import { TfiCommentAlt } from "react-icons/tfi";
+import { RxLoop } from "react-icons/rx";
+import { IoIosSend } from "react-icons/io";
+import { AiTwotoneLike } from "react-icons/ai";
 
 const NewsFeedMiddle = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
   const [show, setShow] = useState(false);
+  const like = useSelector((state) => state.like.like);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -244,6 +253,47 @@ const NewsFeedMiddle = () => {
                           <i className="bi bi-trash3-fill"></i>
                         </Button>
                       </div>
+                    </div>
+                    <div className="card-footer p-0">
+                      <Row className="justify-content-center align-items-center">
+                        <Col className="text-center comment-box pt-2">
+                          {/* {like.includes(singlePost) ? ( */}
+                          <button
+                            className="comment-box-btn ml-3"
+                            onClick={dispatch(likeAction(singlePost))}
+                          >
+                            <AiOutlineLike className="comment-box-btn-icon  mr-1" />
+                            Like
+                          </button>
+                          {/* ) : (
+                            <button
+                              className="comment-box-btn ml-3"
+                              onClick={dispatch(unlikeAction(singlePost))}
+                            >
+                              <AiTwotoneLike className="comment-box-btn-icon  mr-1" />
+                              Unlike
+                            </button>
+                          )} */}
+                        </Col>
+                        <Col className="text-center comment-box pt-2">
+                          <button className="comment-box-btn">
+                            <TfiCommentAlt className="comment-box-btn-icon  mr-1" />{" "}
+                            Comment
+                          </button>
+                        </Col>
+                        <Col className="text-center comment-box pt-2">
+                          <button className="comment-box-btn">
+                            <RxLoop className="comment-box-btn-icon mr-1" />{" "}
+                            Repost
+                          </button>
+                        </Col>
+                        <Col className="text-center comment-box pt-2">
+                          <button className="comment-box-btn mr-3">
+                            <IoIosSend className="comment-box-btn-icon  mr-1" />{" "}
+                            Send
+                          </button>
+                        </Col>
+                      </Row>
                     </div>
                   </Card>
                 </Col>

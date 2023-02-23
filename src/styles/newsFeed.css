@@ -75,6 +75,9 @@ span {
   border: solid grey 1px;
   border-radius: 20px;
 }
+#news-feed-mid-section-lower {
+  overflow: hidden;
+}
 
 #news-feed-mid-section-lower img {
   width: 4em;
@@ -120,4 +123,27 @@ span {
 }
 .button-edit-post i {
   color: grey;
+}
+
+.comment-box-btn {
+  background-color: transparent;
+  border: none;
+  align-self: center;
+  font-size: 13px;
+}
+
+.comment-box {
+  padding: 0;
+  height: 50px;
+  width: 50px;
+  align-self: center;
+}
+
+.comment-box:hover {
+  background-color: rgba(128, 128, 128, 0.253);
+  border-radius: 5px;
+}
+
+.comment-box-btn-icon {
+  font-size: 25px;
 }

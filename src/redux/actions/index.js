@@ -19,6 +19,8 @@ export const PUT_POSTS = "PUT_POSTS";
 export const POST_PROFILE_PIC = "POST_PROFILE_PIC";
 export const POST_IMAGE_TO_EXP = "POST_IMAGE_TO_EXP";
 export const POST_IMAGE_TO_POST = "POST_IMAGE_TO_POST";
+export const LIKE = "LIKE";
+export const UNLIKE = "UNLIKE";
 
 const options = {
   method: "GET",
@@ -579,5 +581,21 @@ export const addPostImageAction = (postId) => {
     } catch (error) {
       console.log(error);
     }
+  };
+};
+
+// Favourite
+
+export const likeAction = (singlePost) => {
+  return {
+    type: LIKE,
+    payload: singlePost,
+  };
+};
+
+export const unlikeAction = (singlePost) => {
+  return {
+    type: UNLIKE,
+    payload: singlePost,
   };
 };
