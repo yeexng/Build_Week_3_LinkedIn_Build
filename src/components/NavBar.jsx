@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSpecificProfileAction, getUserbyId } from "../redux/actions";
+import { getUserbyId } from "../redux/actions";
 import {
   getAllProfileActionAsync,
   getSearchResultActionAsync,
@@ -26,6 +26,7 @@ const NavBar = () => {
 
   useEffect(() => {
     dispatch(getAllProfileActionAsync());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let allProfiles = useSelector((state) => state.profile.content);
@@ -135,7 +136,7 @@ const NavBar = () => {
           </Form>
           {/* <div id="search-popup">testing</div> */}
           <Nav className="ml-auto ">
-            <Nav.Link href="#">
+            <Nav.Link href="#" className="text-center">
               <Link to={"/feed"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -220,7 +221,7 @@ const NavBar = () => {
                 className="profile-photo text-gone"
               />
 
-              <NavDropdown title="Me" id="dropdown-menu">
+              <NavDropdown title="Me" id="dropdown-menu" className="mb-3">
                 <div className="d-flex flex-column  justify-content-center ">
                   <div className="d-flex pl-1">
                     <div>
@@ -722,7 +723,7 @@ const NavBar = () => {
                   <img
                     src={userProfileAPIRS && userProfileAPIRS.image}
                     alt="profile in navigation bar"
-                    className="profile-photo-dropdown"
+                    className="profile-photo-dropdown mr-2 mb-5 pb-2"
                   />
                 </div>
                 <div>

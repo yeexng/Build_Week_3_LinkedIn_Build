@@ -367,7 +367,9 @@
 .bi-app {
   fill: yellow;
 }
-
+#top-nav {
+  height: 10vh !important;
+}
 .navbar-brand {
   padding: 0;
   height: 2.5em;
@@ -424,7 +426,7 @@
   position: absolute;
   background-color: red;
   text-align: center;
-  top: 1.8rem;
+  top: 1.3rem;
   right: 1.9rem;
   font-size: 0.8rem;
   font-weight: bold;
@@ -433,7 +435,7 @@
 .navbar-nav .profile-photo {
   border-radius: 50%;
   width: 1.5em;
-  margin-top: 19px;
+  margin-top: 2em;
 }
 .profile-photo-dropdown {
   width: 3.3em;
@@ -461,6 +463,12 @@
   margin: 0;
   align-items: center;
   margin-top: 11px;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-inline: 0.4rem !important;
+  margin-top: 5px !important;
 }
 
 .get-hired-text p {
@@ -651,6 +659,9 @@
   z-index: 1;
   background-color: white;
   align-items: center;
+  padding-top: 55px !important;
+  /* padding-bottom: 20px !important; */
+  font-size: 0.9rem;
 }
 
 .hej {
@@ -662,9 +673,7 @@
   width: 2.5em;
   border-radius: 50%;
 }
-.second-nav {
-  font-size: 0.9rem;
-}
+
 .scrolled-bg {
   background-color: white !important;
   transform: 1s;
@@ -675,7 +684,7 @@
   z-index: 1;
   width: 100%;
   position: fixed !important;
-  margin-top: 55px;
+  margin-top: 66px;
 }
 .back-bg {
   background-color: white !important;
@@ -724,11 +733,15 @@
   #search-form-wrapper i {
     display: none;
   }
-}
-@media screen and (max-width: 760px) {
   .navbar-nav .text-gone {
     display: none;
   }
+  .navbar-nav #notification-number {
+    top: 1rem;
+    right: -0rem;
+  }
+}
+@media screen and (max-width: 800px) {
   #second-navbar {
     display: none;
   }
@@ -759,10 +772,10 @@
     font-size: 0.7rem !important;
   }
 }
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 800px) {
   .navbar-nav #notification-number {
     top: 0.8rem;
-    right: -0.1rem;
+    right: 0rem;
   }
 }
 .navbar-brand svg {
@@ -804,16 +817,4 @@
 #search-popup li:hover {
   cursor: pointer;
   background-color: rgba(168, 165, 165, 0.655);
-}
-
-.button-delete-post {
-  background-color: transparent;
-  width: 50%;
-  text-align: center;
-}
-.button-delete-post:hover {
-  background-color: rgba(255, 254, 254, 0.655);
-}
-.button-delete-post i {
-  color: red;
 }
