@@ -232,10 +232,10 @@ const NavBar = () => {
               <img
                 src={userProfileAPIRS && userProfileAPIRS.image}
                 alt="profile in navigation bar"
-                className="profile-photo text-gone"
+                className="profile-photo"
               />
               <Row className="justify-content-center">
-                <Col md={2} className="pl-0 text-muted Me-text">
+                <Col md={2} className="pl-0 text-muted Me-text text-gone">
                   Me
                 </Col>
                 <Col md={2} className="p-1 mr-2">

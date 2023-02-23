@@ -447,7 +447,9 @@
 }
 .profile-photo-dropdown {
   width: 3.3em;
+  height: 3.3em;
   border-radius: 50%;
+  margin-right: 1rem;
 }
 .navbar {
   height: 8vh !important;
@@ -457,6 +459,7 @@
   padding: 0;
 }
 .dropdown-menu {
+  padding-top: 1rem;
   width: 15vw !important;
   padding-inline: 1em !important;
 }
@@ -747,8 +750,14 @@
     display: none;
   }
   .navbar-nav #notification-number {
-    top: 1rem;
+    top: 1.8rem;
     right: -0rem;
+  }
+  .get-hired-text p {
+    font-size: 0.5rem !important;
+    margin-bottom: 0;
+    text-decoration: underline;
+    color: #96805f;
   }
 }
 @media screen and (max-width: 800px) {
@@ -784,7 +793,7 @@
 }
 @media screen and (max-width: 800px) {
   .navbar-nav #notification-number {
-    top: 0.8rem;
+    top: 1.7rem;
     right: 0rem;
   }
 }
