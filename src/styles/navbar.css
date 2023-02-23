@@ -441,7 +441,8 @@
 }
 .navbar-nav .profile-photo {
   border-radius: 50%;
-  width: 1.5em;
+  width: 1.8em;
+  height: 1.8em;
   margin-top: 2em;
 }
 .profile-photo-dropdown {
@@ -677,8 +678,10 @@
 }
 
 .second-nav .profile-photo-dropdown {
-  width: 2.5em;
+  width: 2em;
+  height: 2em;
   border-radius: 50%;
+  margin-top: 0.4rem;
 }
 
 .scrolled-bg {

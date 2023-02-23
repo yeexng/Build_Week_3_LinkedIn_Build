@@ -738,12 +738,12 @@ const NavBar = () => {
         <Container>
           <div className="d-flex justify-content-between w-100">
             <div>
-              <div className="d-flex pl-1  pt-3">
+              <div className="d-flex pl-1  pt-3 mb-4">
                 <div>
                   <img
                     src={userProfileAPIRS && userProfileAPIRS.image}
-                    alt="profile in navigation bar"
-                    className="profile-photo-dropdown mr-2 mb-5 pb-2"
+                    alt="profile in navigation bar img-fluid"
+                    className="profile-photo-dropdown mr-2 img-fluid"
                   />
                 </div>
                 <div>
