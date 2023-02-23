@@ -147,3 +147,7 @@ span {
 .comment-box-btn-icon {
   font-size: 25px;
 }
+.button-to-style {
+  width: 100px !important;
+  margin-right: 10px !important;
+}

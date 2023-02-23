@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Form, Modal, Row, Col } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   deletePostAction,
   getPostAction,
-  //   getPostWithIdAction,
   sendPostAsyncAction,
 } from "../redux/actions";
 import format from "date-fns/format";
@@ -12,10 +11,13 @@ import { parseISO } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
 import LikeAndUnlike from "./LikeAndUnlike";
+import { BsUpload } from "react-icons/bs";
 
 const NewsFeedMiddle = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
   const [show, setShow] = useState(false);
+  //   const [file, setFile] = useState();
+  //   const [changed, setChanged] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -29,6 +31,55 @@ const NewsFeedMiddle = () => {
   //   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  //   function handleFile(event) {
+  //     setFile(event.target.files[0]);
+  //     console.log(event.target.files[0]);
+  //   }
+  //   const inputRef = useRef(null);
+  //   //   const handleFileChange = (event) => {
+  //   //     const fileObj = event.target.files && event.target.files[0];
+  //   //     if (!fileObj) {
+  //   //       return;
+  //   //     }
+
+  //   //     console.log("fileObj is", fileObj);
+
+  //   //     // 👇️ reset file input
+  //   //     event.target.value = null;
+
+  //   //     // 👇️ is now empty
+  //   //     console.log(event.target.files);
+
+  //   //     // 👇️ can still access file object here
+  //   //     console.log(fileObj);
+  //   //     console.log(fileObj.name);
+  //   //   };
+
+  //   const handleClick = () => {
+  //     // 👇️ open file input box on click of other element
+  //     inputRef.current.click();
+  //   };
+  //   function handleUpload(postID) {
+  //     const baseURL = `https://striveschool-api.herokuapp.com/api/posts/${postID}`;
+  //     const formData = new FormData();
+  //     formData.append("profile", file);
+  //     fetch(baseURL, {
+  //       method: "POST",
+  //       body: formData,
+  //       headers: {
+  //         Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+  //       },
+  //     })
+  //       .then((response) => response.json())
+  //       .then((result) => {
+  //         console.log("You've uploaded your profile pic!", result);
+  //         setChanged(true);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Problem uploading the image :(", error);
+  //         setChanged(true);
+  //       });
+  //   }
 
   useEffect(() => {
     dispatch(getPostAction());
@@ -165,6 +216,21 @@ const NewsFeedMiddle = () => {
                       });
                     }}
                   />
+                  {/* <input
+                    style={{ display: "none" }}
+                    ref={inputRef}
+                    type="file"
+                    name="file"
+                    onChange={handleFile}
+                  />
+                  <Button
+                    id="profile-pic-update-buttons text-dark"
+                    className="p-2"
+                    onClick={handleClick}
+                  >
+                    <BsUpload></BsUpload>
+                    <p className="mb-0">UPLOAD</p>
+                  </Button> */}
                   <label className="form-label" htmlFor="textAreaExample">
                     <p className="mb-5 pb-5">Post content!</p>
                   </label>
@@ -227,6 +293,11 @@ const NewsFeedMiddle = () => {
                         </div>
                       </div>
                       <div className="mx-3 my-5">{singlePost.text}</div>
+                      {singlePost.image && (
+                        <div>
+                          <img src={singlePost.image} alt="" />
+                        </div>
+                      )}
                     </div>
                     <div className="parent-button-delete-post d-flex justify-content-end">
                       <div className="text-center">

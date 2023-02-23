@@ -575,3 +575,23 @@ export const unlikeAction = (singlePost) => {
     payload: singlePost,
   };
 };
+
+export function handleUploadAction(postID, file) {
+  const baseURL = `https://striveschool-api.herokuapp.com/api/posts/${postID}`;
+  const formData = new FormData();
+  formData.append("post", file);
+  fetch(baseURL, {
+    method: "POST",
+    body: formData,
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log("You've uploaded your profile pic!", result);
+    })
+    .catch((error) => {
+      console.error("Problem uploading the image :(", error);
+    });
+}
