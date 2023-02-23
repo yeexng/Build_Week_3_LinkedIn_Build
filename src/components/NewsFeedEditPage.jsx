@@ -48,7 +48,8 @@ const NewsFeedEditPage = () => {
                 variant="primary"
                 onClick={() => {
                   dispatch(putPostAction(feedData._id));
-                  alert("Successfully Edited");
+                  navigate("/feed");
+                  // alert("Successfully Edited");
                 }}
               >
                 Edit Feed
