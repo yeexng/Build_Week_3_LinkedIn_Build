@@ -158,6 +158,8 @@
   float: right;
   font-size: 1rem !important;
   font-weight: bold;
+}
+#search-popup .close {
   visibility: hidden;
 }
 #post-image {
@@ -176,7 +178,8 @@
   height: 16px;
 }
 
-.close:hover {
+.close:hover,
+.close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -503,6 +506,19 @@
 }
 
 /* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 .modal-header {
   padding: 2px 16px;
