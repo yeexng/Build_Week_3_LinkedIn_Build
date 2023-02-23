@@ -42,7 +42,7 @@ const NewsFeedEditPage = () => {
       <Container>
         <Row className="mt-5 pt-5">
           <Col lg={9}>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Group>
               <Form.Label>Edit NewsFeed</Form.Label>
               <Form.Control
                 as="textarea"
@@ -74,15 +74,17 @@ const NewsFeedEditPage = () => {
                 onClick={handleClick}
               >
                 <BsUpload id="button-to-style"></BsUpload>
-                <p className="mb-0">UPLOAD</p>
+                <p className="mb-0">UPLOAD </p>
               </Button>
               <Button
                 className="col-2"
                 variant="primary"
                 onClick={() => {
+                  console.log(feedData.id);
+                  console.log(file);
                   dispatch(putPostAction(feedData._id));
-                  navigate("/feed");
                   handleUploadAction(feedData._id, file);
+                  // navigate("/feed");
 
                   // alert("Successfully Edited");
                 }}
