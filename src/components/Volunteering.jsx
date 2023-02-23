@@ -20,7 +20,7 @@ const Volunteering = () => {
                 <Col lg={1} className="px-0">
                     <img id="post-image" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FxgHYCSqVzOE%2Fmaxresdefault.jpg&f=1&nofb=1&ipt=194afa22c59a1ca0767ec582a7b16ae7152d11161516c3b481f86c6c41ce7db0&ipo=images" alt="" />
                 </Col>
-                <Col className="">
+                <Col xs={11} md={11} lg={11}>
                     <p id="mini-headers" className="mb-0">Sea Turtle Conservation Ambassador</p>
                     <p id="post-details" className="mb-0">Volunteer</p>
                 </Col>

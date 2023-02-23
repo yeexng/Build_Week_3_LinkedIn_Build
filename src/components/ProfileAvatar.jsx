@@ -260,39 +260,42 @@ const ProfileAvatar = () => {
         </Modal>
 
         <Row className="details-box justify-content-between">
-          <Col xs={4} md={6} lg={6} className="px-4">
-            <h4 className="mt-4">
-              {userProfileAPIRS && userProfileAPIRS.name}{" "}
-              {userProfileAPIRS && userProfileAPIRS.surname}
-            </h4>
-            <h6>{userProfileAPIRS && userProfileAPIRS.title}</h6>
-            <p className="mb-0">
-              {userProfileAPIRS && userProfileAPIRS.area}{" "}
-              <a href="#">
-                Contact Info: {userProfileAPIRS && userProfileAPIRS.email}
-              </a>
-            </p>
-            <p>Connections</p>
-          </Col>
-          <Col xs={4} md={6} lg={6}>
-            <div>Company</div>
-            <div>Institute</div>
-          </Col>
+          <Row>
+            <Col xs={4} md={6} lg={8} className="px-4">
+              <h4 className="mt-4">
+                {userProfileAPIRS && userProfileAPIRS.name}{" "}
+                {userProfileAPIRS && userProfileAPIRS.surname}
+              </h4>
+              <h6>{userProfileAPIRS && userProfileAPIRS.title}</h6>
+              <p className="mb-0">
+                {userProfileAPIRS && userProfileAPIRS.area}{" "}
+                <a href="#">
+                  Contact Info: {userProfileAPIRS && userProfileAPIRS.email}
+                </a>
+              </p>
+              <p>Connections</p>
+            </Col>
+            <Col xs={4} md={6} lg={4} className="mt-4 ">
+              <div className="d-flex justify-content-center align-items-center">
+                <img src="https://ecologiahoy.net/wp-content/uploads/2014/12/nasa-logo2.jpg" alt="" id="profile-company-logo" />
+                <p className="mb-0 ml-2">NASA</p>
+              </div>
+            </Col>
+          </Row>
         </Row>
-
-        <Col className="d-flex justify-content-start">
-          <Col lg={2}>
-            <Button variant="primary" className="d-flex justify-content-center align-items-center" id="main-buttons">
+        <Col xs={6} md={6} lg={6} className="d-flex justify-content-start d-none d-sm-flex mb-4">
+          <Col className="px-1">
+            <Button variant="primary" className="d-flex justify-content-center align-items-center px-3" id="profile-buttons">
               Open to
             </Button>
           </Col>
-          <Col lg={3}>
-            <Button variant="outline-primary" className="d-flex justify-content-center align-items-center text-truncate" id="main-buttons">
+          <Col className="px-1">
+            <Button variant="outline-primary" className="d-flex justify-content-center align-items-center text-truncate px-3" id="profile-buttons">
               Add profile section
             </Button>
           </Col>
-          <Col lg={2}>
-            <Button variant="outline-secondary" className="d-flex justify-content-center align-items-center" id="main-buttons">
+          <Col className="px-1" >
+            <Button variant="outline-secondary" className="d-flex justify-content-center align-items-center px-3" id="profile-buttons">
               More
             </Button>
           </Col>
