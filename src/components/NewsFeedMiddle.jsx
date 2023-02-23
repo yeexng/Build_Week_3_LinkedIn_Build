@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card, Form, Modal, Row, Col } from "react-bootstrap";
+import { Button, Card, Form, Modal, Row, Col, Alert } from "react-bootstrap";
 import { useEffect, useRef, useState } from "react";
 import {
   deletePostAction,
@@ -227,9 +227,20 @@ const NewsFeedMiddle = () => {
               alert("Your post have been saved!");
             }}
           >
-            Save Changes
+            POST
           </Button>
         </Modal.Footer>
+        {file && (
+          <Alert variant="success" className="mb-3">
+            You selected:{" "}
+            <strong>
+              <em>{file.name}</em>
+            </strong>{" "}
+            <span className="ml-5">
+              Press <strong>POST</strong> to proceed
+            </span>
+          </Alert>
+        )}
       </Modal>
       {allPosts &&
         allPosts
