@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Image, Row, Col, Modal } from "react-bootstrap";
 import { AiFillCamera } from "react-icons/ai";
@@ -10,6 +10,8 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { putUserProfileApi } from "../redux/actions";
 import "../styles/profileDiv.css";
 import { getUserProfileApi } from "../redux/actions";
+import { FiSend } from 'react-icons/fi'
+import { BsUpload } from 'react-icons/bs'
 
 const ProfileAvatar = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
@@ -19,10 +21,12 @@ const ProfileAvatar = () => {
 
   const dispatch = useDispatch();
   // const [showPic, setShowPic] = useState(false);
+  const [changed, setChanged] = useState(false)
 
   useEffect(() => {
     dispatch(getUserProfileApi());
-  }, []);
+    setChanged(false)
+  }, [changed]);
 
   const handleClosePen = () => setShow(false);
   const handleShowPen = () => setShow(true);
@@ -30,6 +34,67 @@ const ProfileAvatar = () => {
   const [showPic, setShowPic] = useState(false);
   const handleClosePic = () => setShowPic(false);
   const handleShowPic = () => setShowPic(true);
+
+  const combinedFunction = () => {
+    dispatch(putUserProfileApi())
+    handleClosePen()
+  }
+
+  //Image Upload
+  const [file, setFile] = useState()
+
+  function handleFile(event) {
+    setFile(event.target.files[0])
+    console.log(event.target.files[0])
+  }
+
+  const inputRef = useRef(null);
+
+  const handleFileChange = event => {
+    const fileObj = event.target.files && event.target.files[0];
+    if (!fileObj) {
+      return;
+    }
+
+    console.log('fileObj is', fileObj);
+
+    // 👇️ reset file input
+    event.target.value = null;
+
+    // 👇️ is now empty
+    console.log(event.target.files);
+
+    // 👇️ can still access file object here
+    console.log(fileObj);
+    console.log(fileObj.name);
+  };
+
+  const handleClick = () => {
+    // 👇️ open file input box on click of other element
+    inputRef.current.click();
+  };
+
+  function handleUpload() {
+    const baseURL = `https://striveschool-api.herokuapp.com/api/profile/${userProfileAPIRS._id}/picture`
+    const formData = new FormData()
+    formData.append('profile', file)
+    fetch(baseURL,
+      {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+        }
+      }
+    ).then((response) => response.json()).then((result) => {
+      console.log("You've uploaded your profile pic!", result)
+      setChanged(true)
+    }
+    ).catch(error => {
+      console.error("Problem uploading the image :(", error)
+      setChanged(true)
+    })
+  }
 
   return (
     <Row
@@ -50,6 +115,7 @@ const ProfileAvatar = () => {
             <Image
               onClick={handleShowPic}
               className="img profile-pic"
+              id="profile-picture"
               src={userProfileAPIRS && userProfileAPIRS.image}
               roundedCircle
             />
@@ -144,7 +210,7 @@ const ProfileAvatar = () => {
               <Button
                 variant="primary"
                 onClick={() => {
-                  dispatch(putUserProfileApi());
+                  combinedFunction()
                 }}
               >
                 Save Changes
@@ -161,54 +227,38 @@ const ProfileAvatar = () => {
             className="modal-profile"
           >
             <Modal.Header closeButton className="modal-wrapper">
-              <Modal.Title>Profile photo</Modal.Title>
+              <Modal.Title className="text-white">Profile photo</Modal.Title>
             </Modal.Header>
-            <div className="d-flex justify-content-center modal-wrapper">
+            <div className="d-flex justify-content-center modal-wrapper pb-3">
               <Image
                 className="img-fluid model-profile-pic"
+                id="profile-picture"
                 src={userProfileAPIRS && userProfileAPIRS.image}
                 roundedCircle
               />
             </div>
             <div className="modal-wrapper">
-              <div
-                className="btn btn-outline-light"
-                style={{ borderRadius: 30 }}
-              >
-                <p className="text-light">Anyone</p>
-              </div>
             </div>
 
             <Modal.Body className="modal-wrapper m-0">
               <Row className="justify-content-between">
-                <Col md={8}>
-                  <Row>
-                    <Col className="btn modal-btn">
-                      <FiEdit2 className="text-light" />
-                      <br></br>
-                      <p className="text-light">Edit</p>
-                    </Col>
-                    <Col className="btn modal-btn">
-                      <AiFillCamera className="text-light" />
-                      <br></br>
-                      <p className="text-light">Add photo</p>
-                    </Col>
-                    <Col className="btn modal-btn">
-                      <RiGalleryFill className="text-light" />
-                      <br></br>
-                      <p className="text-light">Frames</p>
-                    </Col>
-                  </Row>
-                </Col>
-                <Col md={3}>
-                  <div>
-                    <div className="btn modal-btn">
-                      <ImBin className="text-light" />
-                      <br></br>
-                      <p className="text-light">Delete</p>
-                    </div>
-                  </div>
-                </Col>
+                <Row>
+                  <Col className="m-3">
+                    {/* <AiFillCamera className="text-light" /><p className="text-light">Add photo</p> */}
+                    <form className="d-flex justify-content-around align-items-center"
+                    >
+                      <input
+                        style={{ display: 'none' }}
+                        ref={inputRef}
+                        type="file"
+                        name="file"
+                        onChange={handleFile}
+                      />
+                      <Button id="profile-pic-update-buttons" className="p-2" onClick={handleClick}><BsUpload></BsUpload><p className="text-light mb-0" >UPLOAD</p></Button>
+                      <Button id="profile-pic-update-buttons" className="p-2" onClick={() => handleUpload()}><FiSend className="text-light" ></FiSend><p className="text-light mb-0" >SUBMIT</p></Button>
+                    </form>
+                  </Col>
+                </Row>
               </Row>
             </Modal.Body>
           </Modal>
@@ -232,21 +282,21 @@ const ProfileAvatar = () => {
               <div>Company</div>
               <div>Institute</div>
             </Col>
-            <Col md={12} className="px-4 d-flex">
-              <Button variant="primary" id="main-buttons">
+            <Col lg={12} md={6} className="px-4 d-flex">
+              <Button variant="primary" className="d-flex justify-content-center align-items-center" id="main-buttons">
                 Open to
               </Button>
-              <Button variant="outline-primary mx-3" id="main-buttons">
+              <Button variant="outline-primary mx-3" className="d-flex justify-content-center align-items-center text-truncate" id="main-buttons">
                 Add profile section
               </Button>
-              <Button variant="outline-secondary" id="main-buttons">
+              <Button variant="outline-secondary" className="d-flex justify-content-center align-items-center" id="main-buttons">
                 More
               </Button>
             </Col>
           </Row>
         </div>
       </Col>
-    </Row>
+    </Row >
   );
 };
 

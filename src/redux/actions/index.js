@@ -504,3 +504,28 @@ export const deletePostAction = (query) => {
     }
   };
 };
+
+//PROFILE//
+
+// export const postUserProfilePictureAction = (userId) => {
+//   // const imageFile = document.getElementById("profile-avatar-image-upload")
+//   // const formData = new FormData();
+//   // formData.append('image', file)
+//   return async (dispatch, getState) => {
+//     try {
+//       let res = fetch(`https://striveschool-api.herokuapp.com/api/posts/`, {
+//         method: "POST",
+//         body: JSON.stringify(editedData),
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+//         },
+//       });
+//       if (res.ok) {
+//         console.log("sending");
+//       }
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
