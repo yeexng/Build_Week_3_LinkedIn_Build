@@ -368,7 +368,7 @@
   fill: yellow;
 }
 #top-nav {
-  height: 10vh !important;
+  height: 8vh !important;
 }
 .navbar-brand {
   padding: 0;
@@ -412,6 +412,7 @@
 }
 .navbar-nav .nav-link p {
   font-size: 0.9rem;
+  margin-bottom: 0;
 }
 .navbar navbar-expand navbar-light bg-light {
   height: 10vh;
@@ -659,7 +660,7 @@
   z-index: 1;
   background-color: white;
   align-items: center;
-  padding-top: 55px !important;
+  padding-top: 50px !important;
   /* padding-bottom: 20px !important; */
   font-size: 0.9rem;
 }
@@ -684,7 +685,7 @@
   z-index: 1;
   width: 100%;
   position: fixed !important;
-  margin-top: 66px;
+  margin-top: 58px;
 }
 .back-bg {
   background-color: white !important;
