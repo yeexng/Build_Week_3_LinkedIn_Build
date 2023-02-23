@@ -452,22 +452,9 @@ export const getPostWithIdAction = (query) => {
 };
 
 export const putPostAction = (postId) => {
-  // const roleInput = document.getElementById("put-experience-role");
-  // const companyInput = document.getElementById("put-experience-company");
-  // const startdateInput = document.getElementById("put-experience-startdate");
-  // const enddateInput = document.getElementById("put-experience-enddate");
-  // const areaInput = document.getElementById("put-experience-area");
+  const newsFeed = document.getElementById("feeds-data-edited");
   const editedData = {
-    //   role: roleInput.value ? roleInput.value : roleInput.placeholder,
-    //   company: companyInput.value ? companyInput.value : companyInput.placeholder,
-    //   startDate: startdateInput.value
-    //     ? startdateInput.value
-    //     : startdateInput.placeholder,
-    //   endDate: enddateInput.value ? enddateInput.value : enddateInput.placeholder,
-    //   description: descriptionInput.value
-    //     ? descriptionInput.value
-    //     : descriptionInput.placeholder,
-    //   area: areaInput.value ? areaInput.value : areaInput.placeholder,
+    text: newsFeed.value ? newsFeed.value : newsFeed.placeholder,
   };
 
   return async (dispatch, getState) => {
@@ -488,6 +475,7 @@ export const putPostAction = (postId) => {
           type: PUT_POSTS,
           payload: editedData,
         });
+        dispatch(getPostWithIdAction());
       }
     } catch (error) {
       console.log(error);

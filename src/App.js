@@ -5,6 +5,7 @@ import MainLayout from "./components/MainLayout";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ExperiencePage from "./components/ExperiencePage";
 import NewsFeed from "./components/NewsFeed";
+import NewsFeedEditPage from "./components/NewsFeedEditPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route element={<MainLayout />} path="/" />
           <Route element={<ExperiencePage />} path="/:user/experiences/:id" />
           <Route element={<NewsFeed />} path="/feed" />
+          <Route element={<NewsFeedEditPage />} path="/posts/:id" />
         </Routes>
       </div>
     </BrowserRouter>

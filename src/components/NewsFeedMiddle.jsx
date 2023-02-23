@@ -1,5 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card, Form, Modal, InputGroup } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Form,
+  Modal,
+  InputGroup,
+  Row,
+  Col,
+} from "react-bootstrap";
 import { useEffect, useState } from "react";
 import {
   deletePostAction,
@@ -7,6 +15,9 @@ import {
   getPostWithIdAction,
   sendPostAsyncAction,
 } from "../redux/actions";
+import format from "date-fns/format";
+import { parseISO } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 const NewsFeedMiddle = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
@@ -23,6 +34,7 @@ const NewsFeedMiddle = () => {
     username: "",
   });
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getPostAction());
@@ -183,55 +195,68 @@ const NewsFeedMiddle = () => {
         </Modal.Footer>
       </Modal>
       {allPosts &&
-        allPosts.slice(Math.max(allPosts.length - 5, 0)).map((singlePost) => {
-          return (
-            <Card
-              id="news-feed-mid-section-lower"
-              className="my-3"
-              key={singlePost._id}
-            >
-              <div className="d-flex flex-column mx-2 my-2">
-                <div className="d-flex">
-                  <img
-                    src={singlePost && singlePost.user.image}
-                    alt="profile"
-                    className="profile-middle m-2"
-                  ></img>
-                  <div>
-                    <p>
-                      <strong>{singlePost.username}</strong>
-                    </p>
-                    <p>
-                      <em>{singlePost.user.title}</em>
-                    </p>
-                    <p>Date Posted: {singlePost.createdAt}</p>
-                  </div>
-                </div>
-                <div className="mx-3 my-5">{singlePost.text}</div>
-              </div>
-              <div className="parent-button-delete-post d-flex justify-content-end">
-                <div className="text-center">
-                  <Button
-                    className="button-delete-post "
-                    onClick={handleShowPlus}
+        allPosts
+          .slice(Math.max(allPosts.length - 5, 0))
+          .reverse()
+          .map((singlePost) => {
+            return (
+              <Row className="flex-column-reverse">
+                <Col>
+                  <Card
+                    id="news-feed-mid-section-lower"
+                    className="my-3"
+                    key={singlePost._id}
                   >
-                    <i class="bi bi-pencil-fill"></i>
-                  </Button>
-                </div>
-                <div className="text-center">
-                  <Button
-                    className="button-delete-post "
-                    onClick={() => {
-                      dispatch(deletePostAction(singlePost._id));
-                    }}
-                  >
-                    <i className="bi bi-trash3-fill"></i>
-                  </Button>
-                </div>
-              </div>
-            </Card>
-          );
-        })}
+                    <div className="d-flex flex-column mx-2 my-2">
+                      <div className="d-flex">
+                        <img
+                          src={singlePost && singlePost.user.image}
+                          alt="profile"
+                          className="profile-middle m-2"
+                        ></img>
+                        <div>
+                          <p>
+                            <strong>{singlePost.username}</strong>
+                          </p>
+                          <p>
+                            <em>{singlePost.user.title}</em>
+                          </p>
+                          <p>
+                            Date Posted:{" "}
+                            {format(
+                              parseISO(singlePost.createdAt),
+                              "PPP ' 'HH':'m"
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mx-3 my-5">{singlePost.text}</div>
+                    </div>
+                    <div className="parent-button-delete-post d-flex justify-content-end">
+                      <div className="text-center">
+                        <Button
+                          className="button-delete-post "
+                          onClick={() => navigate(`/posts/${singlePost._id}`)}
+                        >
+                          <i class="bi bi-pencil-fill"></i>
+                        </Button>
+                      </div>
+                      <div className="text-center">
+                        <Button
+                          className="button-delete-post "
+                          onClick={() => {
+                            dispatch(deletePostAction(singlePost._id));
+                          }}
+                        >
+                          <i className="bi bi-trash3-fill"></i>
+                        </Button>
+                      </div>
+                    </div>
+                  </Card>
+                </Col>
+              </Row>
+            );
+          })}
       <Modal show={showPost} onHide={handleClosePlus}>
         <Modal.Header closeButton>
           <Modal.Title>Add an Experience</Modal.Title>
