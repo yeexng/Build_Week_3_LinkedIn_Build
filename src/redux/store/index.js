@@ -16,6 +16,9 @@ import getPostsReducer from "../reducers/getPostsReducer";
 import getPostsWithIdReducer from "../reducers/getPostsWithIdReducer";
 import putUserExperienceReducer from "../reducers/putUserExperienceReducer";
 import putPostReducer from "../reducers/putPostReducer";
+import addPostImageReducer from "../reducers/addPostImageReducer";
+import postExpImageReducer from "../reducers/postExpImageReducer";
+import postProfilePicReducer from "../reducers/postProfilePicReducer";
 
 const persistConfig = {
   storage: localStorage,
@@ -41,6 +44,9 @@ const combinedReducer = combineReducers({
   getPostsWithId: getPostsWithIdReducer,
   putUserExperience: putUserExperienceReducer,
   putPost: putPostReducer,
+  postImage: addPostImageReducer,
+  expImage: postExpImageReducer,
+  profileImage: postProfilePicReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, combinedReducer);
