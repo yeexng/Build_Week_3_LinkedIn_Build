@@ -11,10 +11,25 @@
 
 .chat-avatar {
   width: 40px;
+  height: 40px;
   margin-right: 15px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .drop-up-chat {
   display: inline;
   margin-left: auto;
+}
+
+#chatbox-container {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+#chat-little-avatar {
+  width: 30px;
+  height:30px;
+  object-fit: cover;
+  border-radius: 50%;
 }

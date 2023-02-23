@@ -15,7 +15,7 @@ const Resources = () => {
             </Col>
             <Col className="d-flex flex-column">
                 <Col className="px-0 d-flex">
-                    <Col lg={1}>
+                    <Col xs={1} md={1} lg={1}>
                         <GiRadarDish id="analytics-icons"></GiRadarDish>
                     </Col>
                     <Col>
@@ -28,7 +28,7 @@ const Resources = () => {
                 <div id="bottom-border" className="w-100 mb-2"></div>
             </Col>
             <Col className="d-flex mb-4" id="bottom-border">
-                <Col lg={1}>
+                <Col xs={1} md={1} lg={1}>
                     <BsPeopleFill id="analytics-icons"></BsPeopleFill>
                 </Col>
                 <Col>
