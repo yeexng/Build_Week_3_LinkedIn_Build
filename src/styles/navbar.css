@@ -176,8 +176,7 @@
   height: 16px;
 }
 
-.close:hover,
-.close:focus {
+.close:hover {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -504,19 +503,6 @@
 }
 
 /* The Close Button */
-.close {
-  color: white;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
 
 .modal-header {
   padding: 2px 16px;
