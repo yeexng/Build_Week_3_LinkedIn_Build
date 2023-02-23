@@ -138,15 +138,6 @@ const NavBar = () => {
                   </li>
                   // </Link>
                 ))}
-              <span
-                className="close close-search"
-                onClick={() =>
-                  (document.querySelector("#search-popup").style.display =
-                    "none")
-                }
-              >
-                &times;
-              </span>
             </div>
           </Form>
           <Nav className="ml-auto ">
@@ -341,8 +332,8 @@ const NavBar = () => {
                     focusable="false"
                     id="myBtn"
                     onClick={() =>
-                      (document.getElementById("myModal").style.display =
-                        "block")
+                    (document.getElementById("myModal").style.display =
+                      "block")
                     }
                   >
                     <path d="M8 11L3 6h10z" fillRule="evenodd"></path>
@@ -370,8 +361,8 @@ const NavBar = () => {
                   <span
                     className="close"
                     onClick={() =>
-                      (document.getElementById("myModal").style.display =
-                        "none")
+                    (document.getElementById("myModal").style.display =
+                      "none")
                     }
                   >
                     &times;

@@ -12,19 +12,24 @@ import { RiArrowUpSLine } from "react-icons/ri";
 import { BiSearch } from "react-icons/bi";
 import { Image } from "react-bootstrap";
 import "../styles/dropUpChat.css";
+import { useSelector } from 'react-redux'
 
 const DropUpChat = () => {
   const [showShow, setShowShow] = useState(false);
   const toggleShow = () => setShowShow(!showShow);
+  const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
   return (
     <>
-      <div className="chat-box-wrapper bg-white">
+      <div className="chat-box-wrapper bg-white" id="chatbox-container">
         <div className="chat-box">
           <div
             className="drop-up-chat d-flex justify-content-between p-3"
             onClick={toggleShow}
           >
-            <div>Messaging</div>
+
+            <div>
+              <img src={userProfileAPIRS.image} alt="" id="chat-little-avatar" className="mr-2" />
+              Messaging</div>
             <div>
               <BsThreeDots className="mx-1" />
               <FiEdit className="mx-1" />
@@ -44,42 +49,42 @@ const DropUpChat = () => {
               <MDBListGroupItem className="px-3">
                 <Image
                   className="chat-avatar"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.9w8MGYZWJsKxxIVuw45dzQHaE8%26pid%3DApi&f=1&ipt=78612d8121a3f4f6506bd76e6ce261a90c5691ef76ae46e58ecf66b94a85e893&ipo=images"
                   roundedCircle
                 />{" "}
-                Bati
+                Steve Jobs
               </MDBListGroupItem>
               <MDBListGroupItem className="px-3">
                 <Image
                   className="chat-avatar"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.aDAeFFB46yBNYfTymr_QhwHaFj%26pid%3DApi&f=1&ipt=ac9df15fa214816ab573129401c7120fcb201a0b449b76264b819b411df555b9&ipo=images"
                   roundedCircle
                 />{" "}
-                Piotr
+                Derek Zoolander
               </MDBListGroupItem>
               <MDBListGroupItem className="px-3">
                 <Image
                   className="chat-avatar"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  src="https://media.licdn.com/dms/image/D4E03AQE0i3os32ueVA/profile-displayphoto-shrink_800_800/0/1677096934286?e=1682553600&v=beta&t=CYKiMO4uEsDEJ-IjZSnjcVrnOB2QZalNjl81Hc-y0FI"
                   roundedCircle
                 />{" "}
-                May
+                Mantas Petrosius
               </MDBListGroupItem>
               <MDBListGroupItem className="px-3">
                 <Image
                   className="chat-avatar"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  src="https://media.licdn.com/dms/image/D4E03AQF125Fl8ZB1hg/profile-displayphoto-shrink_800_800/0/1665370239322?e=1682553600&v=beta&t=kDAq5NN3XAdaz8_OYi7aTHICwZWUZRQDYnaUTeu6oZ0"
                   roundedCircle
                 />{" "}
-                Lux
+                Yasir
               </MDBListGroupItem>
               <MDBListGroupItem className="px-3">
                 <Image
                   className="chat-avatar"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  src="https://media.licdn.com/dms/image/C5103AQGmrLRIn_91KA/profile-displayphoto-shrink_800_800/0/1519565533648?e=1682553600&v=beta&t=xzgk86Exm5tW3SYnbpWwojYWsOJa2DvtvDG5T7kL2KE"
                   roundedCircle
                 />{" "}
-                Riven
+                Best TA ever
               </MDBListGroupItem>
             </MDBListGroup>
           </MDBCollapse>

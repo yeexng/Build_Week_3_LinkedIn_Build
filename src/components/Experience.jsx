@@ -1,18 +1,18 @@
 import { Row, Col } from "react-bootstrap";
 import { BiPencil, BiPlus } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { useNavigate } from "react-router-dom";
-import {
-  postUserExperience,
-  deleteSpecificExperienceAction,
-} from "../redux/actions";
+import { postUserExperience, deleteSpecificExperienceAction, } from "../redux/actions";
 import { getUserProfileApi, getExperienceAction } from "../redux/actions";
+import { MdOutlineAddAPhoto } from 'react-icons/md'
+import { FiSend } from 'react-icons/fi'
+import { BsUpload } from 'react-icons/bs'
 
 const Experience = () => {
   const dispatch = useDispatch();
@@ -35,9 +35,47 @@ const Experience = () => {
     setChanged(false)
   }, [changed]);
 
+  //image upload to the experiences
+
+  const [file, setFile] = useState()
+
+  function handleFile(event) {
+    setFile(event.target.files[0])
+    console.log(event.target.files[0])
+  }
+
+  const inputRef = useRef(null);
+
+  const handleClick = () => {
+    // 👇️ open file input box on click of other element
+    inputRef.current.click();
+  };
+
+  function handleUpload(expId) {
+    const baseURL = `https://striveschool-api.herokuapp.com/api/profile/${userProfileAPIRS._id}/experiences/${expId}/picture`
+    const formData = new FormData()
+    formData.append('experience', file)
+    fetch(baseURL,
+      {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+        }
+      }
+    ).then((response) => response.json()).then((result) => {
+      console.log("You've uploaded your profile pic!", result)
+      setChanged(true)
+    }
+    ).catch(error => {
+      console.error("Problem uploading the image :(", error)
+      setChanged(true)
+    })
+  }
+
   return (
     <Row
-      className="d-flex flex-column edit-section bg-white mr-2 mt-2"
+      className="d-flex flex-column edit-section bg-white mr-2 pr-0 mt-2"
       id="round-corners"
     >
       <Col className="d-flex flex-column mt-3 mb-3">
@@ -47,25 +85,25 @@ const Experience = () => {
               Experience
             </p>
           </div>
-          <div className="ml-auto d-flex">
-            <p className="mr-3 mb-0">
+          <div className="ml-auto d-flex justify-content-end">
+            <p className="mr-2 mb-0">
               <BiPlus onClick={handleShowPlus} id="analytics-icons"></BiPlus>
             </p>
           </div>
         </div>
       </Col>
-      <Row className="d-flex mb-2">
+      <Row className="d-flex justify-content-between mb-2 pr-0">
         {userExperiencesAPIRS &&
           userExperiencesAPIRS.map((data) => (
-            <Row key={data._id} className="mb-3">
-              <Col lg={1} className="">
+            <Row key={data._id} className="mb-3 pr-0">
+              <Col lg={2} className="">
                 <img
-                  id="post-image"
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhotpoptoday.com%2Fwp-content%2Fuploads%2F2019%2F08%2F5-1.jpg&f=1&nofb=1&ipt=0b33c318b30bb96d0ffdaae77e28758fec1c6d9ec0350a8f8bf8e9790204d63e&ipo=images"
+                  id="experience-image"
+                  src={data.image}
                   alt=""
                 />
               </Col>
-              <Col lg={11} className="pl-4 d-flex justify-content-between">
+              <Col lg={10} className="pl-4 pr-0 d-flex justify-content-between">
                 <div className="d-flex flex-column">
                   <p id="mini-headers" className="mb-0">
                     Role: {data.role}
@@ -85,9 +123,26 @@ const Experience = () => {
                   <p id="post-details" className="mb-0">
                     Location: {data.area}
                   </p>
-                  <p>{data._id}</p>
+
                 </div>
                 <div className="d-flex">
+                  <p className="mb-0">
+                    <MdOutlineAddAPhoto id="analytics-icons" onClick={handleClick}></MdOutlineAddAPhoto>
+                  </p>
+                  <p className="mb-0">
+                    <FiSend id="analytics-icons" onClick={() => handleUpload(data._id)}></FiSend>
+                  </p>
+                  <form className="d-flex justify-content-around align-items-center"
+                    p
+                  >
+                    <input
+                      style={{ display: 'none' }}
+                      ref={inputRef}
+                      type="file"
+                      name="file"
+                      onChange={handleFile}
+                    />
+                  </form>
                   <p
                     className="mb-0"
                     onClick={() =>
