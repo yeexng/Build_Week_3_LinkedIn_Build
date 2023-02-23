@@ -15,13 +15,13 @@ const ProfileAvatar = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
 
   const [show, setShow] = useState(false);
-  console.log(userProfileAPIRS)
+  console.log(userProfileAPIRS);
 
   const dispatch = useDispatch();
   // const [showPic, setShowPic] = useState(false);
 
   useEffect(() => {
-    dispatch(getUserProfileApi())
+    dispatch(getUserProfileApi());
   }, []);
 
   const handleClosePen = () => setShow(false);
@@ -75,7 +75,6 @@ const ProfileAvatar = () => {
                 id="change-name"
                 placeholder={userProfileAPIRS && userProfileAPIRS.name}
               />
-
             </InputGroup>
             <InputGroup size="sm" className="mb-3 px-5">
               <InputGroup.Text id="inputGroup-sizing-sm">
@@ -167,7 +166,7 @@ const ProfileAvatar = () => {
             <div className="d-flex justify-content-center modal-wrapper">
               <Image
                 className="img-fluid model-profile-pic"
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                src={userProfileAPIRS && userProfileAPIRS.image}
                 roundedCircle
               />
             </div>
@@ -216,7 +215,7 @@ const ProfileAvatar = () => {
 
           <Row className="details-box justify-content-between">
             <Col className="px-4">
-              <h4>
+              <h4 className="mt-4">
                 {userProfileAPIRS && userProfileAPIRS.name}{" "}
                 {userProfileAPIRS && userProfileAPIRS.surname}
               </h4>
