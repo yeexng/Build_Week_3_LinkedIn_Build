@@ -95,9 +95,9 @@
     font-size: 12px;
   }
   
-  #post-image {
-    height: 70px;
-    width: 70px;
+  #experience-image {
+    height: 120px;
+    width: 120px;
     object-fit: cover;
     border-radius: 5px;
   }
