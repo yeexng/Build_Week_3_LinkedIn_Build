@@ -25,6 +25,11 @@ const NavBar = () => {
   const [searchValue, getSearchValue] = useState("");
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
   const dispatch = useDispatch();
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      document.querySelector("#search-popup").style.display = "none";
+    }
+  };
 
   useEffect(() => {
     dispatch(getAllProfileActionAsync());
@@ -97,6 +102,7 @@ const NavBar = () => {
             id="search-form-wrapper"
             onSubmit={handleChange}
             className="position-relative"
+            onKeyDown={handleKeyDown}
           >
             <i className="bi bi-search"></i>
             <FormControl
@@ -132,13 +138,15 @@ const NavBar = () => {
                   </li>
                   // </Link>
                 ))}
-              <i
-                className="bi bi-x-lg close"
+              <span
+                className="close close-search"
                 onClick={() =>
                   (document.querySelector("#search-popup").style.display =
                     "none")
                 }
-              ></i>
+              >
+                &times;
+              </span>
             </div>
           </Form>
           <Nav className="ml-auto ">

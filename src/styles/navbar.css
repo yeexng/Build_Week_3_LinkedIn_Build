@@ -838,3 +838,11 @@
   color: black !important;
   cursor: pointer !important;
 }
+.close-search {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1em;
+  scale: 1.5;
+  margin-right: 10px;
+}
