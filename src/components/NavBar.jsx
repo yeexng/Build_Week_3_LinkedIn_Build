@@ -125,7 +125,7 @@ const NavBar = () => {
                     <i className="bi bi-search"></i>
                     <img
                       src={oneResult.image}
-                      className="profile-photo-search"
+                      className="profile-photo-search mx-1 "
                       alt="profile"
                     ></img>
                     {oneResult.name} {oneResult.surname}
