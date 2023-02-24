@@ -50,25 +50,6 @@ const ProfileAvatar = () => {
 
   const inputRef = useRef(null);
 
-  const handleFileChange = event => {
-    const fileObj = event.target.files && event.target.files[0];
-    if (!fileObj) {
-      return;
-    }
-
-    console.log('fileObj is', fileObj);
-
-    // 👇️ reset file input
-    event.target.value = null;
-
-    // 👇️ is now empty
-    console.log(event.target.files);
-
-    // 👇️ can still access file object here
-    console.log(fileObj);
-    console.log(fileObj.name);
-  };
-
   const handleClick = () => {
     // 👇️ open file input box on click of other element
     inputRef.current.click();
@@ -98,32 +79,36 @@ const ProfileAvatar = () => {
 
   return (
     <Row
-      className="d-flex flex-column edit-section bg-white mr-2 mb-2 pb-4"
+      className="d-flex flex-column edit-section bg-white mr-2 mb-2"
       id="round-corners"
     >
-
-      <Col className="avatar-wrapper px-0">
-        <div id="banner-container">
+      <Col className="avatar-wrapper-profile px-0">
+        <Row>
           <Image
             onClick={handleShowPic}
-            className="img avatar-bg"
+            className="img avatar-bg-banner"
             src="https://www.gordonkamitomo.com/wp-content/uploads/2017/09/LinkedIn-Banner-High-River.jpg"
           />
-          <Image
-            onClick={handleShowPic}
-            className="img profile-pic"
-            id="profile-picture"
-            src={userProfileAPIRS && userProfileAPIRS.image}
-            roundedCircle
-          />
-          <Button
-            variant="light"
-            className="edit-btn"
-            onClick={handleShowPen}
-          >
-            <FiEdit2 />
-          </Button>
-        </div>
+        </Row>
+        <Image
+          onClick={handleShowPic}
+          className="img profile-pic"
+          id="profile-picture"
+          src={userProfileAPIRS && userProfileAPIRS.image}
+          roundedCircle
+        />
+        <Row className="d-flex justify-content-end px-5 mt-3" id="profile-photo-attach">
+          <Col xs={1} md={1} lg={1} className="ml-auto">
+            <Button
+              variant="light"
+              className="edit-btn ml-auto"
+              onClick={handleShowPen}
+            >
+              <FiEdit2 />
+            </Button>
+          </Col>
+        </Row>
+
         <Modal show={show} onHide={handleClosePen}>
           <Modal.Header closeButton>
             <Modal.Title>Edit Info</Modal.Title>
@@ -213,9 +198,7 @@ const ProfileAvatar = () => {
             </Button>
           </Modal.Footer>
         </Modal>
-
         {/* Pic Modal */}
-
         <Modal
           show={showPic}
           onHide={handleClosePic}
@@ -260,28 +243,28 @@ const ProfileAvatar = () => {
         </Modal>
 
         <Row className="details-box justify-content-between">
-          <Row>
-            <Col xs={4} md={6} lg={8} className="px-4">
-              <h4 className="mt-4">
-                {userProfileAPIRS && userProfileAPIRS.name}{" "}
-                {userProfileAPIRS && userProfileAPIRS.surname}
-              </h4>
-              <h6>{userProfileAPIRS && userProfileAPIRS.title}</h6>
-              <p className="mb-0">
-                {userProfileAPIRS && userProfileAPIRS.area}{" "}
-                <a href="#">
-                  Contact Info: {userProfileAPIRS && userProfileAPIRS.email}
-                </a>
-              </p>
-              <p>Connections</p>
-            </Col>
-            <Col xs={4} md={6} lg={4} className="mt-4 ">
-              <div className="d-flex justify-content-center align-items-center">
-                <img src="https://ecologiahoy.net/wp-content/uploads/2014/12/nasa-logo2.jpg" alt="" id="profile-company-logo" />
-                <p className="mb-0 ml-2">NASA</p>
-              </div>
-            </Col>
-          </Row>
+
+          <Col xs={4} md={6} lg={8} className="px-4">
+            <h4 className="mt-4">
+              {userProfileAPIRS && userProfileAPIRS.name}{" "}
+              {userProfileAPIRS && userProfileAPIRS.surname}
+            </h4>
+            <h6>{userProfileAPIRS && userProfileAPIRS.title}</h6>
+            <p className="mb-0">
+              {userProfileAPIRS && userProfileAPIRS.area}{" "}
+            </p>
+            <p className="mb-0">
+              Contact Info: {userProfileAPIRS && userProfileAPIRS.email}
+            </p>
+            <p>Connections</p>
+          </Col>
+          <Col xs={4} md={6} lg={4} className="mt-4 ">
+            <div className="d-flex justify-content-center align-items-center">
+              <img src="https://ecologiahoy.net/wp-content/uploads/2014/12/nasa-logo2.jpg" alt="" id="profile-company-logo" />
+              <p className="mb-0 ml-2">NASA</p>
+            </div>
+          </Col>
+
         </Row>
         <Col xs={6} md={6} lg={6} className="d-flex justify-content-start d-none d-sm-flex mb-4">
           <Col className="px-1">
@@ -301,7 +284,6 @@ const ProfileAvatar = () => {
           </Col>
         </Col>
       </Col>
-
     </Row >
   );
 };

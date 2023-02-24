@@ -12,6 +12,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import { putUserExperience } from "../redux/actions";
 import { getExperienceWithExpIdAction } from "../redux/actions";
+import "../styles/layout.css";
 
 const ExperiencePage = () => {
   const params = useParams();
@@ -34,7 +35,7 @@ const ExperiencePage = () => {
         <Row className="mt-5 pt-5">
           <Col lg={9}>
             <InputGroup className="mb-3 px-4">
-              <InputGroup.Text id="basic-addon1">Role</InputGroup.Text>
+              <InputGroup.Text id="basic-addon1" className="experience-layout">Role</InputGroup.Text>
               <Form.Control
                 placeholder={singleExpData.role}
                 aria-label=""
@@ -43,16 +44,17 @@ const ExperiencePage = () => {
               />
             </InputGroup>
             <InputGroup className="mb-3 px-4">
-              <InputGroup.Text id="basic-addon1">Company</InputGroup.Text>
+              <InputGroup.Text id="basic-addon1" className="experience-layout">Company</InputGroup.Text>
               <Form.Control
                 placeholder={singleExpData.company}
                 aria-label="Company"
                 aria-describedby="basic-addon1"
                 id="put-experience-company"
+
               />
             </InputGroup>
             <InputGroup className="mb-3 px-4">
-              <InputGroup.Text id="basic-addon1">Start Date</InputGroup.Text>
+              <InputGroup.Text id="basic-addon1" className="experience-layout">Start Date</InputGroup.Text>
               <Form.Control
                 placeholder={singleExpData.startDate}
                 aria-label="Username"
@@ -62,7 +64,7 @@ const ExperiencePage = () => {
               />
             </InputGroup>
             <InputGroup className="mb-3 px-4">
-              <InputGroup.Text id="basic-addon1">End Date</InputGroup.Text>
+              <InputGroup.Text id="basic-addon1" className="experience-layout">End Date</InputGroup.Text>
               <Form.Control
                 placeholder={singleExpData.endDate}
                 aria-label="Username"
@@ -72,7 +74,7 @@ const ExperiencePage = () => {
               />
             </InputGroup>
             <InputGroup className="mb-3 px-4">
-              <InputGroup.Text id="basic-addon1">Description</InputGroup.Text>
+              <InputGroup.Text id="basic-addon1" className="experience-layout">Description</InputGroup.Text>
               <Form.Control
                 placeholder={singleExpData.description}
                 aria-label="Username"
@@ -81,7 +83,7 @@ const ExperiencePage = () => {
               />
             </InputGroup>
             <InputGroup className="mb-3 px-4">
-              <InputGroup.Text id="basic-addon1">Location</InputGroup.Text>
+              <InputGroup.Text id="basic-addon1" className="experience-layout">Location</InputGroup.Text>
               <Form.Control
                 placeholder={singleExpData.area}
                 aria-label="Username"

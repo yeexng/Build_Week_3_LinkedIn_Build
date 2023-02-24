@@ -138,3 +138,8 @@
     border-radius: 15px;
   }
   
+  .experience-layout {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+  }
