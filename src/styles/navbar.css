@@ -101,14 +101,6 @@
   overflow: hidden;
 }
 
-.avatar-bg {
-  position: relative;
-  height: 20vh !important;
-  width: 100%;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
-
 .camera-btn {
   border-radius: 500px;
   position: absolute;
