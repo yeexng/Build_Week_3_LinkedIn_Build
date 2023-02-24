@@ -117,11 +117,11 @@ const Experience = () => {
                     Company: {data.company}
                   </p>
                   <p id="post-details" className="mb-0">
-                    Start Date: {format(parseISO(data.startDate), "PPP")}
+                    Start Date: {format(parseISO(data.startDate), "MMM yyyy")}
                   </p>
                   <p id="post-details" className="mb-0">
                     End Date:
-                    {format(parseISO(data.endDate), "PPP")}
+                    {format(parseISO(data.endDate), "MMM yyyy")}
                   </p>
                   <p id="post-details" className="mb-0">
                     Description: {data.description}
