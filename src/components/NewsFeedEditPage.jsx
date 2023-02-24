@@ -54,7 +54,7 @@ const NewsFeedEditPage = () => {
             </Form.Group>
             <Row className="justify-content-end mb-3">
               <Button
-                className="mr-2 col-2"
+                className="col-2"
                 variant="dark"
                 onClick={() => {
                   navigate("/feed");
@@ -71,14 +71,14 @@ const NewsFeedEditPage = () => {
               />
               <Button
                 id="profile-pic-update-buttons  "
-                className="p-2 text-light mr-1 button-to-style mx-3"
+                className="p-2 text-light button-to-style ml-2"
                 onClick={handleClick}
               >
                 <BsUpload id="button-to-style"></BsUpload>
                 <p className="mb-0">UPLOAD </p>
               </Button>
               <Button
-                className="col-2"
+                className="col-2 mr-3"
                 variant="primary"
                 onClick={() => {
                   // console.log(feedData._id);
