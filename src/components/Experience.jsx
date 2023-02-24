@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import InputGroup from "react-bootstrap/InputGroup";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   postUserExperience,
   deleteSpecificExperienceAction,
@@ -27,6 +28,10 @@ const Experience = () => {
   const [showPost, setShowPost] = useState(false);
   const handleClosePlus = () => setShowPost(false);
   const handleShowPlus = () => setShowPost(true);
+
+  const [successful, setSuccessful] = useState(false);
+  const handleCloseSuccessful = () => setSuccessful(false);
+  const handleShowSuccessful = () => setSuccessful(true);
 
   const userExperiencesAPIRS = useSelector(
     (state) => state.getExperience.content
@@ -132,12 +137,17 @@ const Experience = () => {
                       onClick={handleClick}
                     ></MdOutlineAddAPhoto>
                   </p>
-                  <p className="mb-0">
-                    <FiSend
-                      id="analytics-icons"
-                      onClick={() => handleUpload(data._id)}
-                    ></FiSend>
-                  </p>
+                  <Link to="/">
+                    <p className="mb-0 text-dark">
+                      <FiSend
+                        id="analytics-icons"
+                        onClick={() => {
+                          handleUpload(data._id);
+                          handleShowSuccessful();
+                        }}
+                      ></FiSend>
+                    </p>
+                  </Link>
                   <form
                     className="d-flex justify-content-around align-items-center"
                     p
@@ -247,6 +257,13 @@ const Experience = () => {
             Create Experience
           </Button>
         </Modal.Footer>
+      </Modal>
+
+      {/* Successful Modal */}
+      <Modal show={successful} onHide={handleCloseSuccessful}>
+        <Alert variant="success" className="text-center">
+          Successfully Updated !!
+        </Alert>
       </Modal>
     </Row>
   );
