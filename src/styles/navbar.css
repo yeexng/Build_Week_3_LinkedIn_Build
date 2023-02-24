@@ -7,10 +7,6 @@
   border: 1px solid rgb(224, 223, 220);
 }
 
-.edit-section {
-  font-size: 14px;
-}
-
 #right-side-headers {
   font-weight: 600;
   font-size: 18px;
@@ -95,36 +91,6 @@
   font-size: 12px;
 }
 
-.avatar-wrapper {
-  position: relative;
-  height: 50vh;
-  overflow: hidden;
-}
-
-.avatar-bg {
-  position: relative;
-  height: 20vh !important;
-  width: 100%;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
-
-.camera-btn {
-  border-radius: 500px;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.profile-pic {
-  position: absolute;
-  top: 9.5vh;
-  left: 25px;
-  width: 150px;
-  border: 5px solid white;
-  z-index: 1;
-}
-
 .model-profile-pic {
   width: 270px;
 }
@@ -143,13 +109,6 @@
 
 .anyone-btn {
   border-radius: 20px;
-}
-
-.edit-btn {
-  position: absolute;
-  top: 210px;
-  right: 30px;
-  z-index: 1;
 }
 
 /* The Close Button */
@@ -292,10 +251,6 @@
 #left-side-mini-headers {
   font-weight: 600;
   font-size: 14px;
-}
-
-.details-box {
-  margin-top: 8vh !important;
 }
 
 .modal-text-header {
