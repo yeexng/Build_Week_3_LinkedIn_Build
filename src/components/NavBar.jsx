@@ -33,6 +33,8 @@ const NavBar = () => {
 
   useEffect(() => {
     dispatch(getAllProfileActionAsync());
+    window.addEventListener("scroll", headerChange);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -62,7 +64,6 @@ const NavBar = () => {
       document.querySelector(".second-nav").classList.add("back-bg");
     }
   };
-  window.addEventListener("scroll", headerChange);
 
   // search function
   //   const specificProfile = useSelector((state) => state.profileSearch.content);
