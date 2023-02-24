@@ -10,16 +10,18 @@ import { Col, Row } from "react-bootstrap";
 const LikeAndUnlike = (props) => {
   const like = useSelector((state) => state.like.like);
   const dispatch = useDispatch();
+  console.log(props.singlePost._id);
+  const isLike = like.includes(props.singlePost._id);
 
   return (
     <div className="card-footer p-0">
       <Row className="justify-content-center align-items-center">
         <Col className="text-center comment-box pt-2">
-          {props.singlePost && like.includes(props.singlePost) ? (
+          {isLike ? (
             <button
               className="comment-box-btn ml-3"
               onClick={() => {
-                dispatch(unlikeAction(props.singlePost));
+                dispatch(unlikeAction(props.singlePost._id));
               }}
             >
               <AiTwotoneLike className="comment-box-btn-icon  mr-1" />
@@ -29,7 +31,7 @@ const LikeAndUnlike = (props) => {
             <button
               className="comment-box-btn ml-3"
               onClick={() => {
-                dispatch(likeAction(props.singlePost));
+                dispatch(likeAction(props.singlePost._id));
               }}
             >
               <AiOutlineLike className="comment-box-btn-icon  mr-1" />
