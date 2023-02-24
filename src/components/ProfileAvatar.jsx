@@ -15,10 +15,7 @@ import { BsUpload } from "react-icons/bs";
 
 const ProfileAvatar = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
-
   const [show, setShow] = useState(false);
-  console.log(userProfileAPIRS);
-
   const dispatch = useDispatch();
   // const [showPic, setShowPic] = useState(false);
   const [changed, setChanged] = useState(false);

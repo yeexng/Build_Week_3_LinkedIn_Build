@@ -33,18 +33,22 @@ const Experience = () => {
   const handleCloseSuccessful = () => setSuccessful(false);
   const handleShowSuccessful = () => setSuccessful(true);
 
+  const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
+  console.log(userProfileAPIRS);
+
   const userExperiencesAPIRS = useSelector(
     (state) => state.getExperience.content
   );
-
-  const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
+  console.log(userExperiencesAPIRS)
 
   useEffect(() => {
     dispatch(getExperienceAction(userProfileAPIRS._id));
     setChanged(false);
   }, [changed]);
 
-  //image upload to the experiences
+  useEffect(() => {
+    dispatch(getExperienceAction(userProfileAPIRS._id));
+  }, [])
 
   const [file, setFile] = useState();
 
@@ -56,7 +60,6 @@ const Experience = () => {
   const inputRef = useRef(null);
 
   const handleClick = () => {
-    // 👇️ open file input box on click of other element
     inputRef.current.click();
   };
 
@@ -116,13 +119,13 @@ const Experience = () => {
                   <p id="post-details" className="mb-0">
                     Company: {data.company}
                   </p>
-                  <p id="post-details" className="mb-0">
+                  {/* <p id="post-details" className="mb-0">
                     Start Date: {format(parseISO(data.startDate), "PPP")}
                   </p>
                   <p id="post-details" className="mb-0">
                     End Date:
                     {format(parseISO(data.endDate), "PPP")}
-                  </p>
+                  </p> */}
                   <p id="post-details" className="mb-0">
                     Description: {data.description}
                   </p>
@@ -247,6 +250,12 @@ const Experience = () => {
           <Button variant="secondary" onClick={handleClosePlus}>
             Close
           </Button>
+          {/* <p className="mb-0">
+            <MdOutlineAddAPhoto
+              id="analytics-icons"
+              onClick={handleClick}
+            ></MdOutlineAddAPhoto>
+          </p> */}
           <Button
             variant="primary"
             onClick={() => {
