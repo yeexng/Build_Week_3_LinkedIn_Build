@@ -1,0 +1,63 @@
+.avatar-wrapper {
+  position: relative;
+}
+
+.avatar-bg-banner {
+  position: relative;
+  height: 180px !important;
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.camera-btn {
+  border-radius: 500px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#profile-photo-attach {
+  position: relative;
+}
+
+.profile-pic {
+  position: absolute;
+  top: 75px;
+  left: 25px;
+  width: 150px;
+  border: 5px solid white;
+  z-index: 1;
+}
+.modal-wrapper {
+  background-color: #1d2226;
+  overflow: hidden;
+}
+
+.modal-btn {
+  background-color: #1d2226;
+}
+
+.modal-btn:hover {
+  background-color: rgba(219, 219, 219, 0.493);
+}
+
+.anyone-btn {
+  border-radius: 20px;
+}
+
+#profile-picture {
+  width: 175px;
+  height: 175px;
+  object-fit: cover;
+}
+
+#profile-pic-update-buttons {
+  background-color: transparent;
+  box-shadow: none;
+  transition: background-color 200ms;
+}
+
+#profile-pic-update-buttons:hover {
+  background-color: rgb(78, 76, 76);
+}
