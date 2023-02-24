@@ -43,7 +43,9 @@ const Experience = () => {
     dispatch(getExperienceAction(userProfileAPIRS._id));
     setChanged(false);
   }, [changed]);
-
+  useEffect(() => {
+    dispatch(getExperienceAction(userProfileAPIRS._id));
+  }, [userProfileAPIRS]);
   //image upload to the experiences
 
   const [file, setFile] = useState();
@@ -117,11 +119,10 @@ const Experience = () => {
                     Company: {data.company}
                   </p>
                   <p id="post-details" className="mb-0">
-                    Start Date: {format(parseISO(data.startDate), "MMM yyyy")}
+                    Start Date: {format(parseISO(data.startDate), "P ")}
                   </p>
                   <p id="post-details" className="mb-0">
-                    End Date:
-                    {format(parseISO(data.endDate), "MMM yyyy")}
+                    End Date: {format(parseISO(data.endDate), " P ")}
                   </p>
                   <p id="post-details" className="mb-0">
                     Description: {data.description}
