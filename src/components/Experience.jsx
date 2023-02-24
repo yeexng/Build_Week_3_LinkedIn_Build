@@ -8,17 +8,21 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { useNavigate } from "react-router-dom";
-import { postUserExperience, deleteSpecificExperienceAction, } from "../redux/actions";
+import {
+  postUserExperience,
+  deleteSpecificExperienceAction,
+} from "../redux/actions";
 import { getUserProfileApi, getExperienceAction } from "../redux/actions";
-import { MdOutlineAddAPhoto } from 'react-icons/md'
-import { FiSend } from 'react-icons/fi'
-import { BsUpload } from 'react-icons/bs'
+import { MdOutlineAddAPhoto } from "react-icons/md";
+import { FiSend } from "react-icons/fi";
+import { parseISO } from "date-fns";
+import format from "date-fns/format";
 
 const Experience = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [changed, setChanged] = useState(false)
+  const [changed, setChanged] = useState(false);
 
   const [showPost, setShowPost] = useState(false);
   const handleClosePlus = () => setShowPost(false);
@@ -32,16 +36,16 @@ const Experience = () => {
 
   useEffect(() => {
     dispatch(getExperienceAction(userProfileAPIRS._id));
-    setChanged(false)
+    setChanged(false);
   }, [changed]);
 
   //image upload to the experiences
 
-  const [file, setFile] = useState()
+  const [file, setFile] = useState();
 
   function handleFile(event) {
-    setFile(event.target.files[0])
-    console.log(event.target.files[0])
+    setFile(event.target.files[0]);
+    console.log(event.target.files[0]);
   }
 
   const inputRef = useRef(null);
@@ -52,25 +56,25 @@ const Experience = () => {
   };
 
   function handleUpload(expId) {
-    const baseURL = `https://striveschool-api.herokuapp.com/api/profile/${userProfileAPIRS._id}/experiences/${expId}/picture`
-    const formData = new FormData()
-    formData.append('experience', file)
-    fetch(baseURL,
-      {
-        method: 'POST',
-        body: formData,
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-        }
-      }
-    ).then((response) => response.json()).then((result) => {
-      console.log("You've uploaded your profile pic!", result)
-      setChanged(true)
-    }
-    ).catch(error => {
-      console.error("Problem uploading the image :(", error)
-      setChanged(true)
+    const baseURL = `https://striveschool-api.herokuapp.com/api/profile/${userProfileAPIRS._id}/experiences/${expId}/picture`;
+    const formData = new FormData();
+    formData.append("experience", file);
+    fetch(baseURL, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+      },
     })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("You've uploaded your profile pic!", result);
+        setChanged(true);
+      })
+      .catch((error) => {
+        console.error("Problem uploading the image :(", error);
+        setChanged(true);
+      });
   }
 
   return (
@@ -97,11 +101,7 @@ const Experience = () => {
           userExperiencesAPIRS.map((data) => (
             <Row key={data._id} className="mb-3 pr-0">
               <Col lg={2} className="">
-                <img
-                  id="experience-image"
-                  src={data.image}
-                  alt=""
-                />
+                <img id="experience-image" src={data.image} alt="" />
               </Col>
               <Col lg={10} className="pl-4 pr-0 d-flex justify-content-between">
                 <div className="d-flex flex-column">
@@ -112,10 +112,11 @@ const Experience = () => {
                     Company: {data.company}
                   </p>
                   <p id="post-details" className="mb-0">
-                    Start Date: {data.startDate}
+                    Start Date: {format(parseISO(data.startDate), "PPP")}
                   </p>
                   <p id="post-details" className="mb-0">
-                    End Date: {data.endDate}
+                    End Date:
+                    {format(parseISO(data.endDate), "PPP")}
                   </p>
                   <p id="post-details" className="mb-0">
                     Description: {data.description}
@@ -123,20 +124,26 @@ const Experience = () => {
                   <p id="post-details" className="mb-0">
                     Location: {data.area}
                   </p>
-
                 </div>
                 <div className="d-flex">
                   <p className="mb-0">
-                    <MdOutlineAddAPhoto id="analytics-icons" onClick={handleClick}></MdOutlineAddAPhoto>
+                    <MdOutlineAddAPhoto
+                      id="analytics-icons"
+                      onClick={handleClick}
+                    ></MdOutlineAddAPhoto>
                   </p>
                   <p className="mb-0">
-                    <FiSend id="analytics-icons" onClick={() => handleUpload(data._id)}></FiSend>
+                    <FiSend
+                      id="analytics-icons"
+                      onClick={() => handleUpload(data._id)}
+                    ></FiSend>
                   </p>
-                  <form className="d-flex justify-content-around align-items-center"
+                  <form
+                    className="d-flex justify-content-around align-items-center"
                     p
                   >
                     <input
-                      style={{ display: 'none' }}
+                      style={{ display: "none" }}
                       ref={inputRef}
                       type="file"
                       name="file"
@@ -158,8 +165,9 @@ const Experience = () => {
                         deleteSpecificExperienceAction(
                           userProfileAPIRS._id,
                           data._id
-                        ));
-                      setChanged(true)
+                        )
+                      );
+                      setChanged(true);
                     }}
                   >
                     <RxCross2 id="analytics-icons"></RxCross2>
@@ -197,6 +205,7 @@ const Experience = () => {
             aria-label="Username"
             aria-describedby="basic-addon1"
             id="experience-startdate"
+            type="date"
           />
         </InputGroup>
         <InputGroup className="mb-3 px-4">
@@ -205,6 +214,7 @@ const Experience = () => {
             aria-label="Username"
             aria-describedby="basic-addon1"
             id="experience-enddate"
+            type="date"
           />
         </InputGroup>
         <InputGroup className="mb-3 px-4">
@@ -231,7 +241,7 @@ const Experience = () => {
             variant="primary"
             onClick={() => {
               dispatch(postUserExperience(userExperiencesAPIRS._id));
-              setChanged(true)
+              setChanged(true);
             }}
           >
             Create Experience
