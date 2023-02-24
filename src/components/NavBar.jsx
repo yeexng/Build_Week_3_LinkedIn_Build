@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserbyId } from "../redux/actions";
+import { getUserbyId, toggleShow } from "../redux/actions";
 import {
   getAllProfileActionAsync,
   getSearchResultActionAsync,
@@ -67,7 +67,9 @@ const NavBar = () => {
       document.querySelector(".second-nav").classList.add("back-bg");
     }
   };
-
+  const handleToggleShow = () => {
+    dispatch(toggleShow());
+  };
   // search function
   //   const specificProfile = useSelector((state) => state.profileSearch.content);
   //   const [query, setQuery] = useState("");
@@ -163,7 +165,7 @@ const NavBar = () => {
               </svg>
               <p className="text-gone">Home</p>
             </Link>
-            <Nav.Link href="#">
+            <Link to={"/feed"} className="text-center nav-link">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -177,8 +179,8 @@ const NavBar = () => {
                 <path d="M12 16v6H3v-6a3 3 0 013-3h3a3 3 0 013 3zm5.5-3A3.5 3.5 0 1014 9.5a3.5 3.5 0 003.5 3.5zm1 2h-2a2.5 2.5 0 00-2.5 2.5V22h7v-4.5a2.5 2.5 0 00-2.5-2.5zM7.5 2A4.5 4.5 0 1012 6.5 4.49 4.49 0 007.5 2z"></path>
               </svg>{" "}
               <p className="text-gone">My Network</p>
-            </Nav.Link>
-            <Nav.Link href="#">
+            </Link>
+            <Link to={"/feed"} className="text-center nav-link">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -192,8 +194,8 @@ const NavBar = () => {
                 <path d="M17 6V5a3 3 0 00-3-3h-4a3 3 0 00-3 3v1H2v4a3 3 0 003 3h14a3 3 0 003-3V6zM9 5a1 1 0 011-1h4a1 1 0 011 1v1H9zm10 9a4 4 0 003-1.38V17a3 3 0 01-3 3H5a3 3 0 01-3-3v-4.38A4 4 0 005 14z"></path>
               </svg>
               <p className="text-gone">Jobs</p>
-            </Nav.Link>
-            <Nav.Link href="#">
+            </Link>
+            <Nav.Link href="#" onClick={handleToggleShow}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -208,7 +210,10 @@ const NavBar = () => {
               </svg>
               <p className="text-gone">Messaging</p>
             </Nav.Link>
-            <Nav.Link href="#" id="notification-parent">
+            <Link
+              to={"/feed"}
+              className="text-center nav-link position-relative"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -222,7 +227,7 @@ const NavBar = () => {
               </svg>
               <div id="notification-number">3</div>
               <p className="text-gone">Notifications</p>
-            </Nav.Link>
+            </Link>
 
             <div href="#" className="profile-nav-wrapper">
               <img

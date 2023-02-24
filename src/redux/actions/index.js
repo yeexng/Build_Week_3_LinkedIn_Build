@@ -21,6 +21,7 @@ export const POST_IMAGE_TO_EXP = "POST_IMAGE_TO_EXP";
 export const POST_IMAGE_TO_POST = "POST_IMAGE_TO_POST";
 export const LIKE = "LIKE";
 export const UNLIKE = "UNLIKE";
+export const TOGGLE_SHOW = "TOGGLE_SHOW";
 
 const options = {
   method: "GET",
@@ -514,7 +515,6 @@ export const deletePostAction = (query) => {
         }
       );
       if (response.ok) {
-        alert("Alert deleted!");
         dispatch(getPostAction());
       }
     } catch (error) {
@@ -607,3 +607,9 @@ export function handleUploadAction(postID, file) {
       console.error("Problem uploading the image :(", error);
     });
 }
+
+export const toggleShow = () => {
+  return {
+    type: TOGGLE_SHOW,
+  };
+};

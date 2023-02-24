@@ -12,24 +12,36 @@ import { RiArrowUpSLine } from "react-icons/ri";
 import { BiSearch } from "react-icons/bi";
 import { Image } from "react-bootstrap";
 import "../styles/dropUpChat.css";
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
+import { toggleShow } from "../redux/actions";
 
 const DropUpChat = () => {
-  const [showShow, setShowShow] = useState(false);
-  const toggleShow = () => setShowShow(!showShow);
+  // const [showShow, setShowShow] = useState(false);
+  // const toggleShow = () => setShowShow(!showShow);
+  const dispatch = useDispatch();
+  const showShow = useSelector((state) => state.chatReducer.showShow);
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
+
+  const handleToggleShow = () => {
+    dispatch(toggleShow());
+  };
   return (
     <>
       <div className="chat-box-wrapper bg-white" id="chatbox-container">
         <div className="chat-box">
           <div
             className="drop-up-chat d-flex justify-content-between p-3"
-            onClick={toggleShow}
+            onClick={handleToggleShow}
           >
-
             <div>
-              <img src={userProfileAPIRS.image} alt="" id="chat-little-avatar" className="mr-2" />
-              Messaging</div>
+              <img
+                src={userProfileAPIRS.image}
+                alt=""
+                id="chat-little-avatar"
+                className="mr-2"
+              />
+              Messaging
+            </div>
             <div>
               <BsThreeDots className="mx-1" />
               <FiEdit className="mx-1" />
