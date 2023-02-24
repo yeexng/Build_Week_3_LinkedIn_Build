@@ -79,32 +79,32 @@ const ProfileAvatar = () => {
 
   return (
     <Row
-      className="d-flex flex-column edit-section bg-white mr-2 mb-2 pb-4"
+      className="d-flex flex-column edit-section bg-white mr-2 mb-2"
       id="round-corners"
     >
 
       <Col className="avatar-wrapper px-0">
-        <div id="banner-container">
-          <Image
-            onClick={handleShowPic}
-            className="img avatar-bg"
-            src="https://www.gordonkamitomo.com/wp-content/uploads/2017/09/LinkedIn-Banner-High-River.jpg"
-          />
-          <Image
-            onClick={handleShowPic}
-            className="img profile-pic"
-            id="profile-picture"
-            src={userProfileAPIRS && userProfileAPIRS.image}
-            roundedCircle
-          />
-          <Button
-            variant="light"
-            className="edit-btn"
-            onClick={handleShowPen}
-          >
-            <FiEdit2 />
-          </Button>
-        </div>
+
+        <Image
+          onClick={handleShowPic}
+          className="img avatar-bg-banner"
+          src="https://www.gordonkamitomo.com/wp-content/uploads/2017/09/LinkedIn-Banner-High-River.jpg"
+        />
+        <Image
+          onClick={handleShowPic}
+          className="img profile-pic"
+          id="profile-picture"
+          src={userProfileAPIRS && userProfileAPIRS.image}
+          roundedCircle
+        />
+        <Button
+          variant="light"
+          className="edit-btn"
+          onClick={handleShowPen}
+        >
+          <FiEdit2 />
+        </Button>
+
         <Modal show={show} onHide={handleClosePen}>
           <Modal.Header closeButton>
             <Modal.Title>Edit Info</Modal.Title>

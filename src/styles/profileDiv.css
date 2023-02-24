@@ -1,11 +1,10 @@
 .avatar-wrapper {
   position: relative;
-  height: 50vh;
 }
 
-.avatar-bg {
+.avatar-bg-banner {
   position: relative;
-  height: 20vh !important;
+  height: 180px !important;
   width: 100%;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
