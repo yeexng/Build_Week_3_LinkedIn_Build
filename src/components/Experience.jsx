@@ -18,6 +18,7 @@ import { MdOutlineAddAPhoto } from "react-icons/md";
 import { FiSend } from "react-icons/fi";
 import { parseISO } from "date-fns";
 import format from "date-fns/format";
+import { BsUpload } from "react-icons/bs";
 
 const Experience = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const Experience = () => {
   const userExperiencesAPIRS = useSelector(
     (state) => state.getExperience.content
   );
-  console.log(userExperiencesAPIRS)
+  console.log(userExperiencesAPIRS);
 
   useEffect(() => {
     dispatch(getExperienceAction(userProfileAPIRS._id));
@@ -123,7 +124,8 @@ const Experience = () => {
                     Start Date: {format(parseISO(data.startDate), "P")}
                   </p>
                   <p id="post-details" className="mb-0">
-                    End Date: {data.endDate && format(parseISO(data.endDate), "P")}
+                    End Date:{" "}
+                    {data.endDate && format(parseISO(data.endDate), "P")}
                   </p>
                   <p id="post-details" className="mb-0">
                     Description: {data.description}
@@ -249,16 +251,16 @@ const Experience = () => {
           <Button variant="secondary" onClick={handleClosePlus}>
             Close
           </Button>
-          {/* <p className="mb-0">
-            <MdOutlineAddAPhoto
-              id="analytics-icons"
-              onClick={handleClick}
-            ></MdOutlineAddAPhoto>
-          </p> */}
           <Button
             variant="primary"
             onClick={() => {
-              dispatch(postUserExperience(userExperiencesAPIRS._id));
+              dispatch(
+                postUserExperience(
+                  userExperiencesAPIRS._id,
+                  userProfileAPIRS._id,
+                  file
+                )
+              );
               setChanged(true);
             }}
           >
