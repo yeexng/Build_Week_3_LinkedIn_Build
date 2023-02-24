@@ -81,13 +81,12 @@ const NewsFeedEditPage = () => {
                 className="col-2"
                 variant="primary"
                 onClick={() => {
-                  console.log(feedData.id);
+                  // console.log(feedData._id);
                   console.log(file);
-                  dispatch(putPostAction(feedData._id));
-                  handleUploadAction(feedData._id, file);
-                  // navigate("/feed");
-
-                  // alert("Successfully Edited");
+                  dispatch(putPostAction(params.id));
+                  handleUploadAction(params.id, file);
+                  alert("Successfully Edited");
+                  navigate("/feed");
                 }}
               >
                 EDIT
