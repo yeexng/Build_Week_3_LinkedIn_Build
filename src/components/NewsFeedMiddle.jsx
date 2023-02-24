@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card, Form, Modal, Row, Col } from "react-bootstrap";
+import { Button, Card, Form, Modal, Row, Col, Alert } from "react-bootstrap";
 import { useEffect, useRef, useState } from "react";
 import {
   deletePostAction,
@@ -18,6 +18,13 @@ const NewsFeedMiddle = () => {
   const [show, setShow] = useState(false);
   //   const [file, setFile] = useState();
   //   const [changed, setChanged] = useState(false);
+  const [successful, setSuccessful] = useState(false);
+  const handleCloseSuccessful = () => setSuccessful(false);
+  const handleShowSuccessful = () => setSuccessful(true);
+
+  const [deleted, setDeleted] = useState(false);
+  const handleCloseDeleted = () => setDeleted(false);
+  const handleShowDeleted = () => setDeleted(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -248,8 +255,11 @@ const NewsFeedMiddle = () => {
             onClick={() => {
               dispatch(sendPostAsyncAction(post));
               dispatch(getPostAction());
-              alert("Your post have been saved!");
               handleClose();
+              navigate("/feed");
+              setPost({ text: "" });
+              handleShowSuccessful();
+              //   dispatch(getPostAction());
             }}
           >
             Save Changes
@@ -313,6 +323,7 @@ const NewsFeedMiddle = () => {
                           className="button-delete-post pl-3 mb-3"
                           onClick={() => {
                             dispatch(deletePostAction(singlePost._id));
+                            handleShowDeleted();
                           }}
                         >
                           <i className="bi bi-trash3-fill"></i>
@@ -328,6 +339,20 @@ const NewsFeedMiddle = () => {
               </Row>
             );
           })}
+
+      {/* Successful Modal */}
+      <Modal show={successful} onHide={handleCloseSuccessful}>
+        <Alert variant="success" className="text-center">
+          Successfully Posted !!
+        </Alert>
+      </Modal>
+
+      {/* Deleted Modal */}
+      <Modal show={deleted} onHide={handleCloseDeleted}>
+        <Alert variant="warning" className="text-center">
+          Deleted
+        </Alert>
+      </Modal>
     </>
   );
 };
