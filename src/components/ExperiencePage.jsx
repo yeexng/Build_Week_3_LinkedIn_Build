@@ -4,7 +4,7 @@ import RightSide from "./RightSide";
 import Footer from "./Footer";
 import DropUpChat from "./DropUpChat";
 import NavBar from "./NavBar";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
@@ -12,12 +12,11 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import { putUserExperience } from "../redux/actions";
 import { getExperienceWithExpIdAction } from "../redux/actions";
-import { parseISO } from "date-fns";
-import format from "date-fns/format";
 
 const ExperiencePage = () => {
   const params = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const singleExpData = useSelector((state) => state.experienceWithId.content);
 
@@ -96,6 +95,7 @@ const ExperiencePage = () => {
                 dispatch(
                   putUserExperience(singleExpData.user, singleExpData._id)
                 );
+                navigate("/");
               }}
             >
               Edit Experience
