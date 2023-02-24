@@ -509,7 +509,6 @@ export const deletePostAction = (query) => {
         }
       );
       if (response.ok) {
-        alert("Alert deleted!");
         dispatch(getPostAction());
       }
     } catch (error) {
