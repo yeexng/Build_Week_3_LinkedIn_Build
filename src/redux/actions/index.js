@@ -394,19 +394,27 @@ export const getUserbyId = (query) => {
 };
 
 //POSTS
-export const sendPostAsyncAction = (editedData) => {
+export const sendPostAsyncAction = (editedData, file) => {
   return async (dispatch, getState) => {
     try {
-      let res = fetch(`https://striveschool-api.herokuapp.com/api/posts/`, {
-        method: "POST",
-        body: JSON.stringify(editedData),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-        },
-      });
+      let res = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/`,
+        {
+          method: "POST",
+          body: JSON.stringify(editedData),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+          },
+        }
+      );
       if (res.ok) {
-        console.log("sending");
+        const data = await res.json();
+        dispatch({
+          type: GET_POSTS_WITH_ID,
+          payload: data.id,
+        });
+        dispatch(handleUploadAction(data._id, file));
       }
     } catch (error) {
       console.log(error);
@@ -447,7 +455,7 @@ export const getPostWithIdAction = (query) => {
         console.log(data);
         dispatch({
           type: GET_POSTS_WITH_ID,
-          payload: data,
+          payload: data.id,
         });
       }
     } catch (error) {

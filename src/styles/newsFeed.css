@@ -151,3 +151,8 @@ span {
   width: 100px !important;
   margin-right: 10px !important;
 }
+.image-post {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0% !important;
+}

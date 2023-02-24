@@ -21,7 +21,7 @@ import {
 import { getUserProfileApi } from "../redux/actions";
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBarForNewsFeed = () => {
   const [searchValue, getSearchValue] = useState("");
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
   const dispatch = useDispatch();
@@ -53,16 +53,6 @@ const NavBar = () => {
       modal.style.display = "none";
     }
   };
-  const headerChange = function () {
-    if (window.pageYOffset > 500) {
-      document.querySelector(".second-nav").classList.add("scrolled-bg");
-      document.querySelector(".second-nav").classList.remove("back-bg");
-    } else if (window.pageYOffset < 500) {
-      document.querySelector(".second-nav").classList.remove("scrolled-bg");
-      document.querySelector(".second-nav").classList.add("back-bg");
-    }
-  };
-  window.addEventListener("scroll", headerChange);
 
   // search function
   //   const specificProfile = useSelector((state) => state.profileSearch.content);
@@ -723,41 +713,8 @@ const NavBar = () => {
           </Nav>
         </Container>
       </Navbar>
-      <Navbar className=" justify-content-between  second-nav " id="second-nav">
-        <Container>
-          <div className="d-flex justify-content-between w-100">
-            <div>
-              <div className="d-flex pl-1  pt-3 mb-4">
-                <div>
-                  <img
-                    src={userProfileAPIRS && userProfileAPIRS.image}
-                    alt="profile in navigation bar img-fluid"
-                    className="profile-photo-dropdown mr-2 img-fluid"
-                  />
-                </div>
-                <div>
-                  <strong>
-                    {userProfileAPIRS && userProfileAPIRS.name}{" "}
-                    {userProfileAPIRS && userProfileAPIRS.surname}
-                  </strong>
-                  <p>
-                    <small>{userProfileAPIRS && userProfileAPIRS.title}</small>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="pt-3">
-              <Button className="btn-more">More</Button>
-              <Button className="btn-add-profile-section">
-                Add profile section
-              </Button>
-              <Button className="btn-open-to">Open to</Button>
-            </div>
-          </div>
-        </Container>
-      </Navbar>
     </div>
   );
 };
 
-export default NavBar;
+export default NavBarForNewsFeed;

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card, Form, Modal, Row, Col } from "react-bootstrap";
+import { Button, Card, Form, Modal, Row, Col, Alert } from "react-bootstrap";
 import { useEffect, useRef, useState } from "react";
 import {
   deletePostAction,
@@ -15,8 +15,10 @@ import { BsUpload } from "react-icons/bs";
 
 const NewsFeedMiddle = () => {
   const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
+  //   const thePostId = useSelector((state) => state.getPostsWithId.content);
+
   const [show, setShow] = useState(false);
-  //   const [file, setFile] = useState();
+  const [file, setFile] = useState();
   //   const [changed, setChanged] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -25,68 +27,25 @@ const NewsFeedMiddle = () => {
     text: "", // the only property you need to send
     username: "",
   });
-  //   const [postToUpdate, setPostToUpdate] = = useState({
-  //     text: "", // the only property you need to send
-  //     username: "",
-  //   });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //   function handleFile(event) {
-  //     setFile(event.target.files[0]);
-  //     console.log(event.target.files[0]);
-  //   }
-  //   const inputRef = useRef(null);
-  //   //   const handleFileChange = (event) => {
-  //   //     const fileObj = event.target.files && event.target.files[0];
-  //   //     if (!fileObj) {
-  //   //       return;
-  //   //     }
+  function handleFile(event) {
+    setFile(event.target.files[0]);
+    console.log(event.target.files[0]);
+  }
 
-  //   //     console.log("fileObj is", fileObj);
+  const inputRef = useRef(null);
 
-  //   //     // 👇️ reset file input
-  //   //     event.target.value = null;
-
-  //   //     // 👇️ is now empty
-  //   //     console.log(event.target.files);
-
-  //   //     // 👇️ can still access file object here
-  //   //     console.log(fileObj);
-  //   //     console.log(fileObj.name);
-  //   //   };
-
-  //   const handleClick = () => {
-  //     // 👇️ open file input box on click of other element
-  //     inputRef.current.click();
-  //   };
-  //   function handleUpload(postID) {
-  //     const baseURL = `https://striveschool-api.herokuapp.com/api/posts/${postID}`;
-  //     const formData = new FormData();
-  //     formData.append("profile", file);
-  //     fetch(baseURL, {
-  //       method: "POST",
-  //       body: formData,
-  //       headers: {
-  //         Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-  //       },
-  //     })
-  //       .then((response) => response.json())
-  //       .then((result) => {
-  //         console.log("You've uploaded your profile pic!", result);
-  //         setChanged(true);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Problem uploading the image :(", error);
-  //         setChanged(true);
-  //       });
-  //   }
+  const handleClick = () => {
+    inputRef.current.click();
+  };
 
   useEffect(() => {
     dispatch(getPostAction());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  //   const postWithId = useSelector((state) => state.getPostsWithId.content);
   const allPosts = useSelector((state) => state.getPosts.content);
 
   return (
@@ -243,18 +202,45 @@ const NewsFeedMiddle = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
+          <input
+            style={{ display: "none" }}
+            ref={inputRef}
+            type="file"
+            name="file"
+            onChange={handleFile}
+          />
+          <Button
+            id="profile-pic-update-buttons  "
+            className="p-2 text-light mr-1 button-to-style mx-3"
+            onClick={handleClick}
+          >
+            <BsUpload id="button-to-style"></BsUpload>
+            <span className="ml-2">IMG</span>
+          </Button>
           <Button
             variant="primary"
             onClick={() => {
-              dispatch(sendPostAsyncAction(post));
+              dispatch(sendPostAsyncAction(post, file));
               dispatch(getPostAction());
-              alert("Your post have been saved!");
               handleClose();
+              //   dispatch(getPostAction());
+              alert("Your post have been saved!");
             }}
           >
-            Save Changes
+            POST
           </Button>
         </Modal.Footer>
+        {file && (
+          <Alert variant="success" className="mb-3">
+            You selected:{" "}
+            <strong>
+              <em>{file.name}</em>
+            </strong>{" "}
+            <span className="ml-5">
+              Press <strong>POST</strong> to proceed
+            </span>
+          </Alert>
+        )}
       </Modal>
       {allPosts &&
         allPosts
@@ -262,13 +248,9 @@ const NewsFeedMiddle = () => {
           .reverse()
           .map((singlePost, i) => {
             return (
-              <Row className="flex-column-reverse">
+              <Row className="flex-column-reverse" key={singlePost._id}>
                 <Col>
-                  <Card
-                    id="news-feed-mid-section-lower"
-                    className="my-3"
-                    key={singlePost._id}
-                  >
+                  <Card id="news-feed-mid-section-lower" className="my-3">
                     <div className="d-flex flex-column mx-2 my-2">
                       <div className="d-flex">
                         <img
@@ -295,7 +277,11 @@ const NewsFeedMiddle = () => {
                       <div className="mx-3 my-5">{singlePost.text}</div>
                       {singlePost.image && (
                         <div>
-                          <img src={singlePost.image} alt="" />
+                          <img
+                            src={singlePost.image}
+                            alt=""
+                            className="image-post"
+                          />
                         </div>
                       )}
                     </div>
