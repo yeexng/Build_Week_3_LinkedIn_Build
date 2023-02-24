@@ -11,7 +11,7 @@ const Skills = () => {
                         <p id="left-side-headers" className="mb-0">Skills</p>
                     </div>
                     <div className="ml-auto d-flex" >
-                        <p className="mb-0 mr-2"><Button variant="primary" id="main-buttons">Demonstrate skills</Button></p><p className="mr-3 mb-0"><BiPlus id="analytics-icons"></BiPlus></p><p className="mb-0"><BiPencil id="analytics-icons"></BiPencil></p>
+                        <p className="mb-0 mr-2"><Button variant="primary" id="main-buttons" className="d-flex justify-content-center align-items-center">Demonstrate skills</Button></p><p className="mr-3 mb-0"><BiPlus id="analytics-icons"></BiPlus></p><p className="mb-0"><BiPencil id="analytics-icons"></BiPencil></p>
                     </div>
                 </div>
             </Col>
