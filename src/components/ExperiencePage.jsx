@@ -12,20 +12,21 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import { putUserExperience } from "../redux/actions";
 import { getExperienceWithExpIdAction } from "../redux/actions";
+import { parseISO } from "date-fns";
+import format from "date-fns/format";
 
 const ExperiencePage = () => {
   const params = useParams();
   const dispatch = useDispatch();
 
-  const singleExpData = useSelector((state) => state.experienceWithId.content)
+  const singleExpData = useSelector((state) => state.experienceWithId.content);
 
   useEffect(() => {
-    dispatch(getExperienceWithExpIdAction(params.user, params.id))
-  }, [])
+    dispatch(getExperienceWithExpIdAction(params.user, params.id));
+  }, []);
 
-  console.log('User ID', params.user, singleExpData.user)
-  console.log('Exp ID', params.id, singleExpData._id)
-
+  console.log("User ID", params.user, singleExpData.user);
+  console.log("Exp ID", params.id, singleExpData._id);
 
   return (
     <>
@@ -33,7 +34,6 @@ const ExperiencePage = () => {
       <Container>
         <Row className="mt-5 pt-5">
           <Col lg={9}>
-
             <InputGroup className="mb-3 px-4">
               <InputGroup.Text id="basic-addon1">Role</InputGroup.Text>
               <Form.Control
@@ -59,6 +59,7 @@ const ExperiencePage = () => {
                 aria-label="Username"
                 aria-describedby="basic-addon1"
                 id="put-experience-startdate"
+                type="date"
               />
             </InputGroup>
             <InputGroup className="mb-3 px-4">
@@ -68,6 +69,7 @@ const ExperiencePage = () => {
                 aria-label="Username"
                 aria-describedby="basic-addon1"
                 id="put-experience-enddate"
+                type="date"
               />
             </InputGroup>
             <InputGroup className="mb-3 px-4">
@@ -88,9 +90,14 @@ const ExperiencePage = () => {
                 id="put-experience-area"
               />
             </InputGroup>
-            <Button variant="primary" onClick={() => {
-              dispatch(putUserExperience(singleExpData.user, singleExpData._id))
-            }}>
+            <Button
+              variant="primary"
+              onClick={() => {
+                dispatch(
+                  putUserExperience(singleExpData.user, singleExpData._id)
+                );
+              }}
+            >
               Edit Experience
             </Button>
           </Col>
