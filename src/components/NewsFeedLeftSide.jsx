@@ -1,5 +1,6 @@
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import "../styles/newsFeed.css";
 
 const NewsFeedLeftSide = () => {
@@ -15,11 +16,13 @@ const NewsFeedLeftSide = () => {
             alt="profile in navigation bar"
             // className="profile-photo-dropdown"
           />
-          <img
-            src={userProfileAPIRS && userProfileAPIRS.image}
-            alt="profile"
-            className="profile-left"
-          ></img>
+          <Link to={"/"}>
+            <img
+              src={userProfileAPIRS && userProfileAPIRS.image}
+              alt="profile"
+              className="profile-left"
+            ></img>
+          </Link>
         </div>
         <ListGroup className="list-group-flush">
           <ListGroupItem>

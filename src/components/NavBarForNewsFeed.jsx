@@ -208,11 +208,13 @@ const NavBarForNewsFeed = () => {
             </Nav.Link>
 
             <div href="#" className="profile-nav-wrapper">
-              <img
-                src={userProfileAPIRS && userProfileAPIRS.image}
-                alt="profile in navigation bar"
-                className="profile-photo"
-              />
+              <Link to={"/"}>
+                <img
+                  src={userProfileAPIRS && userProfileAPIRS.image}
+                  alt="profile in navigation bar"
+                  className="profile-photo"
+                />
+              </Link>
               <Row className="justify-content-center">
                 <Col md={2} className="pl-0 text-muted Me-text text-gone">
                   Me
