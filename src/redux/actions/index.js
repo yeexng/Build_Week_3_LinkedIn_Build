@@ -30,6 +30,7 @@ const options = {
   },
 };
 
+//PROFILE
 export const getUserProfileApi = () => {
   return async (dispatch, getState) => {
     const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/me`;
@@ -144,6 +145,50 @@ export const putUserProfileApi = () => {
   };
 };
 
+export const getUserbyId = (query) => {
+  return async (dispatch, getState) => {
+    const baseEndpoint =
+      `https://striveschool-api.herokuapp.com/api/profile/` + query;
+    try {
+      let resp = await fetch(baseEndpoint, options);
+      if (resp.ok) {
+        dispatch({
+          type: GET_USER_LOADING,
+          payload: true,
+        });
+        let data = await resp.json();
+        dispatch({
+          type: GET_USER_PROFILE_API,
+          payload: data,
+        });
+        dispatch({
+          type: GET_USER_LOADING,
+          payload: false,
+        });
+      } else {
+        dispatch({
+          type: GET_USER_LOADING,
+          payload: false,
+        });
+        dispatch({
+          type: GET_USER_ERROR,
+          payload: true,
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: GET_USER_LOADING,
+        payload: false,
+      });
+      dispatch({
+        type: GET_USER_ERROR,
+        payload: true,
+      });
+    }
+  };
+};
+
+//SEARCH
 export const getAllProfileActionAsync = () => {
   return async (dispatch, getState) => {
     try {
@@ -181,6 +226,7 @@ export const getSearchResultActionAsync = (data, search) => {
   };
 };
 
+//SPECIFIC PROFILE
 export const getSpecificProfileAction = (query) => {
   return async (dispatch, getState) => {
     try {
@@ -202,6 +248,8 @@ export const getSpecificProfileAction = (query) => {
   };
 };
 
+
+//EXPERIENCE
 export const getExperienceAction = (query) => {
   return async (dispatch, getState) => {
     try {
@@ -374,49 +422,6 @@ export const putUserExperience = (query, expId) => {
       }
     } catch (error) {
       console.log(error);
-    }
-  };
-};
-
-export const getUserbyId = (query) => {
-  return async (dispatch, getState) => {
-    const baseEndpoint =
-      `https://striveschool-api.herokuapp.com/api/profile/` + query;
-    try {
-      let resp = await fetch(baseEndpoint, options);
-      if (resp.ok) {
-        dispatch({
-          type: GET_USER_LOADING,
-          payload: true,
-        });
-        let data = await resp.json();
-        dispatch({
-          type: GET_USER_PROFILE_API,
-          payload: data,
-        });
-        dispatch({
-          type: GET_USER_LOADING,
-          payload: false,
-        });
-      } else {
-        dispatch({
-          type: GET_USER_LOADING,
-          payload: false,
-        });
-        dispatch({
-          type: GET_USER_ERROR,
-          payload: true,
-        });
-      }
-    } catch (error) {
-      dispatch({
-        type: GET_USER_LOADING,
-        payload: false,
-      });
-      dispatch({
-        type: GET_USER_ERROR,
-        payload: true,
-      });
     }
   };
 };
@@ -596,7 +601,6 @@ export const addPostImageAction = (postId) => {
 };
 
 // Favourite
-
 export const likeAction = (singlePost) => {
   return {
     type: LIKE,

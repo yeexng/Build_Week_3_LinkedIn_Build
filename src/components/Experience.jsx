@@ -34,11 +34,13 @@ const Experience = () => {
   const handleCloseSuccessful = () => setSuccessful(false);
   const handleShowSuccessful = () => setSuccessful(true);
 
+  const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
+  console.log(userProfileAPIRS);
+
   const userExperiencesAPIRS = useSelector(
     (state) => state.getExperience.content
   );
-
-  const userProfileAPIRS = useSelector((state) => state.userDataAPI.stock);
+  console.log(userExperiencesAPIRS);
 
   useEffect(() => {
     dispatch(getExperienceAction(userProfileAPIRS._id));
@@ -59,7 +61,6 @@ const Experience = () => {
   const inputRef = useRef(null);
 
   const handleClick = () => {
-    // 👇️ open file input box on click of other element
     inputRef.current.click();
   };
 
@@ -120,10 +121,11 @@ const Experience = () => {
                     Company: {data.company}
                   </p>
                   <p id="post-details" className="mb-0">
-                    Start Date: {format(parseISO(data.startDate), "P ")}
+                    Start Date: {format(parseISO(data.startDate), "P")}
                   </p>
                   <p id="post-details" className="mb-0">
-                    End Date: {format(parseISO(data.createdAt), " P ")}
+                    End Date:{" "}
+                    {data.endDate && format(parseISO(data.endDate), "P")}
                   </p>
                   <p id="post-details" className="mb-0">
                     Description: {data.description}
