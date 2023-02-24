@@ -109,7 +109,6 @@ const ProfileAvatar = () => {
           </Col>
         </Row>
 
-
         <Modal show={show} onHide={handleClosePen}>
           <Modal.Header closeButton>
             <Modal.Title>Edit Info</Modal.Title>
