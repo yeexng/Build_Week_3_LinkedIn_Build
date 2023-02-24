@@ -68,7 +68,7 @@ const NewsFeedMiddle = () => {
             </Button>
           </div>
           <div className="d-flex justify-content-around mb-3">
-            <Button>
+            <Button className="d-flex align-items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -83,7 +83,7 @@ const NewsFeedMiddle = () => {
               </svg>
               <span>Photo</span>
             </Button>
-            <Button>
+            <Button className="d-flex align-items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -98,7 +98,7 @@ const NewsFeedMiddle = () => {
               </svg>
               <span>Video</span>{" "}
             </Button>
-            <Button>
+            <Button className="d-flex align-items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -113,7 +113,7 @@ const NewsFeedMiddle = () => {
               </svg>
               <span>Event</span>
             </Button>
-            <Button>
+            <Button className="d-flex align-items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
