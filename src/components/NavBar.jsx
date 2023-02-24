@@ -34,6 +34,9 @@ const NavBar = () => {
   useEffect(() => {
     dispatch(getAllProfileActionAsync());
     window.addEventListener("scroll", headerChange);
+    return () => {
+      window.removeEventListener("scroll", headerChange);
+    };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
