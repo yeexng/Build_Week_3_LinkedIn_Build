@@ -80,7 +80,10 @@ const NavBar = () => {
     <div className="d-flex flex-column">
       <Navbar className="fixed-top" id="top-nav">
         <Container>
-          <Link to={"/"}>
+          <Link
+            to={"/"}
+            onClick={window.removeEventListener("scroll", headerChange)}
+          >
             <Navbar.Brand>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
