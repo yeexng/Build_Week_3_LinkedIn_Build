@@ -376,7 +376,7 @@
   margin-bottom: 0;
 }
 .navbar navbar-expand navbar-light bg-light {
-  height: 10vh;
+  height: 60px;
 }
 .navbar-nav #notification-parent {
   position: relative;
@@ -407,7 +407,7 @@
   margin-right: 1rem;
 }
 .navbar {
-  height: 8vh !important;
+  height: 60px !important;
   padding-top: 10px !important;
 }
 .navbar-nav .dropdown a {
