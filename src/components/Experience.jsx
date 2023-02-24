@@ -18,6 +18,7 @@ import { MdOutlineAddAPhoto } from "react-icons/md";
 import { FiSend } from "react-icons/fi";
 import { parseISO } from "date-fns";
 import format from "date-fns/format";
+import { BsUpload } from "react-icons/bs";
 
 const Experience = () => {
   const dispatch = useDispatch();
@@ -122,7 +123,7 @@ const Experience = () => {
                     Start Date: {format(parseISO(data.startDate), "P ")}
                   </p>
                   <p id="post-details" className="mb-0">
-                    End Date: {format(parseISO(data.endDate), " P ")}
+                    End Date: {format(parseISO(data.createdAt), " P ")}
                   </p>
                   <p id="post-details" className="mb-0">
                     Description: {data.description}
@@ -248,15 +249,48 @@ const Experience = () => {
           <Button variant="secondary" onClick={handleClosePlus}>
             Close
           </Button>
+          <input
+            style={{ display: "none" }}
+            ref={inputRef}
+            type="file"
+            name="file"
+            onChange={handleFile}
+          />
+          <Button
+            id="profile-pic-update-buttons  "
+            className="p-2 text-light mr-1 button-to-style mx-3"
+            onClick={handleClick}
+          >
+            <BsUpload id="button-to-style"></BsUpload>
+            <span className="ml-2">IMG</span>
+          </Button>
+
           <Button
             variant="primary"
             onClick={() => {
-              dispatch(postUserExperience(userExperiencesAPIRS._id));
+              dispatch(
+                postUserExperience(
+                  userExperiencesAPIRS._id,
+                  userProfileAPIRS._id,
+                  file
+                )
+              );
               setChanged(true);
             }}
           >
             Create Experience
           </Button>
+          {file && (
+            <Alert variant="success" className="mb-3">
+              You selected:{" "}
+              <strong>
+                <em>{file.name}</em>
+              </strong>{" "}
+              <span className="ml-5">
+                Press <strong>POST</strong> to proceed
+              </span>
+            </Alert>
+          )}
         </Modal.Footer>
       </Modal>
 

@@ -243,7 +243,7 @@ export const getExperienceWithExpIdAction = (query, expId) => {
   };
 };
 
-export const postUserExperience = (query) => {
+export const postUserExperience = (query, query2, file) => {
   const roleInput = document.getElementById("experience-role");
   const companyInput = document.getElementById("experience-company");
   const startdateInput = document.getElementById("experience-startdate");
@@ -260,7 +260,7 @@ export const postUserExperience = (query) => {
   };
   return async (dispatch, getState) => {
     try {
-      let res = fetch(
+      let res = await fetch(
         `https://striveschool-api.herokuapp.com/api/profile/${query}/experiences`,
         {
           method: "POST",
@@ -271,12 +271,39 @@ export const postUserExperience = (query) => {
           },
         }
       );
-      dispatch(getUserProfileApi());
+      if (res.ok) {
+        const data = await res.json();
+        dispatch({
+          type: GET_POSTS_WITH_ID,
+          payload: data.id,
+        });
+        dispatch(getUserProfileApi());
+        dispatch(handleUploadActionExp(data._id, query2, file));
+      }
     } catch (error) {
       console.log(error);
     }
   };
 };
+function handleUploadActionExp(expId, userProfileAPIRS, file) {
+  const baseURL = `https://striveschool-api.herokuapp.com/api/profile/${userProfileAPIRS}/experiences/${expId}/picture`;
+  const formData = new FormData();
+  formData.append("experience", file);
+  fetch(baseURL, {
+    method: "POST",
+    body: formData,
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log("You've uploaded your profile pic!", result);
+    })
+    .catch((error) => {
+      console.error("Problem uploading the image :(", error);
+    });
+}
 
 export const deleteSpecificExperienceAction = (query, expId) => {
   return async (dispatch, getState) => {
