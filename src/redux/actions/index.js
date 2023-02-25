@@ -248,7 +248,6 @@ export const getSpecificProfileAction = (query) => {
   };
 };
 
-
 //EXPERIENCE
 export const getExperienceAction = (query) => {
   return async (dispatch, getState) => {
